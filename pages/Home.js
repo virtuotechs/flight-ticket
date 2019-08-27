@@ -216,23 +216,23 @@ const Index = (props) => {
 		{
 			setChild_err(!child_err);
 		}	
-		if (preferedFlightClass == "0") {
-			setCabin_err(true);
-		}
-		if (departureDate == "") {
-			setDeparturedate_err(true);
-		}
-		if (returnDate == "") {
-			setReturndate_err(true);
-		}
+		// if (preferedFlightClass == "0") {
+		// 	setCabin_err(true);
+		// }
+		// if (departureDate == "") {
+		// 	setDeparturedate_err(true);
+		// }
+		// if (returnDate == "") {
+		// 	setReturndate_err(true);
+		// }
 		console.log(departureDate);
 		console.log(returnDate);
-		if (departureDate != "" && returnDate != "" && preferedFlightClass != 0) 
-		{
+		// if (departureDate != "" && returnDate != "" && preferedFlightClass != 0) 
+		// {
 			Router.push({
 				pathname: '/ticketbooking',
 			})
-		}
+		//}
 	}
 
 		return (	
@@ -478,7 +478,6 @@ const Index = (props) => {
 											<Form.Label>Cabin Class</Form.Label>
 											<div className="select_box">
 												<Form.Control as="select" name="preferedFlightClass" onChange={changeClass}>
-													<option value="0" hidden>Select</option>
 													<option value="1">Any</option>
 													<option value="2">Business</option>
 													<option value="3">Economy</option>
