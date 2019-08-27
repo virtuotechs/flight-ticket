@@ -269,8 +269,8 @@ const Index = (props) => {
 													</div>
 												</Form.Group>
 												{['checkbox'].map(type => (
-													<div className='checkbox-custom'>
-														<div key={`inline-${type}`} className="mb-3 top-0">
+													<div key={`inline-${type}`} className='checkbox-custom'>
+														<div  className="mb-3 top-0">
 															<Form.Check name="add_near_airport" inline label="Add Nearby Airports" type={type} id={`inline-${type}-1`} />
 														</div>
 													</div>
@@ -287,8 +287,8 @@ const Index = (props) => {
 													</div>
 												</Form.Group>
 												{['checkbox'].map(type => (
-													<div className='checkbox-custom'>
-														<div key={`inline-${type}`} className="mb-3 top-0">
+													<div key={`inline-${type}`} className='checkbox-custom'>
+														<div className="mb-3 top-0">
 															<Form.Check name="add_near_airport" inline label="Add Nearby Airports" type={type} id={`inline-${type}-1`} />
 														</div>
 													</div>
@@ -422,8 +422,8 @@ const Index = (props) => {
 													</div>
 												</Form.Group>
 												{['checkbox'].map(type => (
-													<div className='checkbox-custom'>
-														<div key={`inline-${type}`} className="mb-3 top-0">
+													<div key={`inline-${type}`} className='checkbox-custom'>
+														<div className="mb-3 top-0">
 															<Form.Check name="add_near_airport" inline label="Add Nearby Airports" type={type} id={`inline-${type}-1`} />
 														</div>
 													</div>
@@ -464,8 +464,8 @@ const Index = (props) => {
 													</div>
 												</Form.Group>
 												{['checkbox'].map(type => (
-													<div className='checkbox-custom'>
-														<div key={`inline-${type}`} className="mb-3 top-0">
+													<div key={`inline-${type}`} className='checkbox-custom'>
+														<div className="mb-3 top-0">
 															<Form.Check name="add_near_airport" inline label="Add Nearby Airports" type={type} id={`inline-${type}-1`} />
 														</div>
 													</div>
