@@ -41,7 +41,7 @@ body {
     top: 33%;
     left: 4%;
     bottom: 0;
-    padding: 20px 7%;
+    padding: 20px 50px 21px 50px;
     height: 100%;
     z-index: 100;
 }
@@ -242,7 +242,7 @@ small.country-name {
 .pink-text {
     color: #FF4057;
     float: right;
-    margin-top: 3px;
+    margin-top: 0px;
 }
 
 .small_checkbox input[type=checkbox] {
@@ -917,7 +917,7 @@ span.via-city {
     border-radius: 100% !important;
     background-color: #dc3545 !important;
     color: #fff !important;
-    padding: 4px 20px 3px 14px;
+    padding: 4px 20px 3px 9px;
 }
 
 .react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {

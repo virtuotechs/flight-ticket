@@ -16,9 +16,7 @@ class Footer extends Component {
 					<Container>
 						<Row>
 							<Col md={5} sm={12}>
-								<Link href='/'>
-									<div className="logo">Your Logo</div>
-								</Link>
+							<Link href='/'><img src='static/images/dealchecker.svg' style={{height:'45px',width:'235px'}}></img></Link>
 								<p className='address'><b>A:</b> Addressline1Addressline1Addressline1<br></br>
 								<b>P:</b> 24/7 Customer Support: 1-222-2222-22-22<br></br>
 								<b>E:</b> info@dealchecker.com</p>
