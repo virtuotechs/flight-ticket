@@ -21,7 +21,7 @@ class Footer extends Component {
 								</Link>
 								<p className='address'><b>A:</b> Addressline1Addressline1Addressline1<br></br>
 								<b>P:</b> 24/7 Customer Support: 1-222-2222-22-22<br></br>
-								<b>E:</b> skyscanner@gmail.com</p>
+								<b>E:</b> info@dealchecker.com</p>
 								<h6><b>Follow us:</b></h6>
 								<div className='social-media'>
 									<div className='twitter'>

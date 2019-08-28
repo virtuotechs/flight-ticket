@@ -1500,27 +1500,27 @@ span.deals_no {
     }
 }
 
-.fa.fa-chevron-down.button {
+.fa.fa-chevron-up.button {
     -moz-transition: all .5s linear;
     -webkit-transition: all .5s linear;
     transition: all .5s linear;
     float: right;
 }
 
-.fa.fa-chevron-down.button.toggled {
+.fa.fa-chevron-up.button.toggled {
     -moz-transform: rotate(182deg);
     -webkit-transform: rotate(182deg);
     transform: rotate(182deg);
 }
 
-.fa.fa-chevron-down.button_1 {
+.fa.fa-chevron-up.button_1 {
     -moz-transition: all .5s linear;
     -webkit-transition: all .5s linear;
     transition: all .5s linear;
     float: right;
 }
 
-.fa.fa-chevron-down.button_1.toggled {
+.fa.fa-chevron-up.button_1.toggled {
     -moz-transform: rotate(182deg);
     -webkit-transform: rotate(182deg);
     transform: rotate(182deg);

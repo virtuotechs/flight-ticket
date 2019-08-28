@@ -11,6 +11,7 @@ const Layout = (props) => {
                     <title>Ticket Booking</title>
                     <meta charset="utf-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"></meta>
+                    <link rel="icon" href="../static/images/dc_fav-01.png" type="image/png" sizes="16x16"></link>
                     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossOrigin="anonymous"/>
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" crossOrigin="anonymous"></link>
                     <link rel="stylesheet" href="../static/styles/styles.css"/>

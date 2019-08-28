@@ -612,7 +612,10 @@ button:hover, button:focus, button:visited, button:focus-within, button:active {
     border-top-right-radius: 0;
     border-top-left-radius: 0;
 }
-
+span.duration-limit {
+    color: red;
+    font-size: 12px;
+}
 .sort-box:hover {
     box-shadow: -1px 1px 9px 4px #b1b1b16e;
 }

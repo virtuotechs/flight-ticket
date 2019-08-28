@@ -158,7 +158,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=538.05-ND|EK|66,650|1500-ND|EK|651,3|1005&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=538.05-ND|EK|66,650|1500-ND|EK|651,3|1005&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 18,
@@ -313,7 +313,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=538.05-ND|EK|68,654|2110-ND|EK|2145,3|0625&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=538.05-ND|EK|68,654|2110-ND|EK|2145,3|0625&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 17,
@@ -468,7 +468,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=538.05-ND|EK|66,650|1500-ND|EK|2145,3|0625&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=538.05-ND|EK|66,650|1500-ND|EK|2145,3|0625&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 15,
@@ -623,7 +623,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=538.05-ND|EK|66,650|1500-ND|EK|651,9|1005&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=538.05-ND|EK|66,650|1500-ND|EK|651,9|1005&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 14,
@@ -777,7 +777,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=538.05-ND|EK|68,654|2110-ND|EK|649,65|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=538.05-ND|EK|68,654|2110-ND|EK|649,65|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 13,
@@ -932,7 +932,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=538.05-ND|EK|68,654|2110-ND|EK|649,15|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=538.05-ND|EK|68,654|2110-ND|EK|649,15|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 12,
@@ -1087,7 +1087,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=538.05-ND|EK|68,654|2110-ND|EK|655,11|2210&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=538.05-ND|EK|68,654|2110-ND|EK|655,11|2210&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 11,
@@ -1241,7 +1241,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=538.05-ND|EK|66,650|1500-ND|EK|649,65|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=538.05-ND|EK|66,650|1500-ND|EK|649,65|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 10,
@@ -1396,7 +1396,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=538.05-ND|EK|66,650|1500-ND|EK|649,15|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=538.05-ND|EK|66,650|1500-ND|EK|649,15|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 16,
@@ -1551,7 +1551,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=538.05-ND|EK|68,654|2110-ND|EK|651,9|1005&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=538.05-ND|EK|68,654|2110-ND|EK|651,9|1005&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 8,
@@ -1706,7 +1706,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=538.05-ND|EK|68,654|2110-ND|EK|649,1|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=538.05-ND|EK|68,654|2110-ND|EK|649,1|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 7,
@@ -1861,7 +1861,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=538.05-ND|EK|66,650|1500-ND|EK|649,1|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=538.05-ND|EK|66,650|1500-ND|EK|649,1|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 6,
@@ -2015,7 +2015,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=538.05-ND|EK|68,654|2110-ND|EK|651,67|1005&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=538.05-ND|EK|68,654|2110-ND|EK|651,67|1005&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 5,
@@ -2169,7 +2169,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=538.05-ND|EK|66,650|1500-ND|EK|651,67|1005&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=538.05-ND|EK|66,650|1500-ND|EK|651,67|1005&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 4,
@@ -2324,7 +2324,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=538.05-ND|EK|68,654|2110-ND|EK|651,5|1005&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=538.05-ND|EK|68,654|2110-ND|EK|651,5|1005&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 9,
@@ -2479,7 +2479,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=538.05-ND|EK|66,650|1500-ND|EK|655,11|2210&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=538.05-ND|EK|66,650|1500-ND|EK|655,11|2210&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 3,
@@ -2634,7 +2634,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=538.05-ND|EK|66,650|1500-ND|EK|651,5|1005&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=538.05-ND|EK|66,650|1500-ND|EK|651,5|1005&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 2,
@@ -2789,7 +2789,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=538.05-ND|EK|68,654|2110-ND|EK|651,3|1005&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=538.05-ND|EK|68,654|2110-ND|EK|651,3|1005&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 20,
@@ -2944,7 +2944,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=550.05-ND|EK|68,654|2110-ND|EK|649,29|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=550.05-ND|EK|68,654|2110-ND|EK|649,29|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 21,
@@ -3099,7 +3099,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=550.05-ND|EK|66,650|1500-ND|EK|649,31|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=550.05-ND|EK|66,650|1500-ND|EK|649,31|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 19,
@@ -3254,7 +3254,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=550.05-ND|EK|66,650|1500-ND|EK|649,29|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=550.05-ND|EK|66,650|1500-ND|EK|649,29|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 34,
@@ -3406,7 +3406,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|332,654|2135-ND|QR|669,327|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|332,654|2135-ND|QR|669,327|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 42,
@@ -3558,7 +3558,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|328,664|1515-ND|QR|655,329|2055&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|328,664|1515-ND|QR|655,329|2055&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 41,
@@ -3710,7 +3710,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|332,654|2135-ND|QR|669,7|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|332,654|2135-ND|QR|669,7|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 40,
@@ -3862,7 +3862,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|328,664|1515-ND|QR|665,331|1125&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|328,664|1515-ND|QR|665,331|1125&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 39,
@@ -4014,7 +4014,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|328,664|1515-ND|QR|669,3|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|328,664|1515-ND|QR|669,3|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 38,
@@ -4166,7 +4166,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|330,662|0900-ND|QR|669,7|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|330,662|0900-ND|QR|669,7|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 37,
@@ -4318,7 +4318,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|332,654|2135-ND|QR|665,5|1125&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|332,654|2135-ND|QR|665,5|1125&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 36,
@@ -4470,7 +4470,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|330,662|0900-ND|QR|665,5|1125&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|330,662|0900-ND|QR|665,5|1125&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 35,
@@ -4622,7 +4622,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|332,654|2135-ND|QR|655,329|2055&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|332,654|2135-ND|QR|655,329|2055&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 33,
@@ -4774,7 +4774,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|330,662|0900-ND|QR|655,329|2055&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|330,662|0900-ND|QR|655,329|2055&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 25,
@@ -4926,7 +4926,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|330,662|0900-ND|QR|665,15|1125&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|330,662|0900-ND|QR|665,15|1125&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 31,
@@ -5078,7 +5078,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|332,654|2135-ND|QR|665,331|1125&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|332,654|2135-ND|QR|665,331|1125&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 22,
@@ -5230,7 +5230,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|330,662|0900-ND|QR|669,5943|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|330,662|0900-ND|QR|669,5943|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 32,
@@ -5382,7 +5382,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|330,662|0900-ND|QR|669,327|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|330,662|0900-ND|QR|669,327|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 24,
@@ -5534,7 +5534,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|328,664|1515-ND|QR|669,5943|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|328,664|1515-ND|QR|669,5943|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 26,
@@ -5686,7 +5686,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|332,654|2135-ND|QR|665,15|1125&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|332,654|2135-ND|QR|665,15|1125&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 23,
@@ -5838,7 +5838,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|332,654|2135-ND|QR|669,5943|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|332,654|2135-ND|QR|669,5943|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 28,
@@ -5990,7 +5990,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|330,662|0900-ND|QR|669,3|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|330,662|0900-ND|QR|669,3|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 29,
@@ -6142,7 +6142,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|330,662|0900-ND|QR|665,331|1125&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|330,662|0900-ND|QR|665,331|1125&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 30,
@@ -6294,7 +6294,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|332,654|2135-ND|QR|669,3|0315&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|332,654|2135-ND|QR|669,3|0315&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 27,
@@ -6446,7 +6446,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=552.12-ND|QR|328,664|1515-ND|QR|665,15|1125&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=552.12-ND|QR|328,664|1515-ND|QR|665,15|1125&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 43,
@@ -6598,7 +6598,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=562.92-ND|BA|4484,6366|2135-ND|BA|6325,7015|1125&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=562.92-ND|BA|4484,6366|2135-ND|BA|6325,7015|1125&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 44,
@@ -6754,7 +6754,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=633.02-ND|EY|20,264|1500-ND|EY|265,11|2120&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=633.02-ND|EY|20,264|1500-ND|EY|265,11|2120&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 45,
@@ -6910,7 +6910,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=703.62-ND|SV|112,786|1230-ND|SV|788,113|1855&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=703.62-ND|SV|112,786|1230-ND|SV|788,113|1855&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 46,
@@ -7063,7 +7063,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=784.22-ND|TK|1972,730|1820-ND|TK|731,1981|2035&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=784.22-ND|TK|1972,730|1820-ND|TK|731,1981|2035&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 47,
@@ -7215,7 +7215,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=785.82-ND|WY|102,373|2050-ND|WY|372,101|0925&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=785.82-ND|WY|102,373|2050-ND|WY|372,101|0925&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 48,
@@ -7325,7 +7325,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=842.02-D|UL|504|2130-D|UL|503|1305&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=842.02-D|UL|504|2130-D|UL|503|1305&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 49,
@@ -7477,7 +7477,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=1276.02-ND|GF|2,138|1000-ND|GF|139,3|0525&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=1276.02-ND|GF|2,138|1000-ND|GF|139,3|0525&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 },
                 {
                     "recommendationRefNo": 50,
@@ -7633,7 +7633,7 @@
                             }
                         }
                     ],
-                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=SKYSCANNER01&Selected=10359.38-ND|QF|8016,650|1430-ND|EK|651,8003|1005&airline=NP&utm_source=SkyscannerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
+                    "Deeplink": "https://192.168.126.157:85/flight-search-results?trip=return&segments=LON-CMB-20_09_2019-A-26_09_2019-A&class=AC&isdirect=N&pax=1-0-0&affid=CT2&mktcode=Dealchecker01&Selected=10359.38-ND|QF|8016,650|1430-ND|EK|651,8003|1005&airline=NP&utm_source=DealcheckerIPCheck&utm_medium=Affiliate&utm_campaign=RedirectCount"
                 }
             ],
             "sessionID": "AW-WO3MRAWYGDHB"

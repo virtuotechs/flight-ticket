@@ -54,9 +54,10 @@ class Header extends Component {
 
                             <Row>
                                 <Col xs={3} className="text-left">
-                                    <Link href='/'>
-                                        <div className="logo">Your Logo</div>
-                                    </Link>
+                                    {/* <Link href='/'>
+                                        <div className="logo"><img src="static/images/dc_fav-01.png"></img></div>
+                                    </Link> */}
+                                    <Link href='/'><img src='static/images/dealchecker.svg'></img></Link>
                                 </Col>
                                 <Col xs={9} className="text-right">
                                     <div className="callus">

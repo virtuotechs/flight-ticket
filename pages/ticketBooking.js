@@ -15,6 +15,7 @@ import { flightIndexRequested } from '../actions';
 import Autosuggest from 'react-autosuggest';
 import AutosuggestHighlightMatch from 'autosuggest-highlight/match';
 import AutosuggestHighlightParse from 'autosuggest-highlight/parse';
+import Link from 'next/link';
 
 // Auto complete component
 function escapeRegexCharacters(str) {
@@ -72,7 +73,6 @@ const MyAutosuggest = () => {
 
 	const onChange = (event, { newValue, method }) => {
 		setValue(newValue);
-		console.log(newValue);
 	  };
 	  
 	  const onSuggestionsFetchRequested = ({ value }) => {
@@ -104,10 +104,30 @@ const MyAutosuggest = () => {
 
 const TicketBooking = () => {
             var jsondata = require('../data/AW_Response.json');
-            console.log(jsondata);
+            
             var currencyCode = jsondata.currencyCode;
             var cheapest_price = Math.min.apply(Math,jsondata.recommendation.map(function (o) { return o.totalFare; }))
+
+            // best Price value            
+            // var best_price = require('../data/AW_Response.json');
+            // best_price = best_price.recommendation.sort(function(obj1, obj2) {
+            // return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
+            // });
+            // console.log(best_price);
+            // best_price = best_price[0].totalFare;
+            // console.log(best_price);
+            // Fastest price value
+            // var fastest_price = require('../data/AW_Response.json');
+            // fastest_price = fastest_price.recommendation;
+            // fastest_price = fastest_price.sort(function (obj1, obj2) {
+            //        return obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
+            //     });
+            // console.log(fastest_price);
+            // fastest_price = fastest_price[0].totalFare;
+            // console.log(fastest_price);
+
             var total_response = jsondata.recommendation.length;
+            
             const [data,setData] = useState([]);
             const [startDate,setStartDate] =useState(new Date());
             const [endDate,setEndDate] = useState(new Date());
@@ -206,7 +226,7 @@ const TicketBooking = () => {
         cityname = cityname.split("(");
         return cityname[0];
     }
-    // const calculateDurationinInt = (dt1, dt2, tm1, tm2) => {
+    // const calculateDurationFormat = (dt1, dt2, tm1, tm2) => {
     //     var date1 = dt1.split('-')
     //     var date1 = date1[1] + '-' + date1[0] + '-' + date1[2];
     //     tm1 = tm1.replace(/(..?)/g, '$1:').slice(0, -1);
@@ -231,10 +251,8 @@ const TicketBooking = () => {
         window.addEventListener('scroll', handleScrollToElement);
     });
 
-    const handleSortOptions = (e) => {
-        console.log(e.target.value);    
+    const handleSortOptions = (e) => {  
         setSortOption(e.target.value);
-        console.log(sortOption);
         if(e.target.value === "Best")
         {
             var jsondata = require('../data/AW_Response.json');
@@ -258,12 +276,11 @@ const TicketBooking = () => {
             jsondata = jsondata.sort(function (obj1, obj2) {
                    return obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
                 });
-            console.log(jsondata);
         }
         else if(e.target.value === "Outbound: Departure Time")
         {
             var jsondata = require('../data/AW_Response.json');
-            console.log(e.target.value);
+            
             jsondata = jsondata.recommendation;
 
             jsondata = jsondata.sort(function (obj1, obj2) {
@@ -283,6 +300,30 @@ const TicketBooking = () => {
                 return obj1.flightLeg[0].flightDetails.stopOvers - obj2.flightLeg[0].flightDetails.stopOvers;
              });
         }
+    }
+    const handleSortBest = (e) => {
+        setSortOption("Best");
+        var jsondata = require('../data/AW_Response.json');
+            jsondata = jsondata.recommendation;
+            jsondata = jsondata.sort(function(obj1, obj2) {
+                return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
+            });
+    }
+    const handleSortCheapest = (e) => {
+        setSortOption("Cheapest First");
+        var jsondata = require('../data/AW_Response.json');
+        jsondata = jsondata.recommendation;
+        jsondata = jsondata.sort(function (obj1, obj2) {
+               return obj1.totalFare - obj2.totalFare;
+            });
+    }
+    const handleSortFastest = (e) => {
+        setSortOption("Fastest First");
+        var jsondata = require('../data/AW_Response.json');
+            jsondata = jsondata.recommendation;
+            jsondata = jsondata.sort(function (obj1, obj2) {
+                   return obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
+                });
     }
         return (
             <Layout>
@@ -633,7 +674,7 @@ const TicketBooking = () => {
                                             <div className='filter_sort'>
                                                 <Row>
                                                     <Col xs={4} sm={4} className={sortOption == "Best" ? 'filter_tab text-center active' : 'filter_tab text-center'} data-tip data-for='best'>
-                                                        <p>Best<br></br>
+                                                        <p onClick={handleSortBest}>Best<br></br>
                                                         <b>{getSymbolFromCurrency(currencyCode)} {cheapest_price}</b>
                                                         <br></br>3h 50</p>
                                                     </Col>
@@ -641,7 +682,7 @@ const TicketBooking = () => {
                                                         <p>We think these flights offer the best combination of <br></br><b>price</b> and <b>speed</b>. We may also consider factors like <br></br>number of stops and mount of hassle.</p>
                                                     </ReactTooltip>
                                                     <Col xs={4} sm={4} className={sortOption == "Cheapest First" ? 'filter_tab text-center active' : 'filter_tab text-center'} data-tip data-for='cheapest'>
-                                                        <p>Cheapest<br></br>
+                                                        <p onClick={handleSortCheapest}>Cheapest<br></br>
                                                         <b>{getSymbolFromCurrency(currencyCode)} {cheapest_price}</b>
                                                         <br></br>3h 50</p>
                                                     </Col>
@@ -649,7 +690,7 @@ const TicketBooking = () => {
                                                         <p>Sort by Cheatpest Price.</p>
                                                     </ReactTooltip>
                                                     <Col xs={4} sm={4} className={sortOption == "Fastest First" ? 'filter_tab text-center active' : 'filter_tab text-center'} data-tip data-for='fastest'>
-                                                        <p>Fastest<br></br>
+                                                        <p onClick={handleSortFastest}>Fastest<br></br>
                                                         <b>{getSymbolFromCurrency(currencyCode)} {cheapest_price}</b>
                                                         <br></br>3h 50</p>
                                                     </Col>
@@ -772,9 +813,12 @@ const TicketBooking = () => {
                                                             {getSymbolFromCurrency(jsondata.currencyCode)}
                                                             &nbsp;{resultData.totalFare}
                                                         </span>
-                                                        <a href='/ticketdetails'>
+                                                        {/* <a href={`/ticketdetails?id=${2}`}>
                                                             <button className="bpk-button">Select <i className="fa fa-arrow-right"></i></button>
-                                                        </a>
+                                                        </a> */}
+                                                        <Link href={{ pathname: 'ticketdetails', query: { id: resultData.recommendationRefNo }}}>
+                                                            <button className="bpk-button">Select <i className="fa fa-arrow-right"></i></button>
+                                                        </Link>
                                                     </Col>
                                                     <Row className="flight-details">
                                                         <Col sm={12} className="text-center grey">

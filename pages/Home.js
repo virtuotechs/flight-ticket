@@ -230,7 +230,7 @@ const Index = (props) => {
 		// if (departureDate != "" && returnDate != "" && preferedFlightClass != 0) 
 		// {
 			Router.push({
-				pathname: '/ticketbooking',
+				pathname: '/ticketBooking',
 			})
 		//}
 	}
@@ -301,7 +301,6 @@ const Index = (props) => {
 											<Form.Label>Cabin Class</Form.Label>
 											<div className="select_box">
 												<Form.Control as="select" name="preferedFlightClass" onChange={changeClass}>
-													<option value="0" hidden>Select</option>
 													<option value="1">Any</option>
 													<option value="2">Business</option>
 													<option value="3">Economy</option>
