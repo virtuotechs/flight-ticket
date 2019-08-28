@@ -233,34 +233,31 @@ const Index = (props) => {
 		}	
 		console.log(departureDate);
 		console.log(returnDate);
-		setRequest([
-
-		])
-			const [request,setRequest] = useState([
-				{
-				"adultCount": 1,
-				"childCount": 0,
-				"infantCount": 0,
-				"isDirectFlight": false,
-				"isPlusOrMinus3Days": false,	 
-				"searchType": 2,
-				"preferedFlightClass": 1,
-					 "segments": [
-				   {
-					  "departureLocationCode": "",	 
-					  "departureDate": "",
-					  "arrivalLocationCode": "",
-					  "returnDate": "",
-					  "departureTime": "",
-					  "returnTime": ""
-				   }
-				],
-				"paging": {
-				   "PageIndex": "1",
-				   "PageSize": "50"
-				}
-			 }
-			])
+			// const [request,setRequest] = useState([
+			// 	{
+			// 	"adultCount": 1,
+			// 	"childCount": 0,
+			// 	"infantCount": 0,
+			// 	"isDirectFlight": false,
+			// 	"isPlusOrMinus3Days": false,	 
+			// 	"searchType": 2,
+			// 	"preferedFlightClass": 1,
+			// 		 "segments": [
+			// 	   {
+			// 		  "departureLocationCode": "",	 
+			// 		  "departureDate": "",
+			// 		  "arrivalLocationCode": "",
+			// 		  "returnDate": "",
+			// 		  "departureTime": "",
+			// 		  "returnTime": ""
+			// 	   }
+			// 	],
+			// 	"paging": {
+			// 	   "PageIndex": "1",
+			// 	   "PageSize": "50"
+			// 	}
+			//  }
+			// ])
 			Router.push({
 				pathname: '/ticketBooking',
 				//query: {date1: departureDate,date2: returnDate}
