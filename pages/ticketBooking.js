@@ -44,7 +44,7 @@ function escapeRegexCharacters(str) {
   function renderSuggestion(suggestion, { query }) {
 	
   	const suggestionText = `${suggestion.CityName} (${suggestion.CityId})`;
-	const suggestionCountry = `${suggestion.CountryName}`;
+	const suggestionCountry = `${suggestion.CountryName}`;  
 	const matches = AutosuggestHighlightMatch(suggestionText,query);
 	const parts = AutosuggestHighlightParse(suggestionText, matches);
 	return (
@@ -102,7 +102,9 @@ const MyAutosuggest = () => {
 // End Autocomplete component
 
 
-const TicketBooking = () => {
+const TicketBooking = (date1,date2) => {
+            var date1 = date1;
+            var date2 = date2;
             var jsondata = require('../data/AW_Response.json');
             
             var currencyCode = jsondata.currencyCode;
@@ -340,7 +342,7 @@ const TicketBooking = () => {
                                                         <small className="pink-text absl-text">TRIP TYPE</small>
                                                         <Form.Control className='trip_select' as="select">
                                                             <option value="1">One Way</option>
-                                                            <option value="2">Round Trip</option>
+                                                            <option defaultValue="2" selected>Round Trip</option>
                                                             <option value="3">Multi-city</option>
                                                         </Form.Control>
                                                         <i className="fa fa-sort-desc" aria-hidden="true"></i>
@@ -416,12 +418,12 @@ const TicketBooking = () => {
                                                                 dateFormat="eee, MMM d"
                                                                 selected={startDate}
                                                                 onChange={handleChange} />
-                                                            <i className="fa fa-angle-left" aria-hidden="true"></i>
-                                                            <i className="fa fa-angle-right" aria-hidden="true"></i>&nbsp;
+                                                            {/* <i className="fa fa-angle-left" aria-hidden="true"></i>
+                                                            <i className="fa fa-angle-right" aria-hidden="true"></i>&nbsp; */}
                                                             <span className='separt'> | </span>
                                                         </div>
                                                         <div className='calendar'>
-                                                            <DatePicker
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DatePicker
                                                                 name="departureDate"
                                                                 className="form-control"
                                                                 showMonthDropdown
@@ -429,8 +431,8 @@ const TicketBooking = () => {
                                                                 dateFormat="eee, MMM d"
                                                                 selected={endDate}
                                                                 onChange={handleChange1} />
-                                                            <i className="fa fa-angle-left" aria-hidden="true"></i>
-                                                            <i className="fa fa-angle-right" aria-hidden="true"></i>
+                                                            {/* <i className="fa fa-angle-left" aria-hidden="true"></i>
+                                                            <i className="fa fa-angle-right" aria-hidden="true"></i> */}
                                                         </div>
                                                     </div>
                                                 </Col>
@@ -871,6 +873,10 @@ const TicketBooking = () => {
             </Layout>
         )
 }
+
+TicketBooking.getInitialProps = ({ query: { date1,date2 } }) => {
+    return { date1: date1, date2: date2 }
+  }
 
 // TicketBooking.getInitialProps = async ({ store }) => {
 //    store.dispatch(flightIndexRequested());

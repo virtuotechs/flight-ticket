@@ -5,38 +5,43 @@ import Layout from '../components/layout';
 import $ from 'jquery';
 import Router from 'next/router';
 import axios from 'axios';
-//Number Input
-import NumericInput from 'react-numeric-input';
 
 //Auto complete imports
 import Autosuggest from 'react-autosuggest';
 import AutosuggestHighlightMatch from 'autosuggest-highlight/match';
 import AutosuggestHighlightParse from 'autosuggest-highlight/parse';
-// Auto complete
-//const languages = require('../data/countries.json');
-const languages = require('../data/countries.json');
+
+//Number Input
+import NumericInput from 'react-numeric-input';
+
+// Auto complete component
 function escapeRegexCharacters(str) {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+	return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
   
   function getSuggestions(value) {
-    const escapedValue = escapeRegexCharacters(value.trim());
-    
-    if (escapedValue === '') {
-      return [];
-    }
+	const escapedValue = escapeRegexCharacters(value.trim());
+	
+	if (escapedValue === '') {0
+	  return [];
+	}
   
-    const regex = new RegExp('^' + escapedValue, 'i');
-  
-    return languages.filter(language => regex.test(language.CityName));
+	const regex = new RegExp('\\b' + escapedValue, 'i');
+	var person = require('../data/countries.json');   
+	return person.filter(person => regex.test(getSuggestionValue(person)));
+	// axios
+    // .get(`http://localhost:4000/countries?query=${escapedValue}`)
+    // .then(response => { return response.data })
+    // .catch(error => this.setState({ error, isLoading: false }));
   }
   
   function getSuggestionValue(suggestion) {
-    return suggestion.CityName;
+	return `${suggestion.CityName}`;
   }
   
   function renderSuggestion(suggestion, { query }) {
-	const suggestionText = `${suggestion.CityName} (${suggestion.PlaceId})`;
+	
+  	const suggestionText = `${suggestion.CityName} (${suggestion.PlaceId})`;
 	const suggestionCountry = `${suggestion.CountryId}`;
 	const matches = AutosuggestHighlightMatch(suggestionText,query);
 	const parts = AutosuggestHighlightParse(suggestionText, matches);
@@ -57,63 +62,45 @@ function escapeRegexCharacters(str) {
 		  </span>
 		</span>
 	  );
-  }
-  
-  class MyAutosuggest extends React.Component {
-    constructor() {
-      super();
-  
-      this.state = {
-        value: '',
-        suggestions: []
-      };    
-    }
-  
-    onChange = (_, { newValue }) => {
-      const { id, onChange } = this.props;
-      
-      this.setState({
-        value: newValue
-      });
-      
-      onChange(id, newValue);
-    };
-    
-    onSuggestionsFetchRequested = ({ value }) => {
-      this.setState({
-        suggestions: getSuggestions(value)
-      });
-    };
-  
-    onSuggestionsClearRequested = () => {
-      this.setState({
-        suggestions: []
-      });
-    };
-  
-    render() {
-      const { id, placeholder } = this.props;
-      const { value, suggestions } = this.state;
-      const inputProps = {
-        placeholder,
-        value,
-        onChange: this.onChange
-      };
-      
-      return (
-        <Autosuggest 
-          id={id}
-          suggestions={suggestions}
-          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-          getSuggestionValue={getSuggestionValue}
-          renderSuggestion={renderSuggestion}
-          inputProps={inputProps} 
-        />
-      );
-    }
-  }
-  
+  }  
+
+const MyAutosuggest = () => {
+	const [value,setValue] = useState('');
+	const [suggestions,setSuggestions] = useState([]);
+	const [id,setId] = useState('');
+
+	const onChange = (event, { newValue, method }) => {
+		setValue(newValue);
+		// console.log(value);
+		// console.log(id);
+	  };
+	  
+	  const onSuggestionsFetchRequested = ({ value }) => {
+		  setSuggestions(getSuggestions(value));
+	  };
+	
+	  const onSuggestionsClearRequested = () => {
+		setSuggestions([]);
+	  };
+    const inputProps = {
+      placeholder: "Country name",
+      value,
+      onChange: onChange
+	};
+	return (
+		<Autosuggest 
+		  id={id}
+		  suggestions={suggestions}
+		  onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+		  onSuggestionsClearRequested={onSuggestionsClearRequested}
+		  getSuggestionValue={getSuggestionValue}
+		  renderSuggestion={renderSuggestion}
+		  inputProps={inputProps} 
+		/>);
+}
+
+// End Autocomplete component
+
 // Index Page
 const Index = (props) => {	
 
@@ -231,11 +218,22 @@ const Index = (props) => {
 		{
 			setChild_err(!child_err);
 		}	
+		// if (preferedFlightClass == "0") {
+		// 	setCabin_err(true);
+		// }
+		// if (departureDate == "") {
+		// 	setDeparturedate_err(true);
+		// }
+		// if (returnDate == "") {
+		// 	setReturndate_err(true);
+		// }
 		console.log(departureDate);
 		console.log(returnDate);
 		setRequest([
 
 		])
+		// if (departureDate != "" && returnDate != "" && preferedFlightClass != 0) 
+		// {
 			const [request,setRequest] = useState([
 				{
 				"adultCount": 1,
@@ -263,37 +261,15 @@ const Index = (props) => {
 			])
 			Router.push({
 				pathname: '/ticketBooking',
-				//query: {date1: departureDate,date2: returnDate}
+				query: {date1: departureDate,date2: returnDate}
 			})
+		//}
 	}
 
 	const onChangeHome = (id, newValue) => {
-		//console.log(`${id} changed to ${newValue}`);
-		if(id=="countries1")
-		{
-			var selectedCity = languages;
-			var placeId = selectedCity.filter((i) => {
-				return i.CityName.toLowerCase() === newValue.toLowerCase();
-			});
-			if(placeId.length > 0)
-			{
-				console.log(placeId[0].PlaceId);
-				setDeparturelocationcode(placeId[0].PlaceId);
-			}
-		}
-		else if(id=="countries2")
-		{
-			var selectedCity = languages;
-			var placeId = selectedCity.filter((i) => {
-				return i.CityName.toLowerCase() === newValue.toLowerCase();
-			});
-			if(placeId.length > 0)
-			{
-				console.log(placeId[0].PlaceId);
-				setArrivallocationcode(placeId[0].PlaceId);
-			}
-		}
+		console.log(`${id} changed to ${newValue}`);
 	  }
+	  
 
 		return (	
             <div>

@@ -372,8 +372,19 @@ input.react-datepicker-ignore-onclickoutside {
     border: none !important;
     color: white !important;
 }
-
 .calendar .react-datepicker__input-container>input {
+    border: none !important;
+    color: #eaeaea !important;
+    background: transparent !important;
+    text-align: left;
+    font-size: 14px;
+    width: 120%;
+    padding: 0 0 0 .75em;
+    margin-left: -2em;
+    padding-left: 2.5em;
+    }
+    
+/* .calendar .react-datepicker__input-container>input {
     border: none !important;
     color: #eaeaea !important;
     background: transparent !important;
@@ -381,7 +392,7 @@ input.react-datepicker-ignore-onclickoutside {
     font-size: 14px;
     width: 100%;
     padding: 0 0 0 .75em;
-}
+} */
 
 .pad-6 {
     padding: 0 4px;
