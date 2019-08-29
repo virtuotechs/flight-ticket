@@ -17,34 +17,31 @@ import AutosuggestHighlightMatch from 'autosuggest-highlight/match';
 import AutosuggestHighlightParse from 'autosuggest-highlight/parse';
 import Link from 'next/link';
 
-// Auto complete component
+// Auto complete
+const languages = require('../data/countries.json');
 function escapeRegexCharacters(str) {
-	return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
   
-  function getSuggestions(value) {
-	const escapedValue = escapeRegexCharacters(value.trim());
-	
-	if (escapedValue === '') {0
-	  return [];
-	}
+  function getSuggestions(id,value) {
+    const escapedValue = escapeRegexCharacters(value.trim());
+    
+    if (escapedValue === '') {
+      return [];
+    }
   
-	const regex = new RegExp('\\b' + escapedValue, 'i');
-	var person = require('../data/autocomplete.json');   
-	return person.filter(person => regex.test(getSuggestionValue(person)));
-	// axios
-    // .get(`http://localhost:4000/countries?query=${escapedValue}`)
-    // .then(response => { return response.data })
-    // .catch(error => this.setState({ error, isLoading: false }));
+    const regex = new RegExp('^' + escapedValue, 'i');
+  
+    return languages.filter(language => regex.test(language.CityName));
   }
   
   function getSuggestionValue(suggestion) {
-	return `${suggestion.CityName}`;
+    return `${suggestion.CityName} - ${suggestion.PlaceName} (${suggestion.PlaceId})`;
   }
+  
   function renderSuggestion(suggestion, { query }) {
-	
-  	const suggestionText = `${suggestion.CityName} (${suggestion.CityId})`;
-	const suggestionCountry = `${suggestion.CountryName}`;  
+	const suggestionText = `${suggestion.CityName} - ${suggestion.PlaceName} (${suggestion.PlaceId})`;
+	const suggestionCountry = `${suggestion.CountryId}`;
 	const matches = AutosuggestHighlightMatch(suggestionText,query);
 	const parts = AutosuggestHighlightParse(suggestionText, matches);
 	return (
@@ -64,91 +61,72 @@ function escapeRegexCharacters(str) {
 		  </span>
 		</span>
 	  );
-  }  
-
-const MyAutosuggest = () => {
-	const [value,setValue] = useState('');
-	const [suggestions,setSuggestions] = useState([]);
-	const [id,setId] = useState('');
-
-	const onChange = (event, { newValue, method }) => {
-		setValue(newValue);
-	  };
-	  
-	  const onSuggestionsFetchRequested = ({ value }) => {
-		  setSuggestions(getSuggestions(value));
-	  };
-	
-	  const onSuggestionsClearRequested = () => {
-		setSuggestions([]);
-	  };
-    const inputProps = {
-      placeholder: "Country name",
-      value,
-      onChange: onChange
-	};
-	return (
-		<Autosuggest 
-		  id={id}
-		  suggestions={suggestions}
-		  onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-		  onSuggestionsClearRequested={onSuggestionsClearRequested}
-		  getSuggestionValue={getSuggestionValue}
-		  renderSuggestion={renderSuggestion}
+  }
+  
+  class MyAutosuggest extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        value: '',
+        suggestions: []
+      };    
+    }
+  
+    onChange = (_, { newValue }) => {
+      const { id, onChange } = this.props;
+      this.setState({
+        value: newValue
+      });
+      
+      onChange(id, newValue);
+    };
+    
+    onSuggestionsFetchRequested = ({ value }) => {
+      this.setState({
+        suggestions: getSuggestions(value)
+      });
+    };
+  
+    onSuggestionsClearRequested = () => {
+      this.setState({
+        suggestions: []
+      });
+    };
+  
+    render() {
+      const { id, placeholder } = this.props;
+	  const { value, suggestions } = this.state;
+      const inputProps = {
+        placeholder,
+        value,
+        onChange: this.onChange
+      };
+      
+      return (		
+        <Autosuggest 
+          id={id}
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          getSuggestionValue={getSuggestionValue}
+          renderSuggestion={renderSuggestion}
           inputProps={inputProps} 
-		/>);
-}
+        /> 
+      );
+    }
+  }
+  // End Autocomplete component
 
-// End Autocomplete component
 
+const TicketBooking = (requestData) => {
+    console.log("DEPARTURE: ",requestData)
 
-const TicketBooking = (date1,date2) => {
-            var date1 = date1;
-            var date2 = date2;
-            var jsondata = require('../data/AW_Response.json');
-            
-            var currencyCode = jsondata.currencyCode;
-            var cheapest_price = Math.min.apply(Math,jsondata.recommendation.map(function (o) { return o.totalFare; }))
-
-            // best Price value            
-            // var best_price = require('../data/AW_Response.json');
-            // best_price = best_price.recommendation.sort(function(obj1, obj2) {
-            // return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
-            // });
-            // console.log(best_price);
-            // best_price = best_price[0].totalFare;
-            // console.log(best_price);
-            // Fastest price value
-            // var fastest_price = require('../data/AW_Response.json');
-            // fastest_price = fastest_price.recommendation;
-            // fastest_price = fastest_price.sort(function (obj1, obj2) {
-            //        return obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
-            //     });
-            // console.log(fastest_price);
-            // fastest_price = fastest_price[0].totalFare;
-            // console.log(fastest_price);
-
-            var total_response = jsondata.recommendation.length;
-            
-            const [data,setData] = useState([]);
-            const [startDate,setStartDate] =useState(new Date());
-            const [endDate,setEndDate] = useState(new Date());
-            const [sourcePlace,setSourcePlace]=useState('London,United Kingdom');
-            const [destinationPlace,setDestinationPlace]=useState('Newyork, United States of America');
-            const [popularityIcon,setPopularityIcon]=useState(0);
-            const [priceIcon,setPriceIcon]=useState(1);
-            const [durationIcon,setDurationIcon]=useState(0);
-            const [loader,setLoader]=useState(false);
-            const [sortToggler,setSortToggler]=useState(false);
-            const [filterToggler,setFilterToggler]=useState(false);
-            const [sortOption,setSortOption]=useState('Best');
-
-            // this.myTween = new TimelineLite({ paused: true });
-            // static async getInitialProps = ({ isServer, store }) => {
-            // // Fetch today NASA APOD
-            // await store.execSagaTasks(isServer, dispatch => {
-            //   dispatch(getFlights());
-            // })
+    // this.myTween = new TimelineLite({ paused: true });
+    // static async getInitialProps = ({ isServer, store }) => {
+    // // Fetch today NASA APOD
+    // await store.execSagaTasks(isServer, dispatch => {
+    //   dispatch(getFlights());
+    // })
 
     const handleChange = (date) => {
         setStartDate(date);
@@ -167,6 +145,7 @@ const TicketBooking = (date1,date2) => {
         var date = new Date(newDate);
         return (date);
     }
+    console.log(changeMonthDate(requestData.departureDate));
 
     const TimeSplit = (time) => {
         time = time.replace(/(..?)/g, '$1:').slice(0, -1)
@@ -327,6 +306,71 @@ const TicketBooking = (date1,date2) => {
                    return obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
                 });
     }
+    const preferedclassname = (classname) => {
+        if(classname == "1")
+        {
+            return "Any";
+        }
+        else if(classname == "2")
+        {
+            return "Business";
+        }
+        else if(classname == "3")
+        {
+            return "Economy";
+        }
+        else if(classname == "4")
+        {
+            return "First Class";
+        }
+        else if(classname == "5")
+        {
+            return "PremiumOrEconomy";
+        }
+        else if(classname == "6")
+        {
+            return "PremiumAndEconomy";
+        }
+    }
+    const onChangeHome = (id, suggestion) => {
+		if(id=="countries1")
+		{
+			var suggestion = suggestion.trim();
+			var length = suggestion.length;
+			var exact_match = suggestion.substring(length - 4, length-1);
+			exact_match = exact_match.trim();
+			// setDeparturelocationcode(exact_match);
+		}
+		else if(id=="countries2")
+		{
+			var suggestion = suggestion.trim();
+			var length = suggestion.length;
+			var exact_match = suggestion.substring(length - 4, length-1);
+			exact_match = exact_match.trim();
+			// setArrivallocationcode(exact_match);
+		}
+	  }
+
+            var jsondata1 = require('../data/AW_Response.json');
+            var jsondata = jsondata1.recommendation.filter(newdata => newdata.flightLeg[0].flightDetails.departureLocationCode == requestData.departureLocationCode && newdata.flightLeg[0].flightDetails.arrivalLocationCode == requestData.arrivalLocationCode && newdata.flightLeg[0].flightDetails.departureDate == requestData.departureDate);
+            console.log(jsondata);
+            var currencyCode = jsondata1.currencyCode;
+            var cheapest_price = Math.min.apply(Math,jsondata.map(function (o) { return o.totalFare; }))
+            var total_response = jsondata.length;
+            
+            const [data,setData] = useState([]);
+            const [startDate,setStartDate] =useState(changeMonthDate(requestData.departureDate));
+            const [endDate,setEndDate] = useState(changeMonthDate(requestData.returnDate));
+            const [sourcePlace,setSourcePlace]=useState(requestData.departureLocationName);
+            const [destinationPlace,setDestinationPlace]=useState(requestData.arrivalLocationName);
+            const [popularityIcon,setPopularityIcon]=useState(0);
+            const [priceIcon,setPriceIcon]=useState(1);
+            const [durationIcon,setDurationIcon]=useState(0);
+            const [loader,setLoader]=useState(false);
+            const [sortToggler,setSortToggler]=useState(false);
+            const [filterToggler,setFilterToggler]=useState(false);
+            const [sortOption,setSortOption]=useState('Best');
+
         return (
             <Layout>
                 <div className="container-fluid">
@@ -340,9 +384,9 @@ const TicketBooking = (date1,date2) => {
                                                 <Col sm={5} xs={5}>
                                                     <div className='passanger-class'>
                                                         <small className="pink-text absl-text">TRIP TYPE</small>
-                                                        <Form.Control className='trip_select' as="select">
+                                                        <Form.Control className='trip_select' as="select" defaultValue={requestData.searchType}>
                                                             <option value="1">One Way</option>
-                                                            <option defaultValue="2" selected>Round Trip</option>
+                                                            <option value="2">Round Trip</option>
                                                             <option value="3">Multi-city</option>
                                                         </Form.Control>
                                                         <i className="fa fa-sort-desc" aria-hidden="true"></i>
@@ -351,7 +395,7 @@ const TicketBooking = (date1,date2) => {
                                                 <Col sm={7} xs={7}>
                                                     <div className="passanger-class">
                                                         <small className="pink-text absl-text">Passanger & Class</small>
-                                                        <p>1 Adult, Economy
+                                                        <p>{requestData.adultCount} Adult, {preferedclassname(requestData.preferedFlightClass)}
                                                         {/* {this.props.userAgent} */}
                                                         </p>
                                                     </div>
@@ -365,28 +409,7 @@ const TicketBooking = (date1,date2) => {
                                         <Col sm={12} md={12} lg={6}>
                                             <Row>
                                                 <Col md={6} sm={6} xs={12} className='pad-6'>
-                                                    <Form.Group>
-                                                        <InputGroup>
-                                                            <InputGroup.Prepend>
-                                                                <InputGroup.Text id="inputGroupPrepend" className="bluebg-igroup"><i className="fa fa-map-marker" aria-hidden="true"></i></InputGroup.Text>
-                                                            </InputGroup.Prepend>
-                                                            <Form.Control
-                                                                type="text"
-                                                                placeholder="Source City"
-                                                                aria-describedby="inputGroupPrepend"
-                                                                value={sourcePlace}
-                                                                readOnly="yes"
-                                                                className="blubg-control"
-                                                                name="sourcePlace" />
-                                                                {/* <MyAutosuggest
-                                                                    id="countries1"
-                                                                /> */}
-                                                        </InputGroup>
-                                                    </Form.Group>
-                                                    <i className="fa fa-exchange" aria-hidden="true" onClick={changePlace}></i>
-                                                </Col>
-                                                <Col md={6} sm={6} xs={12} className='pad-6'>
-                                                    <Form.Group>
+                                                    <Form.Group className='auto_countries'>
                                                         <InputGroup>
                                                             <InputGroup.Prepend>
                                                                 <InputGroup.Text id="inputGroupPrepend" className="bluebg-igroup"><i className="fa fa-map-marker" aria-hidden="true"></i></InputGroup.Text>
@@ -395,12 +418,32 @@ const TicketBooking = (date1,date2) => {
                                                                 type="text"
                                                                 placeholder="Destination City"
                                                                 aria-describedby="inputGroupPrepend"
-                                                                value={destinationPlace}
+                                                                value={sourcePlace}
                                                                 readOnly="yes"
                                                                 className="blubg-control"
                                                                 name="destinationPlace" />
+                                                                {/* <MyAutosuggest id="countries1" onChange={onChangeHome}/> */}
                                                         </InputGroup>
                                                     </Form.Group>
+                                                    <i className="fa fa-exchange" aria-hidden="true" onClick={changePlace}></i>
+                                                </Col>
+                                                <Col md={6} sm={6} xs={12} className='pad-6'>
+                                                <Form.Group className='auto_countries'>
+                                                    <InputGroup>
+                                                        <InputGroup.Prepend>
+                                                            <InputGroup.Text id="inputGroupPrepend" className="bluebg-igroup"><i className="fa fa-map-marker" aria-hidden="true"></i></InputGroup.Text>
+                                                        </InputGroup.Prepend>
+                                                        <Form.Control
+                                                            type="text"
+                                                            placeholder="Destination City"
+                                                            aria-describedby="inputGroupPrepend"
+                                                            value={destinationPlace}
+                                                            readOnly="yes"
+                                                            className="blubg-control"
+                                                            name="destinationPlace" />
+                                                            {/* <MyAutosuggest id="countries2" onChange={onChangeHome}/> */}
+                                                    </InputGroup>
+                                                </Form.Group>
                                                 </Col>
                                             </Row>
                                         </Col>
@@ -651,7 +694,9 @@ const TicketBooking = (date1,date2) => {
                                                 </Row>
                                             </div>
                                         </Col>
+                                        {total_response > 0 ? 
                                         <Col sm={12} md={9}>
+                                            
                                             {/* Sorting Title */}
                                             <Row>
                                                 <Col lg={7} md={7} sm={5} xs={6}>
@@ -659,7 +704,7 @@ const TicketBooking = (date1,date2) => {
                                                 </Col>
                                                 <Col lg={5} md={5} sm={6} xs={6} className='text-right'>                                                    
                                                         <div className="select_box outline"  style={{ float: 'right' }}>
-                                                            <Form.Control as="select" name="sortoptions" onChange={handleSortOptions}>
+                                                            <Form.Control as="select" name="sortoptions" onChange={handleSortOptions} defaultValue={"Best"}>
                                                                 <option value="0" hidden>Sort by</option>
                                                                 <option value="Best">Best</option>
                                                                 <option value="Cheapest First">Cheapest First</option>
@@ -717,7 +762,7 @@ const TicketBooking = (date1,date2) => {
                                                                     <br />
                                                                     <span className="top-currency">
                                                                         {getSymbolFromCurrency(jsondata.currencyCode)}
-                                                                         &nbsp;{Math.min.apply(Math, jsondata.recommendation.map(function (o) { return o.totalFare; }))}
+                                                                         &nbsp;{cheapest_price}
                                                                     </span>
                                                                 </div>
                                                             </Col>
@@ -728,7 +773,7 @@ const TicketBooking = (date1,date2) => {
                                             {/* End common title */}
                                             {/* Start ------------------------------------------------------------ */}
                                             {/* Sorting Area */}
-                                            {jsondata.recommendation.map((resultData, i = 1) => (
+                                            {jsondata.map((resultData, i = 1) => (
                                                 <Row className="sort-box" key={resultData.recommendationRefNo}>
                                                     <Col sm={9} style = {{ padding: '10px', borderRight: '1px dashed #03A9F4' }}>
                                                         {resultData.totalFare == cheapest_price ? <button className="pink-button cheap">CHEAPEST</button> : <button className="pink-button cheap">VALUE FOR MONEY</button>}
@@ -842,10 +887,10 @@ const TicketBooking = (date1,date2) => {
                                             ))}
                                             {/* Ending Sorting Area */}
 
-                                        </Col>
+                                        </Col> : <center>No data found</center> }
                                     </Row>
                                 </Col>
-
+                                
                                 {/* Ad */}
                                 <Col sm={12} md={12} lg={2} xl={2} className='text-center'>
                                     <Row>
@@ -874,9 +919,24 @@ const TicketBooking = (date1,date2) => {
         )
 }
 
-TicketBooking.getInitialProps = ({ query: { date1,date2 } }) => {
-    return { date1: date1, date2: date2 }
+TicketBooking.getInitialProps = ({ query: { departureLocationCode,arrivalLocationCode,departureDate,returnDate,isDirectFlight,searchType,adultCount,childCount,preferedFlightClass,departureTime,returnTime,departureLocationName,arrivalLocationName} }) => {
+    return { 
+        departureLocationCode: departureLocationCode, 
+		arrivalLocationCode: arrivalLocationCode, 
+        departureDate: departureDate,
+        returnDate: returnDate,
+        isDirectFlight : isDirectFlight,
+        searchType: searchType,
+        adultCount: adultCount,
+        childCount: childCount,
+        preferedFlightClass: preferedFlightClass,
+        departureTime: "Any",
+        returnTime: "Any",
+        departureLocationName: departureLocationName,
+        arrivalLocationName: arrivalLocationName
+     }
   }
+
 
 // TicketBooking.getInitialProps = async ({ store }) => {
 //    store.dispatch(flightIndexRequested());

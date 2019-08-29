@@ -10,12 +10,11 @@ body {
 }
 
 i.err-msg {
-    color: #e7a40f;
+    color: #e5af1b;
     font-size: 11px;
     position: absolute;
-    bottom: 0;
+    bottom: -5px;
 }
-
 .sidenav {
     height: 100%;
     width: 0;
@@ -358,7 +357,7 @@ h5.title_flight {
 
 .select_box1 input {
     width: 100%;
-    padding: 0.9em;
+    padding: 0.7em;
     margin-top: 6px;
     border: none !important;
     color: #777;
@@ -401,6 +400,8 @@ h5.title_flight {
 
 .form-group .date .react-datepicker-wrapper {
     width: 100% !important;
+    background: white;
+    z-index: 2;
 }
 
 .date .react-datepicker__input-container>input::before {
@@ -419,15 +420,43 @@ h5.title_flight {
     position: relative;
     display: inline-block;
     width: 100% !important;
+    z-index: 2;
+    background: transparent;
 }
 
 .date .react-datepicker__input-container>input {
     width: 100% !important;
-    background: #fff !important;
+    background: transparent;
     border: none !important;
     color: #777 !important;
     text-align: left !important;
 }
+
+.date .react-datepicker__input-container>input:focus {
+    background: transparent !important;
+}
+
+.react-datepicker-popper[data-placement^="bottom"] {
+    margin-top: 10px;
+    z-index: 2;
+}
+
+input.react-datepicker-ignore-onclickoutside {
+    background: white !important;
+}
+
+.react-datepicker-popper {
+    z-index: 2;
+}
+
+/* .date .react-datepicker__input-container>input {
+    width: 120% !important;
+    background: #fff !important;
+    border: none !important;
+    color: #777 !important;
+    text-align: left !important;
+    margin-left: -2.25em;
+} */
 
 select {
     -webkit-appearance: none;
@@ -441,9 +470,10 @@ select::-ms-expand {
 .form-group .date .fa {
     position: absolute;
     right: 0.5em;
-    z-index: 5;
+    z-index: 1;
     color: #3b55e6;
     top: 0.5em;
+    cursor: pointer;
 }
 
 .date {
@@ -1500,27 +1530,27 @@ span.deals_no {
     }
 }
 
-.fa.fa-chevron-up.button {
+.fa.fa-chevron-down.button {
     -moz-transition: all .5s linear;
     -webkit-transition: all .5s linear;
     transition: all .5s linear;
     float: right;
 }
 
-.fa.fa-chevron-up.button.toggled {
+.fa.fa-chevron-down.button.toggled {
     -moz-transform: rotate(182deg);
     -webkit-transform: rotate(182deg);
     transform: rotate(182deg);
 }
 
-.fa.fa-chevron-up.button_1 {
+.fa.fa-chevron-down.button_1 {
     -moz-transition: all .5s linear;
     -webkit-transition: all .5s linear;
     transition: all .5s linear;
     float: right;
 }
 
-.fa.fa-chevron-up.button_1.toggled {
+.fa.fa-chevron-down.button_1.toggled {
     -moz-transform: rotate(182deg);
     -webkit-transform: rotate(182deg);
     transform: rotate(182deg);
@@ -1562,7 +1592,19 @@ span.deals_no {
     border-radius: .375rem;
     display: block;
     text-align: center;
-    line-height: 0;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+}
+
+@keyframes dash {
+    0% {
+        /* width: 0%; */
+        transform: translateX(0%);
+    }
+    100% {
+        /* width: 90%; */
+        transform: translateX(100%);
+    }
 }
 
 span.onestop {
@@ -1597,4 +1639,26 @@ span.twostop {
     top: 39%;
     left: 40%;
     outline: 3px solid #fff;
+}
+
+.bpk-button.bpk-button--featured {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(var(--bpk-button-featured-gradient-start-color, #fa488a)), to(var(--bpk-button-featured-gradient-end-color, #d92b6b)));
+    background-image: -webkit-linear-gradient(top, var(--bpk-button-featured-gradient-start-color, #fa488a), var(--bpk-button-featured-gradient-end-color, #d92b6b));
+    background-image: -o-linear-gradient(top, var(--bpk-button-featured-gradient-start-color, #fa488a) 0, var(--bpk-button-featured-gradient-end-color, #d92b6b) 100%);
+    background-image: linear-gradient(-180deg, var(--bpk-button-featured-gradient-start-color, #fa488a), var(--bpk-button-featured-gradient-end-color, #d92b6b));
+    color: #fff;
+    color: var(--bpk-button-featured-text-color, #fff);
+    background-color: #fa488a;
+    background-color: var(--bpk-button-featured-background-color, #fa488a);
+}
+
+.react-datepicker__input-container::before {
+    display: inline-block;
+    margin-right: .5em;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
 }

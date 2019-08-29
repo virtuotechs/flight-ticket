@@ -1,10 +1,9 @@
 import React,{useEffect,useState,useContext} from 'react';
 import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 import DatePicker from "react-datepicker";
-import Layout from '../components/layout';
-import $ from 'jquery';
 import Router from 'next/router';
-import axios from 'axios';
+import dateFormat from 'dateformat';
+
 //Number Input
 import NumericInput from 'react-numeric-input';
 
@@ -13,7 +12,6 @@ import Autosuggest from 'react-autosuggest';
 import AutosuggestHighlightMatch from 'autosuggest-highlight/match';
 import AutosuggestHighlightParse from 'autosuggest-highlight/parse';
 // Auto complete
-//const languages = require('../data/countries.json');
 const languages = require('../data/countries.json');
 function escapeRegexCharacters(str) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -32,11 +30,11 @@ function escapeRegexCharacters(str) {
   }
   
   function getSuggestionValue(suggestion) {
-    return suggestion.CityName;
+    return `${suggestion.CityName} - ${suggestion.PlaceName} (${suggestion.PlaceId})`;
   }
   
   function renderSuggestion(suggestion, { query }) {
-	const suggestionText = `${suggestion.CityName} (${suggestion.PlaceId})`;
+	const suggestionText = `${suggestion.CityName} - ${suggestion.PlaceName} (${suggestion.PlaceId})`;
 	const suggestionCountry = `${suggestion.CountryId}`;
 	const matches = AutosuggestHighlightMatch(suggestionText,query);
 	const parts = AutosuggestHighlightParse(suggestionText, matches);
@@ -62,7 +60,6 @@ function escapeRegexCharacters(str) {
   class MyAutosuggest extends React.Component {
     constructor() {
       super();
-  
       this.state = {
         value: '',
         suggestions: []
@@ -71,7 +68,6 @@ function escapeRegexCharacters(str) {
   
     onChange = (_, { newValue }) => {
       const { id, onChange } = this.props;
-      
       this.setState({
         value: newValue
       });
@@ -93,14 +89,14 @@ function escapeRegexCharacters(str) {
   
     render() {
       const { id, placeholder } = this.props;
-      const { value, suggestions } = this.state;
+	  const { value, suggestions } = this.state;
       const inputProps = {
         placeholder,
         value,
         onChange: this.onChange
       };
       
-      return (
+      return (		
         <Autosuggest 
           id={id}
           suggestions={suggestions}
@@ -109,7 +105,7 @@ function escapeRegexCharacters(str) {
           getSuggestionValue={getSuggestionValue}
           renderSuggestion={renderSuggestion}
           inputProps={inputProps} 
-        />
+        /> 
       );
     }
   }
@@ -123,15 +119,18 @@ const Index = (props) => {
 	const childCountref = React.createRef();
 
 	//states
+	const [request,setRequest] = useState([]);
 	const [showAnn,setShowAnn] = useState(false);
 	const [round,setRound] = useState(true);
 	const [oneway,setOneway] = useState(false);
-	const [multi,setMulti] = useState(false);
-	const [searchType,setSearchtype] = useState(0);
+	const [multi,setMulti] = useState(false); 
+	const [searchType,setSearchtype] = useState(2);
 	const [isDirectFlight,setDirectflight] = useState(false);
 	const [departureLocationCode,setDeparturelocationcode] = useState('');
 	const [arrivalLocationCode,setArrivallocationcode] = useState('');
-	const [preferedFlightClass,setPreferedflightclass] = useState(0);
+	const [departureLocationName,setDepartureLocationName]= useState('');
+	const [arrivalLocationName,setArrivalLocationName] = useState('');
+	const [preferedFlightClass,setPreferedflightclass] = useState(1);
 	const [departureDate,setDeparturedate] = useState(new Date());
 	const [returnDate,setReturndate] = useState(new Date());
 	const [adultCount,setAdultcount] = useState(1);
@@ -151,14 +150,14 @@ const Index = (props) => {
 		setRound(true);
 		setOneway(false);
 		setMulti(false);
-		setSearchtype(1);
+		setSearchtype(2);
 		
 	}
 	const handleoneway = (date) => {
 		setRound(false);
 		setOneway(true);
 		setMulti(false);
-		setSearchtype(2);
+		setSearchtype(1);
 	}
 
 	const handlemulti = (date) => {
@@ -222,7 +221,6 @@ const Index = (props) => {
 	
 	const flightsforRoundTrip = (e) => {
 		e.preventDefault();
-		console.log(adultCount);
 		if(adultCount < 1 || adultCount == null)
 		{
 			setAdults_err(!adults_err);
@@ -230,65 +228,89 @@ const Index = (props) => {
 		if(childCount < 0 || childCount == null)
 		{
 			setChild_err(!child_err);
-		}	
-		console.log(departureDate);
-		console.log(returnDate);
-			// const [request,setRequest] = useState([
-			// 	{
-			// 	"adultCount": 1,
-			// 	"childCount": 0,
-			// 	"infantCount": 0,
-			// 	"isDirectFlight": false,
-			// 	"isPlusOrMinus3Days": false,	 
-			// 	"searchType": 2,
-			// 	"preferedFlightClass": 1,
-			// 		 "segments": [
-			// 	   {
-			// 		  "departureLocationCode": "",	 
-			// 		  "departureDate": "",
-			// 		  "arrivalLocationCode": "",
-			// 		  "returnDate": "",
-			// 		  "departureTime": "",
-			// 		  "returnTime": ""
-			// 	   }
-			// 	],
-			// 	"paging": {
-			// 	   "PageIndex": "1",
-			// 	   "PageSize": "50"
-			// 	}
-			//  }
-			// ])
-			Router.push({
-				pathname: '/ticketBooking',
-				//query: {date1: departureDate,date2: returnDate}
-			})
-	}
-
-	const onChangeHome = (id, newValue) => {
-		//console.log(`${id} changed to ${newValue}`);
-		if(id=="countries1")
+		}
+		if(departureLocationCode == "")	
 		{
-			var selectedCity = languages;
-			var placeId = selectedCity.filter((i) => {
-				return i.CityName.toLowerCase() === newValue.toLowerCase();
-			});
-			if(placeId.length > 0)
+			setDeparture_err(!departure_err);
+		}
+		if(arrivalLocationCode == "")
+		{
+			setArrival_err(!arrival_err);
+		}
+		console.log("Departure date: ",departureDate);
+		console.log("Return date: ",returnDate);
+		console.log("Adult count: ",adultCount);
+		console.log("child count",childCount);
+		console.log("Location1: ",departureLocationCode);
+		console.log("Location2: ",arrivalLocationCode);
+		console.log("prefered class: ",preferedFlightClass);
+		console.log("direct flight",isDirectFlight);
+		console.log("search type: ",searchType);
+			setRequest([
+				{
+				"adultCount": adultCount,
+				"childCount": childCount,
+				"infantCount": 0,
+				"isDirectFlight": isDirectFlight,
+				"isPlusOrMinus3Days": false,	 
+				"searchType": searchType,
+				"preferedFlightClass": preferedFlightClass,
+					 "segments": [
+				   {
+					  "departureLocationCode": departureLocationCode,	 
+					  "departureDate": dateFormat(departureDate, "dd-mm-yyyy"),
+					  "arrivalLocationCode": arrivalLocationCode,
+					  "returnDate": dateFormat(returnDate, "dd-mm-yyyy"),
+					  "departureTime": "Any",
+					  "returnTime": "Any"
+				   }
+				],
+				"paging": {
+				   "PageIndex": "1",
+				   "PageSize": "50"
+				}
+			 }
+			])
+			if(departureLocationCode != "" && arrivalLocationCode !="" && adultCount != null && childCount != null)
 			{
-				console.log(placeId[0].PlaceId);
-				setDeparturelocationcode(placeId[0].PlaceId);
+				Router.push({
+				pathname: '/ticketBooking',
+				query: {
+					departureLocationCode: departureLocationCode, 
+					arrivalLocationCode: arrivalLocationCode, 
+					departureDate: dateFormat(departureDate, "dd-mm-yyyy"),
+					returnDate: dateFormat(returnDate, "dd-mm-yyyy"),
+					isDirectFlight : isDirectFlight,
+					searchType: searchType,
+					adultCount: adultCount,
+					childCount: childCount,
+					preferedFlightClass: preferedFlightClass,
+					departureTime: "Any",
+					returnTime: "Any",
+					departureLocationName: departureLocationName,
+					arrivalLocationName: arrivalLocationName
+					}
+				})
 			}
+	}
+	const onChangeHome = (id, suggestion) => {
+		if(id=="countries1")
+		{		
+			var suggestion = suggestion.trim();
+			setDepartureLocationName(suggestion);
+			var length = suggestion.length;
+			var exact_match = suggestion.substring(length - 4, length-1);
+			exact_match = exact_match.trim();
+			setDeparturelocationcode(exact_match);
 		}
 		else if(id=="countries2")
 		{
-			var selectedCity = languages;
-			var placeId = selectedCity.filter((i) => {
-				return i.CityName.toLowerCase() === newValue.toLowerCase();
-			});
-			if(placeId.length > 0)
-			{
-				console.log(placeId[0].PlaceId);
-				setArrivallocationcode(placeId[0].PlaceId);
-			}
+			var suggestion = suggestion.trim();
+			setArrivalLocationName(suggestion);
+			var length = suggestion.length;
+			var exact_match = suggestion.substring(length - 4, length-1);
+			exact_match = exact_match.trim();
+			setArrivallocationcode(exact_match);
 		}
 	  }
 
@@ -303,9 +325,9 @@ const Index = (props) => {
 						<div className="flight">
 							<Form onSubmit={flightsforRoundTrip}>
 								<div className="mb-3">
-									<Form.Check name="searchType" defaultValue="1" className='radio_btn' inline label="One Way" type="radio" onClick={handleoneway} id={`inline-radio-2`} />
-									<Form.Check name="searchType" defaultValue="2" className='radio_btn' inline label="Round Trip" defaultChecked type="radio" onClick={handleround} id={`inline-radio-1`} />
-									<Form.Check name="searchType" defaultValue="3" className='radio_btn' inline label="Multi-city" type="radio" onClick={handlemulti} id={`inline-radio-3`} />
+									<Form.Check name="searchType" defaultValue="1" className='radio_btn' inline label="One Way" type="radio" defaultChecked={searchType == '1'} onClick={handleoneway} id={`inline-radio-2`} />
+									<Form.Check name="searchType" defaultValue="2" className='radio_btn' inline label="Round Trip" defaultChecked={searchType == '2'} type="radio" onClick={handleround} id={`inline-radio-1`} />
+									<Form.Check name="searchType" defaultValue="3" className='radio_btn' inline label="Multi-city" type="radio" defaultChecked={searchType == '3'} onClick={handlemulti} id={`inline-radio-3`} />
 								</div>
 									<div className='checkbox-custom'>
 										<div className="mb-3 right">
@@ -421,7 +443,7 @@ const Index = (props) => {
 													<Form.Label>Adults (16+)</Form.Label>
 													<div className="arrow">
 														<NumericInput mobile name="adultCount" className="number-input form-control" value={adultCount} min={1} max={9} step={1} onChange={adultChanged}/>
-														{adults_err ? (<i className="err-msg">Adults counting atleast have 1</i>): null}
+														{adults_err ? (<i className="err-msg">Put value between 1-9</i>): null}
 													</div>
 												</Form.Group>
 											</Col>
@@ -430,7 +452,7 @@ const Index = (props) => {
 													<Form.Label>Children</Form.Label>
 													<div className="arrow">
 													<NumericInput mobile name="childCount" className="number-input form-control" value={childCount} min={0} max={9} step={1} onChange={childChanged}/>
-													{child_err ? (<i className="err-msg">Invalid counting</i>): null}
+													{child_err ? (<i className="err-msg">Put value between 1-9</i>): null}
 													</div>
 												</Form.Group>
 											</Col>
