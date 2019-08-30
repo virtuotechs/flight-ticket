@@ -108,8 +108,15 @@ p.small_txt {
 .filter_Set p.small_txt {
     font-size: 14px;
     margin-bottom: 8px;
+    white-space: nowrap; 
+    width: 200px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
 }
-
+.filter-cname
+{
+    text-transform: lowercase;
+}
 .datas {
     position: relative;
     width: 92%;

@@ -77,8 +77,7 @@ function escapeRegexCharacters(str) {
       this.setState({
         value: newValue
       });
-      
-      onChange(id, newValue);
+    onChange(id, newValue);
     };
     
     onSuggestionsFetchRequested = ({ value }) => {
@@ -120,7 +119,9 @@ function escapeRegexCharacters(str) {
 
 const TicketBooking = (requestData) => {
     console.log("DEPARTURE: ",requestData)
-    var jsondata = require('../data/AW_Response.json');    
+    var fulldata = require('../data/AW_Response.json');   
+    var jsondata = require('../data/AW_Response.json');   
+    jsondata = jsondata.recommendation; 
     // var jsondata = jsondata1.recommendation.filter(newdata => newdata.flightLeg[0].flightDetails.departureLocationCode == requestData.departureLocationCode && newdata.flightLeg[0].flightDetails.arrivalLocationCode == requestData.arrivalLocationCode && newdata.flightLeg[0].flightDetails.departureDate == requestData.departureDate);
     //         console.log(jsondata);
 
@@ -202,7 +203,7 @@ const TicketBooking = (requestData) => {
     const CalculateDuration = (duration) => {
         duration = TimeSplit(duration);
         var duration1 = duration.split(":");
-        var duration_str = duration1[0]+"hrs "+duration1[1]+"min";
+        var duration_str = duration1[0]+"h "+duration1[1]+"m";
         return duration_str;
     }
 
@@ -210,27 +211,58 @@ const TicketBooking = (requestData) => {
         cityname = cityname.split("(");
         return cityname[0];
     }
-    // const calculateDurationFormat = (dt1, dt2, tm1, tm2) => {
-    //     var date1 = dt1.split('-')
-    //     var date1 = date1[1] + '-' + date1[0] + '-' + date1[2];
-    //     tm1 = tm1.replace(/(..?)/g, '$1:').slice(0, -1);
-    //     dt1 = date1 + ", " + tm1;
-    //     var date2 = dt2.split('-')
-    //     var date2 = date2[1] + '-' + date2[0] + '-' + date2[2];
-    //     tm2 = tm2.replace(/(..?)/g, '$1:').slice(0, -1);
-    //     dt2 = date2 + ", " + tm2;
-    //     var duration = datetimeDifference(new Date(dt1), new Date(dt2));
-    //     var hours = duration.hours;
-    //     var minutes = duration.minutes;
-    //     if (minutes != 0) {
-    //         var duration_time = hours + "hrs " + minutes + "min";
-    //     }
-    //     else {
-    //         var duration_time = hours + "hrs ";
-    //     }
-    //     return (duration_time);
-    // }
-
+   const fastestDuration = () =>
+   {
+    var jsondata = require('../data/AW_Response.json');   
+    jsondata = jsondata.recommendation; 
+    var fastest_duration = Math.min.apply(Math,jsondata.map(function (o) { return o.flightLeg[0].flightDetails.totalFlyingHours; }))
+    console.log(fastest_duration);
+    return CalculateDuration(fastest_duration.toString());
+    
+   }
+   const fastestPrice = () =>
+   {
+    var jsondata = require('../data/AW_Response.json');   
+    jsondata = jsondata.recommendation;
+    var fastest_duration = Math.min.apply(Math,jsondata.map(function (o) { return o.flightLeg[0].flightDetails.totalFlyingHours; })) 
+    var fastest_price =  jsondata.filter(function(price) { return price.flightLeg[0].flightDetails.totalFlyingHours == fastest_duration});
+    fastest_price = fastest_price[0].totalFare;
+    return fastest_price;
+   }
+   const cheapestDuration = () =>
+   {
+    var jsondata = require('../data/AW_Response.json');   
+    jsondata = jsondata.recommendation; 
+    var cheapest_price = Math.min.apply(Math,jsondata.map(function (o) { return o.totalFare;}))
+    var cheapest_duration =  jsondata.filter(function(price) { return price.totalFare == cheapest_price});
+    cheapest_duration = cheapest_duration[0].flightLeg[0].flightDetails.totalFlyingHours;
+    return CalculateDuration(cheapest_duration);
+   }
+   const cheapestPrice = () =>
+   {
+    var jsondata = require('../data/AW_Response.json');   
+    jsondata = jsondata.recommendation;
+    var cheapest_price = Math.min.apply(Math,jsondata.map(function (o) { return o.totalFare;}))
+    return cheapest_price;
+   }
+//    const bestDuration = () =>
+//    {
+//     var jsondata = require('../data/AW_Response.json');   
+//     jsondata = jsondata.recommendation; 
+//     var best_price = jsondata.sort(function(obj1, obj2) {
+//         return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
+//     });
+//     return CalculateDuration(best_price[0].flightLeg[0].flightDetails.totalFlyingHours);
+//    }
+//    const bestPrice = () =>
+//    {
+//     var jsondata = require('../data/AW_Response.json');   
+//     jsondata = jsondata.recommendation; 
+//     var best_price = jsondata.sort(function(obj1, obj2) {
+//         return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
+//     });
+//     return best_price[0].totalFare;
+//    }
    useEffect(() => {
         window.addEventListener('scroll', handleScrollToElement);
     });
@@ -310,6 +342,11 @@ const TicketBooking = (requestData) => {
                    return obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
                 });
     }
+    const filtercname = (text) => {
+        var filter_text = text.trim();
+        filter_text = filter_text.split("-");
+        return filter_text[0];
+    }
     const preferedclassname = (classname) => {
         if(classname == "1")
         {
@@ -336,6 +373,15 @@ const TicketBooking = (requestData) => {
             return "PremiumAndEconomy";
         }
     }
+    const nonstopFlights = () => {
+        console.log("working");
+        var jsondata = require('../data/AW_Response.json');
+            jsondata = jsondata.recommendation.filter(nonstop => nonstop.flightLeg[0].flightDetails.stopOvers == 0)  
+            // jsondata = jsondata.sort(function (obj1, obj2) {
+            //     return obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
+            //  });
+            console.log(jsondata);
+    }
     const onChangeHome = (id, suggestion) => {
 		if(id=="countries1")
 		{
@@ -355,10 +401,9 @@ const TicketBooking = (requestData) => {
 		}
 	  }
 
-            
-            var currencyCode = jsondata.currencyCode;
-            var cheapest_price = Math.min.apply(Math,jsondata.recommendation.map(function (o) { return o.totalFare; }))
-            var total_response = jsondata.recommendation.length;
+            var currencyCode = fulldata.currencyCode;
+            var cheapest_price = Math.min.apply(Math,jsondata.map(function (o) { return o.totalFare; }))
+            var total_response = jsondata.length;
             
             const [data,setData] = useState([]);
             const [startDate,setStartDate] =useState(changeMonthDate(requestData.departureDate));
@@ -538,7 +583,7 @@ const TicketBooking = (requestData) => {
                                 <Col xs={12}>
                                     <p>
                                         <span className="bold-text">Filter by:</span>
-                                        <Button variant="outline-danger" style={{ float: 'right' }} onClick={() => this.setState({ sortToggler: false, filterToggler: false })}>Done</Button>
+                                        <Button variant="outline-danger" style={{ float: 'right' }} onClick={() => { setSortToggler(false); setFilterToggler(false);setFilterToggler(false); }}>Done</Button>
                                     </p>
                                     <br/>
                                     <Row>
@@ -550,15 +595,16 @@ const TicketBooking = (requestData) => {
                                             <Row>
                                                 <Col xs={12}>
                                                     <div className='checkbox-custom'>
-                                                        <Form.Check type="checkbox" label="Non-stop" name="stop1" value="Non-stop" />
+                                                        <Form.Check type="checkbox" label="Non-stop" name="stop1" value="Non-stop" onClick={nonstopFlights} />
                                                         <Form.Check type="checkbox" label="1stop" name="stop2" value="1stop" />
+                                                        <Form.Check type="checkbox" label="2 Stops" name="stop3" value="2stops" />
                                                     </div>
                                                 </Col>
                                             </Row>
                                         </Col>
                                         <Col xs={12}>
                                             <p className='small_txt'>
-                                                <b>Departure from London</b> 
+                                                <b>Departure from <span className="filter-cname">{filtercname(requestData.departureLocationName)}</span></b> 
                                                 {/* <small className="pink-text" style={{ float: 'right' }}>Reset</small> */}
                                             </p> 
                                             <Row>
@@ -573,7 +619,7 @@ const TicketBooking = (requestData) => {
                                         </Col>
                                         <Col xs={12}>
                                             <p className='small_txt'>
-                                                <b>Departure from Newyork</b>
+                                                <b>Departure from <span className="filter-cname">{filtercname(requestData.arrivalLocationName)}</span></b>
                                                 {/* <small className="pink-text" style={{ float: 'right' }}>Reset</small> */}
                                             </p>
                                             <Row>
@@ -637,15 +683,16 @@ const TicketBooking = (requestData) => {
                                                 <Row>
                                                     <Col xs={12}>
                                                         <div className='checkbox-custom'>
-                                                            <Form.Check type="checkbox" label="Non-stop" name="stop1" value="Non-stop" />
+                                                            <Form.Check type="checkbox" label="Non-stop" name="stop1" value="Non-stop"  onClick={nonstopFlights} />
                                                             <Form.Check type="checkbox" label="1 Stop" name="stop2" value="1stop" />
+                                                            <Form.Check type="checkbox" label="2 Stops" name="stop3" value="2stops" />
                                                         </div>
                                                     </Col>
                                                 </Row>
                                             </div>
                                             <div className='filter_Set'>
                                                 <p className='small_txt'>
-                                                    <b>Departure from London</b> 
+                                                    <b>Departure from <span className="filter-cname">{filtercname(requestData.departureLocationName)}</span></b> 
                                                     <small className="pink-text" style={{ float: 'right' }}>
                                                     {/* <i className="fa fa-angle-down" aria-hidden="true" ></i> */}
                                                     </small>
@@ -662,7 +709,7 @@ const TicketBooking = (requestData) => {
                                             </div>
                                             <div className='filter_Set'>
                                                 <p className='small_txt'>
-                                                    <b>Departure from Newyork</b>
+                                                    <b>Departure from <span className="filter-cname">{filtercname(requestData.arrivalLocationName)}</span></b>
                                                     <small className="pink-text" style={{ float: 'right' }}>
                                                     {/* <i className="fa fa-angle-down" aria-hidden="true" ></i> */}
                                                     </small>
@@ -724,24 +771,24 @@ const TicketBooking = (requestData) => {
                                                 <Row>
                                                     <Col xs={4} sm={4} className={sortOption == "Best" ? 'filter_tab text-center active' : 'filter_tab text-center'} data-tip data-for='best'>
                                                         <p onClick={handleSortBest}>Best<br></br>
-                                                        <b>{getSymbolFromCurrency(currencyCode)} {cheapest_price}</b>
-                                                        <br></br>3h 50</p>
+                                                        <b>{getSymbolFromCurrency(currencyCode)} 842.02</b>
+                                                        <br></br>10h 45m</p>
                                                     </Col>
                                                     <ReactTooltip id='best' place="top" type="light" effect="solid" aria-haspopup='true' role='example' className='tool'>
                                                         <p>We think these flights offer the best combination of <br></br><b>price</b> and <b>speed</b>. We may also consider factors like <br></br>number of stops and mount of hassle.</p>
                                                     </ReactTooltip>
                                                     <Col xs={4} sm={4} className={sortOption == "Cheapest First" ? 'filter_tab text-center active' : 'filter_tab text-center'} data-tip data-for='cheapest'>
                                                         <p onClick={handleSortCheapest}>Cheapest<br></br>
-                                                        <b>{getSymbolFromCurrency(currencyCode)} {cheapest_price}</b>
-                                                        <br></br>3h 50</p>
+                                                        <b>{getSymbolFromCurrency(currencyCode)} {cheapestPrice()}</b>
+                                                        <br></br>{cheapestDuration()}</p>
                                                     </Col>
                                                     <ReactTooltip id='cheapest' place="top" type="light" effect="solid" aria-haspopup='true' role='example' className='tool'>
                                                         <p>Sort by Cheatpest Price.</p>
                                                     </ReactTooltip>
                                                     <Col xs={4} sm={4} className={sortOption == "Fastest First" ? 'filter_tab text-center active' : 'filter_tab text-center'} data-tip data-for='fastest'>
                                                         <p onClick={handleSortFastest}>Fastest<br></br>
-                                                        <b>{getSymbolFromCurrency(currencyCode)} {cheapest_price}</b>
-                                                        <br></br>3h 50</p>
+                                                        <b>{getSymbolFromCurrency(currencyCode)} {fastestPrice()} </b>
+                                                        <br></br>{fastestDuration()}</p>
                                                     </Col>
                                                     <ReactTooltip id='fastest' place="top" type="light" effect="solid" aria-haspopup='true' role='example' className='tool'>
                                                         <p>Sort by Shortest Duration.</p>
@@ -775,7 +822,7 @@ const TicketBooking = (requestData) => {
                                             {/* End common title */}
                                             {/* Start ------------------------------------------------------------ */}
                                             {/* Sorting Area */}
-                                            {jsondata.recommendation.map((resultData, i = 1) => (
+                                            {jsondata.map((resultData, i = 1) => (
                                                 <Row className="sort-box" key={resultData.recommendationRefNo}>
                                                     <Col sm={9} style = {{ padding: '10px', borderRight: '1px dashed #03A9F4' }}>
                                                         {resultData.totalFare == cheapest_price ? <button className="pink-button cheap">CHEAPEST</button> : <button className="pink-button cheap">VALUE FOR MONEY</button>}
