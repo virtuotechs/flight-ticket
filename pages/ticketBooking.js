@@ -120,6 +120,9 @@ function escapeRegexCharacters(str) {
 
 const TicketBooking = (requestData) => {
     console.log("DEPARTURE: ",requestData)
+    var jsondata = require('../data/AW_Response.json');    
+    // var jsondata = jsondata1.recommendation.filter(newdata => newdata.flightLeg[0].flightDetails.departureLocationCode == requestData.departureLocationCode && newdata.flightLeg[0].flightDetails.arrivalLocationCode == requestData.arrivalLocationCode && newdata.flightLeg[0].flightDetails.departureDate == requestData.departureDate);
+    //         console.log(jsondata);
 
     // this.myTween = new TimelineLite({ paused: true });
     // static async getInitialProps = ({ isServer, store }) => {
@@ -233,10 +236,11 @@ const TicketBooking = (requestData) => {
     });
 
     const handleSortOptions = (e) => {  
+        console.log("worked");
         setSortOption(e.target.value);
         if(e.target.value === "Best")
-        {
-            var jsondata = require('../data/AW_Response.json');
+        {   
+            var jsondata = require('../data/AW_Response.json');         
             jsondata = jsondata.recommendation;
             jsondata = jsondata.sort(function(obj1, obj2) {
                 return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
@@ -351,12 +355,10 @@ const TicketBooking = (requestData) => {
 		}
 	  }
 
-            var jsondata1 = require('../data/AW_Response.json');
-            var jsondata = jsondata1.recommendation.filter(newdata => newdata.flightLeg[0].flightDetails.departureLocationCode == requestData.departureLocationCode && newdata.flightLeg[0].flightDetails.arrivalLocationCode == requestData.arrivalLocationCode && newdata.flightLeg[0].flightDetails.departureDate == requestData.departureDate);
-            console.log(jsondata);
-            var currencyCode = jsondata1.currencyCode;
-            var cheapest_price = Math.min.apply(Math,jsondata.map(function (o) { return o.totalFare; }))
-            var total_response = jsondata.length;
+            
+            var currencyCode = jsondata.currencyCode;
+            var cheapest_price = Math.min.apply(Math,jsondata.recommendation.map(function (o) { return o.totalFare; }))
+            var total_response = jsondata.recommendation.length;
             
             const [data,setData] = useState([]);
             const [startDate,setStartDate] =useState(changeMonthDate(requestData.departureDate));
@@ -773,7 +775,7 @@ const TicketBooking = (requestData) => {
                                             {/* End common title */}
                                             {/* Start ------------------------------------------------------------ */}
                                             {/* Sorting Area */}
-                                            {jsondata.map((resultData, i = 1) => (
+                                            {jsondata.recommendation.map((resultData, i = 1) => (
                                                 <Row className="sort-box" key={resultData.recommendationRefNo}>
                                                     <Col sm={9} style = {{ padding: '10px', borderRight: '1px dashed #03A9F4' }}>
                                                         {resultData.totalFare == cheapest_price ? <button className="pink-button cheap">CHEAPEST</button> : <button className="pink-button cheap">VALUE FOR MONEY</button>}
