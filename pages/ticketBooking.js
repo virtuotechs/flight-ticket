@@ -810,7 +810,7 @@ const TicketBooking = (requestData) => {
                                                                     <big><span className="pink-text">Chepeast Starting at</span></big>
                                                                     <br />
                                                                     <span className="top-currency">
-                                                                        {getSymbolFromCurrency(jsondata.currencyCode)}
+                                                                        {getSymbolFromCurrency(currencyCode)}
                                                                          &nbsp;{cheapest_price}
                                                                     </span>
                                                                 </div>
