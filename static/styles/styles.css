@@ -19,7 +19,12 @@ body {
 .autocomplete-flight-img {
     opacity: 0.3;
 }
-
+.nodata-msg.text-center {
+    color: #ff4057;
+    font-size: 40px;
+    padding: 40px;
+    margin: 40px;
+}
 .bg-dark {
     padding: 40px;
     background-color: black!important;

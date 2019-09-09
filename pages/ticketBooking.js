@@ -1,16 +1,18 @@
-import React, { Component,useState,useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import Layout from '../components/layout';
 import { Row, Col, Form, InputGroup, Button } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import sortJsonArray from 'sort-json-array';
 import ReactTooltip from 'react-tooltip';
 import dateFormat from 'dateformat';
-import LoaderIcon from '../components/loaderspinner.js';
 import getSymbolFromCurrency from 'currency-symbol-map'
-// import { TimelineLite, TweenLite } from 'gsap';
 import datetimeDifference from "datetime-difference";
-import { connect } from 'react-redux'
-import { flightIndexRequested } from '../actions';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import 'isomorphic-fetch';
+import {getFlights,nonstopFlights} from '../api';
+import Router from 'next/router';
+
 //Auto complete imports
 import Autosuggest from 'react-autosuggest';
 import AutosuggestHighlightMatch from 'autosuggest-highlight/match';
@@ -22,8 +24,8 @@ const languages = require('../data/countries.json');
 function escapeRegexCharacters(str) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
-  
-  function getSuggestions(id,value) {
+  function getSuggestions(value) {
+    console.log("Get suggestions",value);
     const escapedValue = escapeRegexCharacters(value.trim());
     
     if (escapedValue === '') {
@@ -36,6 +38,7 @@ function escapeRegexCharacters(str) {
   }
   
   function getSuggestionValue(suggestion) {
+    console.log("Get suggestions value",suggestion);
     return `${suggestion.CityName} - ${suggestion.PlaceName} (${suggestion.PlaceId})`;
   }
   
@@ -64,11 +67,11 @@ function escapeRegexCharacters(str) {
   }
   
   class MyAutosuggest extends React.Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
       this.state = {
-        value: '',
-        suggestions: []
+        value: this.props.value,
+        suggestions: ["name"]
       };    
     }
   
@@ -77,10 +80,12 @@ function escapeRegexCharacters(str) {
       this.setState({
         value: newValue
       });
-    onChange(id, newValue);
+      
+      onChange(id, newValue);
     };
     
     onSuggestionsFetchRequested = ({ value }) => {
+        console.log("fetch requetsed",value);
       this.setState({
         suggestions: getSuggestions(value)
       });
@@ -102,7 +107,7 @@ function escapeRegexCharacters(str) {
       };
       
       return (		
-        <Autosuggest 
+        <Autosuggest
           id={id}
           suggestions={suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -114,311 +119,438 @@ function escapeRegexCharacters(str) {
       );
     }
   }
-  // End Autocomplete component
 
+const TicketBooking = (flights) => {
 
-const TicketBooking = (requestData) => {
-    console.log("DEPARTURE: ",requestData)
-    var fulldata = require('../data/AW_Response.json');   
-    var jsondata = require('../data/AW_Response.json');   
-    jsondata = jsondata.recommendation; 
-    // var jsondata = jsondata1.recommendation.filter(newdata => newdata.flightLeg[0].flightDetails.departureLocationCode == requestData.departureLocationCode && newdata.flightLeg[0].flightDetails.arrivalLocationCode == requestData.arrivalLocationCode && newdata.flightLeg[0].flightDetails.departureDate == requestData.departureDate);
-    //         console.log(jsondata);
-
-    // this.myTween = new TimelineLite({ paused: true });
-    // static async getInitialProps = ({ isServer, store }) => {
-    // // Fetch today NASA APOD
-    // await store.execSagaTasks(isServer, dispatch => {
-    //   dispatch(getFlights());
-    // })
-
-    const handleChange = (date) => {
-        setStartDate(date);
-    }
-    const handleChange1 = (date) => {
-        setEndDate(date);
-    }
-    const changePlace = (e) => {
-       setSourcePlace(destinationPlace);
-       setDestinationPlace(sourcePlace);
-    }
-
-    const changeMonthDate = (dt) => {
-        var date1 = dt.split('-')
-        var newDate = date1[1] + '-' + date1[0] + '-' + date1[2];
-        var date = new Date(newDate);
-        return (date);
-    }
-    console.log(changeMonthDate(requestData.departureDate));
-
-    const TimeSplit = (time) => {
-        time = time.replace(/(..?)/g, '$1:').slice(0, -1)
-        return (time);
-    }
-
-    const handlesortToggler = () => {
-        setSortToggler(true);
-        setFilterToggler(false);
-    }
-
-    const handleFilterToggler = () => {
-        setFilterToggler(true);
-        setSortToggler(false);
-    }
-
-    const handleScrollToElement = (event) => {        
-        $(window).scroll(function () {
-            var sticky = $('.filtering-row.row'),
-                scroll = $(window).scrollTop();
-
-            if (scroll >= 400) sticky.addClass('fixed');
-            else sticky.removeClass('fixed');
-        });
-    }
-
-    const StopName = (stop) => {
-        if(stop == 0)
-        {
-            return "Non-stop";
-        }
-        else if(stop == 1)  
-        {
-            return "1 stop";
-        }
-        else if(stop == 2)
-        {
-            return "2 stops";
-        }
-    }
-    const StopClassName = (stop) => {
-        if(stop == 1)  
-        {
-            return "onestop";
-        }
-        else if(stop == 2)
-        {
-            return "twostop";
-        }
-    }
-    const CalculateDuration = (duration) => {
-        duration = TimeSplit(duration);
-        var duration1 = duration.split(":");
-        var duration_str = duration1[0]+"h "+duration1[1]+"m";
-        return duration_str;
-    }
-
-    const ViaCityName = (cityname) => {
-        cityname = cityname.split("(");
-        return cityname[0];
-    }
-   const fastestDuration = () =>
-   {
-    var jsondata = require('../data/AW_Response.json');   
-    jsondata = jsondata.recommendation; 
-    var fastest_duration = Math.min.apply(Math,jsondata.map(function (o) { return o.flightLeg[0].flightDetails.totalFlyingHours; }))
-    console.log(fastest_duration);
-    return CalculateDuration(fastest_duration.toString());
-    
-   }
-   const fastestPrice = () =>
-   {
-    var jsondata = require('../data/AW_Response.json');   
-    jsondata = jsondata.recommendation;
-    var fastest_duration = Math.min.apply(Math,jsondata.map(function (o) { return o.flightLeg[0].flightDetails.totalFlyingHours; })) 
-    var fastest_price =  jsondata.filter(function(price) { return price.flightLeg[0].flightDetails.totalFlyingHours == fastest_duration});
-    fastest_price = fastest_price[0].totalFare;
-    return fastest_price;
-   }
-   const cheapestDuration = () =>
-   {
-    var jsondata = require('../data/AW_Response.json');   
-    jsondata = jsondata.recommendation; 
-    var cheapest_price = Math.min.apply(Math,jsondata.map(function (o) { return o.totalFare;}))
-    var cheapest_duration =  jsondata.filter(function(price) { return price.totalFare == cheapest_price});
-    cheapest_duration = cheapest_duration[0].flightLeg[0].flightDetails.totalFlyingHours;
-    return CalculateDuration(cheapest_duration);
-   }
-   const cheapestPrice = () =>
-   {
-    var jsondata = require('../data/AW_Response.json');   
-    jsondata = jsondata.recommendation;
-    var cheapest_price = Math.min.apply(Math,jsondata.map(function (o) { return o.totalFare;}))
-    return cheapest_price;
-   }
-//    const bestDuration = () =>
-//    {
-//     var jsondata = require('../data/AW_Response.json');   
-//     jsondata = jsondata.recommendation; 
-//     var best_price = jsondata.sort(function(obj1, obj2) {
-//         return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
-//     });
-//     return CalculateDuration(best_price[0].flightLeg[0].flightDetails.totalFlyingHours);
-//    }
-//    const bestPrice = () =>
-//    {
-//     var jsondata = require('../data/AW_Response.json');   
-//     jsondata = jsondata.recommendation; 
-//     var best_price = jsondata.sort(function(obj1, obj2) {
-//         return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
-//     });
-//     return best_price[0].totalFare;
-//    }
-   useEffect(() => {
-        window.addEventListener('scroll', handleScrollToElement);
-    });
-
-    const handleSortOptions = (e) => {  
-        console.log("worked");
-        setSortOption(e.target.value);
-        if(e.target.value === "Best")
-        {   
-            var jsondata = require('../data/AW_Response.json');         
-            jsondata = jsondata.recommendation;
-            jsondata = jsondata.sort(function(obj1, obj2) {
-                return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
-            });
-        }
-        else if(e.target.value === "Cheapest First")
-        {
-            var jsondata = require('../data/AW_Response.json');
-            jsondata = jsondata.recommendation;
-            jsondata = jsondata.sort(function (obj1, obj2) {
-                   return obj1.totalFare - obj2.totalFare;
-                });
-        }
-        else if(e.target.value === "Fastest First")
-        {
-            var jsondata = require('../data/AW_Response.json');
-            jsondata = jsondata.recommendation;
-            jsondata = jsondata.sort(function (obj1, obj2) {
-                   return obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
-                });
-        }
-        else if(e.target.value === "Outbound: Departure Time")
-        {
-            var jsondata = require('../data/AW_Response.json');
-            
-            jsondata = jsondata.recommendation;
-
-            jsondata = jsondata.sort(function (obj1, obj2) {
-                return obj1.flightLeg[0].flightDetails.departureTime - obj2.flightLeg[0].flightDetails.departureTime;
-             });
-        }
-        else if(e.target.value === "Airline")
-        {
-            var jsondata = require('../data/AW_Response.json');
-            jsondata = sortJsonArray(jsondata.recommendation, "marketingAirlineNames", "asc");
-        }
-        else if(e.target.value === "Stops")
-        {
-            var jsondata = require('../data/AW_Response.json');
-            jsondata = jsondata.recommendation;
-            jsondata = jsondata.sort(function (obj1, obj2) {
-                return obj1.flightLeg[0].flightDetails.stopOvers - obj2.flightLeg[0].flightDetails.stopOvers;
-             });
-        }
-    }
-    const handleSortBest = (e) => {
-        setSortOption("Best");
-        var jsondata = require('../data/AW_Response.json');
-            jsondata = jsondata.recommendation;
-            jsondata = jsondata.sort(function(obj1, obj2) {
-                return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
-            });
-    }
-    const handleSortCheapest = (e) => {
-        setSortOption("Cheapest First");
-        var jsondata = require('../data/AW_Response.json');
-        jsondata = jsondata.recommendation;
-        jsondata = jsondata.sort(function (obj1, obj2) {
-               return obj1.totalFare - obj2.totalFare;
-            });
-    }
-    const handleSortFastest = (e) => {
-        setSortOption("Fastest First");
-        var jsondata = require('../data/AW_Response.json');
-            jsondata = jsondata.recommendation;
-            jsondata = jsondata.sort(function (obj1, obj2) {
-                   return obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
-                });
-    }
-    const filtercname = (text) => {
-        var filter_text = text.trim();
-        filter_text = filter_text.split("-");
-        return filter_text[0];
-    }
-    const preferedclassname = (classname) => {
-        if(classname == "1")
-        {
-            return "Any";
-        }
-        else if(classname == "2")
-        {
-            return "Business";
-        }
-        else if(classname == "3")
-        {
-            return "Economy";
-        }
-        else if(classname == "4")
-        {
-            return "First Class";
-        }
-        else if(classname == "5")
-        {
-            return "PremiumOrEconomy";
-        }
-        else if(classname == "6")
-        {
-            return "PremiumAndEconomy";
-        }
-    }
-    const nonstopFlights = () => {
-        console.log("working");
-        var jsondata = require('../data/AW_Response.json');
-            jsondata = jsondata.recommendation.filter(nonstop => nonstop.flightLeg[0].flightDetails.stopOvers == 0)  
-            // jsondata = jsondata.sort(function (obj1, obj2) {
-            //     return obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
-            //  });
-            console.log(jsondata);
-    }
-    const onChangeHome = (id, suggestion) => {
-		if(id=="countries1")
-		{
-			var suggestion = suggestion.trim();
-			var length = suggestion.length;
-			var exact_match = suggestion.substring(length - 4, length-1);
-			exact_match = exact_match.trim();
-			// setDeparturelocationcode(exact_match);
-		}
-		else if(id=="countries2")
-		{
-			var suggestion = suggestion.trim();
-			var length = suggestion.length;
-			var exact_match = suggestion.substring(length - 4, length-1);
-			exact_match = exact_match.trim();
-			// setArrivallocationcode(exact_match);
-		}
-	  }
-
-            var currencyCode = fulldata.currencyCode;
-            var cheapest_price = Math.min.apply(Math,jsondata.map(function (o) { return o.totalFare; }))
-            var total_response = jsondata.length;
-            
-            const [data,setData] = useState([]);
-            const [startDate,setStartDate] =useState(changeMonthDate(requestData.departureDate));
-            const [endDate,setEndDate] = useState(changeMonthDate(requestData.returnDate));
-            const [sourcePlace,setSourcePlace]=useState(requestData.departureLocationName);
-            const [destinationPlace,setDestinationPlace]=useState(requestData.arrivalLocationName);
-            const [popularityIcon,setPopularityIcon]=useState(0);
-            const [priceIcon,setPriceIcon]=useState(1);
-            const [durationIcon,setDurationIcon]=useState(0);
-            const [loader,setLoader]=useState(false);
+            console.log("Flights: ",flights.flights.data);
+            console.log("REquest: ",flights.request);
+            const changeMonthDate = (dt) => {
+                var date1 = dt.split('-')
+                var newDate = date1[1] + '-' + date1[0] + '-' + date1[2];
+                var date = new Date(newDate);
+                return (date);
+               // console.log(date);
+            }
+            // State initialisation
+            const [requestData,setRequestData] = useState(flights.request);
+            const [jsondata,setJsondata] = useState(flights.flights.data.recommendation);    
+            const [departureDate,setDepartureDate] =useState(changeMonthDate(requestData.segments[0].departureDate));
+            const [returnDate,setReturnDate] = useState(changeMonthDate(requestData.segments[0].returnDate));
+            const [departureLocationCode,setDeparturelocationcode] = useState('');
+	        const [arrivalLocationCode,setArrivallocationcode] = useState('');
+            const [departureLocationName,setDepartureLocationName] = useState(requestData.departueLocationName);
+            const [arrivalLocationName,setArrivalLocationName] = useState(requestData.arrivalLocationName)
             const [sortToggler,setSortToggler]=useState(false);
             const [filterToggler,setFilterToggler]=useState(false);
             const [sortOption,setSortOption]=useState('Best');
+            const [fetchLoading,setFetchLoading] = useState(false);
+            const [localLoading,setLocalLoading] = useState(false);
+            const [nonstop,setnonstop] = useState(false);
+            const [onestop,setonestop] = useState(false);
+            const [twostop,settwostop] = useState(false);
+            const [departure1,setdeparture1] = useState(false);
+            const [departure2,setdeparture2] = useState(false);
+            const [departure3,setdeparture3] = useState(false);
+            const [return1,setreturn1] = useState(false);
+            const [return2,setreturn2] = useState(false);
+            const [return3,setreturn3] = useState(false);
 
-        return (
+            console.log(requestData);
+            const handleChange = (date) => {
+                setDepartureDate(date);
+            }
+            const handleChange1 = (date) => {
+                setReturnDate(date);
+            }
+            const changePlace = (e) => {
+            setDepartureLocationName(arrivalLocationName);
+            setArrivalLocationName(departureLocationName);
+            }
+
+            const TimeSplit = (time) => {
+                time = time.replace(/(..?)/g, '$1:').slice(0, -1)
+                return (time);
+            }
+
+            const handlesortToggler = () => {
+                setSortToggler(true);
+                setFilterToggler(false);
+            }
+
+            const handleFilterToggler = () => {
+                setFilterToggler(true);
+                setSortToggler(false);
+            }
+
+            const handleScrollToElement = (event) => {        
+                $(window).scroll(function () {
+                    var sticky = $('.filtering-row.row'),
+                        scroll = $(window).scrollTop();
+
+                    if (scroll >= 400) sticky.addClass('fixed');
+                    else sticky.removeClass('fixed');
+                });
+            }
+
+            const StopName = (stop) => {
+                if(stop == 0)
+                {
+                    return "Non-stop";
+                }
+                else if(stop == 1)  
+                {
+                    return "1 stop";
+                }
+                else if(stop == 2)
+                {
+                    return "2 stops";
+                }
+            }
+            const StopClassName = (stop) => {
+                if(stop == 1)  
+                {
+                    return "onestop";
+                }
+                else if(stop == 2)
+                {
+                    return "twostop";
+                }
+            }
+            const CalculateDuration = (duration) => {
+                duration = TimeSplit(duration);
+                var duration1 = duration.split(":");
+                var duration_str = duration1[0]+"h "+duration1[1]+"m";
+                return duration_str;
+            }
+
+            const ViaCityName = (cityname) => {
+                cityname = cityname.split("(");
+                return cityname[0];
+            }
+        const fastestDuration = () =>
+        {
+            var fastest_duration = Math.min.apply(Math,jsondata.map(function (o) { return o.flightLeg[0].flightDetails.totalFlyingHours; }))
+            console.log(fastest_duration);
+            return CalculateDuration(fastest_duration.toString());
+            
+        }
+        const fastestPrice = () =>
+        {
+            var fastest_duration = Math.min.apply(Math,jsondata.map(function (o) { return o.flightLeg[0].flightDetails.totalFlyingHours; })) 
+            var fastest_price =  jsondata.filter(function(price) { return price.flightLeg[0].flightDetails.totalFlyingHours == fastest_duration});
+            fastest_price = fastest_price[0].totalFare;
+            return fastest_price;
+        }
+        const cheapestDuration = () =>
+        {
+            console.log("Cheapest: ",jsondata);
+            var cheapest_price = Math.min.apply(Math,jsondata.map(function (o) { return o.totalFare;}))
+            var cheapest_duration =  jsondata.filter(function(price) { return price.totalFare == cheapest_price});
+            cheapest_duration = cheapest_duration[0].flightLeg[0].flightDetails.totalFlyingHours;
+            return CalculateDuration(cheapest_duration);
+        }
+        const cheapestPrice = () =>
+        {
+            var cheapest_price = Math.min.apply(Math,jsondata.map(function (o) { return o.totalFare;}))
+            return cheapest_price;
+        }
+        const bestDuration = () =>
+        {
+        var best_price = jsondata.sort(function(obj1, obj2) {
+            return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
+        });
+        return CalculateDuration(best_price[0].flightLeg[0].flightDetails.totalFlyingHours);
+        }
+        const bestPrice = () =>
+        {
+        var best_price = jsondata.sort(function(obj1, obj2) {
+            return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
+        });
+        return best_price[0].totalFare;
+        }
+        useEffect(() => {
+                window.addEventListener('scroll', handleScrollToElement);
+            });
+        const showFlightDetails = (id) =>
+        {
+            setFetchLoading(true);
+            Router.push({
+				pathname: '/ticketdetails',
+				query: {
+                    "id":id,
+					"adultCount": requestData.adultCount,
+					"childCount": requestData.childCount,
+					"infantCount": requestData.infantCount,
+					"isDirectFlight": requestData.isDirectFlight,
+					"isPlusOrMinus3Days": requestData.isPlusOrMinus3Days,
+					"searchType": requestData.searchType,
+					"preferedFlightClass": requestData.preferedFlightClass,
+					"departureLocationCode": requestData.segments[0].departureLocationCode,
+					"departureDate": requestData.segments[0].departureDate,
+					"arrivalLocationCode": requestData.segments[0].arrivalLocationCode,
+					"returnDate": requestData.segments[0].returnDate,
+					"departureTime": requestData.segments[0].departureTime,
+					"returnTime": requestData.segments[0].returnTime,
+					"PageIndex": "1",
+					"PageSize": "50",
+					"departureLocationName": requestData.departureLocationName,
+					"arrivalLocationName": requestData.arrivalLocationName
+					}
+				}) 	
+        }
+        async function handleSortOptions(e) {
+            setSortOption(e.target.value);
+            setLocalLoading(true);
+            var response = await getFlights(requestData);
+            var sort_flights = await response;
+            setLocalLoading(false);
+            if(sortOption === "Best")
+            {   
+                sort_flights = sort_flights.data.recommendation.sort(function(obj1, obj2) {
+                    return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
+                });
+                setJsondata(sort_flights);
+            }
+            else if(sortOption === "Cheapest First")
+            {
+                sort_flights = sort_flights.data.recommendation.sort(function (obj1, obj2) {
+                    return obj1.totalFare - obj2.totalFare;
+                    })
+                setJsondata(sort_flights);
+            }
+            else if(sortOption === "Fastest First")
+            {
+                sort_flights = sort_flights.data.recommendation.sort(function (obj1, obj2) {
+                    return obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
+                    });
+                setJsondata(sort_flights);
+            }
+            else if(sortOption === "Outbound: Departure Time")
+            {
+                sort_flights = sort_flights.data.recommendation.sort(function (obj1, obj2) {
+                    return obj1.flightLeg[0].flightDetails.departureTime - obj2.flightLeg[0].flightDetails.departureTime;
+                });
+                setJsondata(sort_flights);
+            }
+            else if(sortOption === "Airline")
+            {
+                sort_flights = sortJsonArray(sort_flights.data.recommendation, "marketingAirlineNames", "asc");
+                setJsondata(sort_flights);
+            }
+            else if(sortOption === "Stops")
+            {
+                sort_flights = sort_flights.data.recommendation.sort(function (obj1, obj2) {
+                    return obj1.flightLeg[0].flightDetails.stopOvers - obj2.flightLeg[0].flightDetails.stopOvers;
+                });
+                setJsondata(sort_flights);
+            }
+        }
+            async function handleSortBest(e) {
+                setSortOption("Best");
+                setLocalLoading(true);
+                var response = await getFlights(requestData);
+                var best_flights = await response;
+                setLocalLoading(false);
+                best_flights = best_flights.data.recommendation.sort(function(obj1, obj2) {
+                    return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
+                });
+                setJsondata(best_flights);
+            }
+            async function handleSortCheapest(e) {
+                setSortOption("Cheapest First");
+                setLocalLoading(true);
+                var response = await getFlights(requestData);
+                var cheap_flights = await response;
+                setLocalLoading(false);
+                cheap_flights = cheap_flights.data.recommendation.sort(function (obj1, obj2) {
+                    return obj1.totalFare - obj2.totalFare;
+                    })
+                setJsondata(cheap_flights);
+            }
+            async function handleSortFastest(e){
+                setSortOption("Fastest First");
+                setLocalLoading(true);
+                var response = await getFlights(requestData);
+                var fast_flights = await response;
+                setLocalLoading(false);
+                fast_flights = fast_flights.data.recommendation.sort(function (obj1, obj2) {
+                    return obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
+                    });
+                setJsondata(fast_flights);
+            }
+            const filtercname = (text) => {
+                var filter_text = text.trim();
+                filter_text = filter_text.split("-");
+                return filter_text[0];
+            }
+            const preferedclassname = (classname) => {
+                if(classname == "1")
+                {
+                    return "Any";
+                }
+                else if(classname == "2")
+                {
+                    return "Business";
+                }
+                else if(classname == "3")
+                {
+                    return "Economy";
+                }
+                else if(classname == "4")
+                {
+                    return "First Class";
+                }
+                else if(classname == "5")
+                {
+                    return "PremiumOrEconomy";
+                }
+                else if(classname == "6")
+                {
+                    return "PremiumAndEconomy";
+                }
+            }
+          
+            async function filternonstop() {
+                setLocalLoading(true);
+                setnonstop(true);
+                console.log(nonstop);
+                var response = await getFlights(requestData);
+                var nonstop_flights = await response;
+                console.log(nonstop_flights.data);
+                setLocalLoading(false);
+                nonstop_flights = nonstop_flights.data.recommendation.filter(item => item.flightLeg[0].flightDetails.stopOvers == '0' )
+                console.log(nonstop_flights);
+                setJsondata(nonstop_flights);
+            }
+
+            async function filteronestop(){
+                setLocalLoading(true);
+                setonestop(true);
+                console.log(onestop);
+                var response = await getFlights(requestData);
+                var onestop_flights = await response;
+                console.log(onestop_flights);
+                setLocalLoading(false);
+                onestop_flights = onestop_flights.data.recommendation.filter(item => item.flightLeg[0].flightDetails.stopOvers == '1' )
+                console.log(onestop_flights);
+                setJsondata(onestop_flights);
+            }
+            async function filtertwostop(){
+                setLocalLoading(true);
+                settwostop(true);
+                console.log(twostop);
+                var response = await getFlights(requestData);
+                var twostop_flights = await response;
+                console.log(twostop_flights);
+                setLocalLoading(false);
+                twostop_flights = twostop_flights.data.recommendation.filter(item => item.flightLeg[0].flightDetails.stopOvers == '2' )
+                console.log(twostop_flights);
+                setJsondata(twostop_flights);
+            }
+            async function filterdeparture1(){
+                setLocalLoading(true);
+                setdeparture1(true);
+                console.log(departure1);
+                var response = await getFlights(requestData);
+                var departure1_flights = await response;
+                console.log(departure1_flights);
+                setLocalLoading(false);
+                departure1_flights = departure1_flights.data.recommendation.filter(item => parseInt(item.flightLeg[0].flightDetails.departureTime) >= 600 && parseInt(item.flightLeg[0].flightDetails.departureTime) <= 1200);
+                console.log(departure1_flights);
+                setJsondata(departure1_flights);
+            }
+            async function filterdeparture2(){
+                setLocalLoading(true);
+                setdeparture2(true);
+                console.log(departure2);
+                var response = await getFlights(requestData);
+                var departure2_flights = await response;
+                console.log(departure2_flights);
+                setLocalLoading(false);
+                departure2_flights = departure2_flights.data.recommendation.filter(item => parseInt(item.flightLeg[0].flightDetails.departureTime) >= 1800);
+                console.log(departure2_flights);
+                setJsondata(departure2_flights);
+            }
+            async function filterdeparture3(){
+                setLocalLoading(true);
+                setdeparture3(true);
+                console.log(departure3);
+                var response = await getFlights(requestData);
+                var departure3_flights = await response;
+                console.log(departure3_flights);
+                setLocalLoading(false);
+                departure3_flights = departure3_flights.data.recommendation.filter(item => parseInt(item.flightLeg[0].flightDetails.departureTime) >= 1200 && parseInt(item.flightLeg[0].flightDetails.departureTime) <= 1800);
+                console.log(departure3_flights);
+                setJsondata(departure3_flights);
+            }
+            async function filterreturn1(){
+                setLocalLoading(true);
+                setreturn1(true);
+                console.log(return1);
+                var response = await getFlights(requestData);
+                var return1_flights = await response;
+                console.log(return1_flights);
+                setLocalLoading(false);
+                return1_flights = return1_flights.data.recommendation.filter(item => parseInt(item.flightLeg[1].flightDetails.departureTime) >= 600 && parseInt(item.flightLeg[1].flightDetails.departureTime) <= 1200);
+                console.log(return1_flights);
+                setJsondata(return1_flights);
+            }
+            async function filterreturn2(){
+                setLocalLoading(true);
+                setreturn2(true);
+                console.log(return2);
+                var response = await getFlights(requestData);
+                var return2_flights = await response;
+                console.log(return2_flights);
+                setLocalLoading(false);
+                return2_flights = return2_flights.data.recommendation.filter(item => parseInt(item.flightLeg[1].flightDetails.departureTime) >= 1800);
+                console.log(return2_flights);
+                setJsondata(return2_flights);
+            }
+            async function filterreturn3(){
+                setLocalLoading(true);
+                setreturn3(true);
+                console.log(return3);
+                var response = await getFlights(requestData);
+                var return3_flights = await response;
+                console.log(return3_flights);
+                setLocalLoading(false);
+                return3_flights = return3_flights.data.recommendation.filter(item => parseInt(item.flightLeg[1].flightDetails.departureTime) >= 1200 && parseInt(item.flightLeg[1].flightDetails.departureTime) <= 1800);
+                console.log(return3_flights);
+                setJsondata(return3_flights);
+            }
+            const onChangeHome = (id, suggestion,value) => {    
+            console.log("onahnbeg vaue: ",value);
+                if(id=="countries1")
+                {		
+                    var suggestion = suggestion.trim();
+                    setDepartureLocationName(suggestion);
+                    var length = suggestion.length;
+                    var exact_match = suggestion.substring(length - 4, length-1);
+                    exact_match = exact_match.trim();
+                    setDeparturelocationcode(exact_match);
+                }
+                else if(id=="countries2")
+                {
+                    var suggestion = suggestion.trim();
+                    setArrivalLocationName(suggestion);
+                    var length = suggestion.length;
+                    var exact_match = suggestion.substring(length - 4, length-1);
+                    exact_match = exact_match.trim();
+                    setArrivallocationcode(exact_match);
+                }
+            } 
+            //console.log(Object.keys(flights.flights.data).length);
+            //console.log(flights);
+            //console.log("error info: ",flights.flights.data.AffiliateFlightSearchResponse.errorInfo[0].errorDescription);
+            if(Object.keys(flights.flights.data).length > 1)
+            {
+                // var currencyCode = jsondata.currencyCode;
+                // var total_response = jsondata.recommendation.length;
+                var currencyCode = flights.flights.data.currencyCode;
+                var total_response = jsondata.length;
+            }
+            return (
             <Layout>
                 <div className="container-fluid">
                     <div className="bg-img">
@@ -461,15 +593,7 @@ const TicketBooking = (requestData) => {
                                                             <InputGroup.Prepend>
                                                                 <InputGroup.Text id="inputGroupPrepend" className="bluebg-igroup"><i className="fa fa-map-marker" aria-hidden="true"></i></InputGroup.Text>
                                                             </InputGroup.Prepend>
-                                                            <Form.Control
-                                                                type="text"
-                                                                placeholder="Destination City"
-                                                                aria-describedby="inputGroupPrepend"
-                                                                value={sourcePlace}
-                                                                readOnly="yes"
-                                                                className="blubg-control"
-                                                                name="destinationPlace" />
-                                                                {/* <MyAutosuggest id="countries1" onChange={onChangeHome}/> */}
+                                                                <MyAutosuggest id="countries1" onChange={onChangeHome} value={requestData.departureLocationName}/>
                                                         </InputGroup>
                                                     </Form.Group>
                                                     <i className="fa fa-exchange" aria-hidden="true" onClick={changePlace}></i>
@@ -480,15 +604,7 @@ const TicketBooking = (requestData) => {
                                                         <InputGroup.Prepend>
                                                             <InputGroup.Text id="inputGroupPrepend" className="bluebg-igroup"><i className="fa fa-map-marker" aria-hidden="true"></i></InputGroup.Text>
                                                         </InputGroup.Prepend>
-                                                        <Form.Control
-                                                            type="text"
-                                                            placeholder="Destination City"
-                                                            aria-describedby="inputGroupPrepend"
-                                                            value={destinationPlace}
-                                                            readOnly="yes"
-                                                            className="blubg-control"
-                                                            name="destinationPlace" />
-                                                            {/* <MyAutosuggest id="countries2" onChange={onChangeHome}/> */}
+                                                            <MyAutosuggest id="countries2" onChange={onChangeHome} value={requestData.arrivalLocationName}/>
                                                     </InputGroup>
                                                 </Form.Group>
                                                 </Col>
@@ -506,7 +622,7 @@ const TicketBooking = (requestData) => {
                                                                 showMonthDropdown
                                                                 showYearDropdown
                                                                 dateFormat="eee, MMM d"
-                                                                selected={startDate}
+                                                                selected={departureDate}
                                                                 onChange={handleChange} />
                                                             {/* <i className="fa fa-angle-left" aria-hidden="true"></i>
                                                             <i className="fa fa-angle-right" aria-hidden="true"></i>&nbsp; */}
@@ -519,7 +635,7 @@ const TicketBooking = (requestData) => {
                                                                 showMonthDropdown
                                                                 showYearDropdown
                                                                 dateFormat="eee, MMM d"
-                                                                selected={endDate}
+                                                                selected={returnDate}
                                                                 onChange={handleChange1} />
                                                             {/* <i className="fa fa-angle-left" aria-hidden="true"></i>
                                                             <i className="fa fa-angle-right" aria-hidden="true"></i> */}
@@ -595,9 +711,9 @@ const TicketBooking = (requestData) => {
                                             <Row>
                                                 <Col xs={12}>
                                                     <div className='checkbox-custom'>
-                                                        <Form.Check type="checkbox" label="Non-stop" name="stop1" value="Non-stop" onClick={nonstopFlights} />
-                                                        <Form.Check type="checkbox" label="1stop" name="stop2" value="1stop" />
-                                                        <Form.Check type="checkbox" label="2 Stops" name="stop3" value="2stops" />
+                                                        <Form.Check type="checkbox" label="Non-stop" name="stop1" value={nonstop} onClick={filternonstop} defaultChecked={nonstop}/>
+                                                        <Form.Check type="checkbox" label="1stop" name="stop2" value={onestop}  onClick={filteronestop} defaultChecked={onestop}/>
+                                                        <Form.Check type="checkbox" label="2 Stops" name="stop3" value={twostop}  onClick={filtertwostop} defaultChecked={twostop} />
                                                     </div>
                                                 </Col>
                                             </Row>
@@ -610,9 +726,9 @@ const TicketBooking = (requestData) => {
                                             <Row>
                                                 <Col xs={12}>
                                                     <div className='checkbox-custom'>
-                                                        <Form.Check type="checkbox" label="6AM - 12 Noon" />
-                                                        <Form.Check type="checkbox" label="After 6PM" />
-                                                        <Form.Check type="checkbox" label="12 Noon - 6PM" />
+                                                        <Form.Check type="checkbox" label="6AM - 12 Noon" value={departure1}  onClick={filterdeparture1} defaultChecked={departure1}/>
+                                                        <Form.Check type="checkbox" label="After 6PM" value={departure2}  onClick={filterdeparture2} defaultChecked={departure2}/>
+                                                        <Form.Check type="checkbox" label="12 Noon - 6PM" value={departure3}  onClick={filterdeparture3} defaultChecked={departure3}/>
                                                     </div>
                                                 </Col>
                                             </Row>
@@ -625,9 +741,9 @@ const TicketBooking = (requestData) => {
                                             <Row>
                                                 <Col xs={12}>
                                                     <div className='checkbox-custom'>
-                                                        <Form.Check type="checkbox" label="6AM - 12 Noon" />
-                                                        <Form.Check type="checkbox" label="After 6PM" />
-                                                        <Form.Check type="checkbox" label="12 Noon - 6PM" />
+                                                        <Form.Check type="checkbox" label="6AM - 12 Noon" value={return1}  onClick={filterreturn1} defaultChecked={return1}/>
+                                                        <Form.Check type="checkbox" label="After 6PM" value={return2}  onClick={filterreturn2} defaultChecked={return2}/>
+                                                        <Form.Check type="checkbox" label="12 Noon - 6PM" value={return3}  onClick={filterreturn3} defaultChecked={return3}/>
                                                     </div>
                                                 </Col>
                                             </Row>
@@ -665,6 +781,8 @@ const TicketBooking = (requestData) => {
 
                     {/* ----------- Desktop Filters, Datas and Ad.. -----------  */}
                     {/* ---------------- Desktop Filter Datas ---------------- */}
+                    {localLoading ? <div className="text-center"><img src="static/images/loader1.gif" height="50" width="100"/><br/>Loading</div> : <div>
+                    {Object.keys(flights.flights.data).length > 1 ?
                     <div className='filter-data'>
                         <div className = 'container-fluid'>
                             <Row>
@@ -683,9 +801,9 @@ const TicketBooking = (requestData) => {
                                                 <Row>
                                                     <Col xs={12}>
                                                         <div className='checkbox-custom'>
-                                                            <Form.Check type="checkbox" label="Non-stop" name="stop1" value="Non-stop"  onClick={nonstopFlights} />
-                                                            <Form.Check type="checkbox" label="1 Stop" name="stop2" value="1stop" />
-                                                            <Form.Check type="checkbox" label="2 Stops" name="stop3" value="2stops" />
+                                                            <Form.Check type="checkbox" label="Non-stop" name="stop1" value={nonstop}  onClick={filternonstop} defaultChecked={nonstop}/>
+                                                            <Form.Check type="checkbox" label="1 Stop" name="stop2" value={onestop}  onClick={filteronestop} defaultChecked={onestop} />
+                                                            <Form.Check type="checkbox" label="2 Stops" name="stop3" value={twostop}  onClick={filtertwostop} defaultChecked={twostop}  />
                                                         </div>
                                                     </Col>
                                                 </Row>
@@ -700,9 +818,9 @@ const TicketBooking = (requestData) => {
                                                 <Row>
                                                     <Col xs={12}>
                                                         <div className='checkbox-custom'>
-                                                            <Form.Check type="checkbox" label="6 AM - 12 Noon" />
-                                                            <Form.Check type="checkbox" label="After 6 PM" />
-                                                            <Form.Check type="checkbox" label="12 Noon - 6 PM" />
+                                                            <Form.Check type="checkbox" label="6 AM - 12 Noon" value={departure1}  onClick={filterdeparture1} defaultChecked={departure1}/>
+                                                            <Form.Check type="checkbox" label="After 6 PM" value={departure2}  onClick={filterdeparture2} defaultChecked={departure2}/>
+                                                            <Form.Check type="checkbox" label="12 Noon - 6 PM" value={departure3}  onClick={filterdeparture3} defaultChecked={departure3}/>
                                                         </div>
                                                     </Col>
                                                 </Row>
@@ -717,9 +835,9 @@ const TicketBooking = (requestData) => {
                                                 <Row>
                                                     <Col xs={12}>
                                                         <div className='checkbox-custom'>
-                                                            <Form.Check type="checkbox" label="6 AM - 12 Noon" />
-                                                            <Form.Check type="checkbox" label="After 6 PM" />
-                                                            <Form.Check type="checkbox" label="12 Noon - 6 PM" />
+                                                            <Form.Check type="checkbox" label="6 AM - 12 Noon" value={return1}  onClick={filterreturn1} defaultChecked={return1}/>
+                                                            <Form.Check type="checkbox" label="After 6 PM" value={return2}  onClick={filterreturn2} defaultChecked={return2}/>
+                                                            <Form.Check type="checkbox" label="12 Noon - 6 PM" value={return3}  onClick={filterreturn3} defaultChecked={return3}/>
                                                         </div>
                                                     </Col>
                                                 </Row>
@@ -743,7 +861,8 @@ const TicketBooking = (requestData) => {
                                                 </Row>
                                             </div>
                                         </Col>
-                                        {total_response > 0 ? 
+                                                                               {/* ------ Main Datas ------ */}
+                                                                               {total_response > 0 ? 
                                         <Col sm={12} md={9}>
                                             
                                             {/* Sorting Title */}
@@ -753,7 +872,7 @@ const TicketBooking = (requestData) => {
                                                 </Col>
                                                 <Col lg={5} md={5} sm={6} xs={6} className='text-right'>                                                    
                                                         <div className="select_box outline"  style={{ float: 'right' }}>
-                                                            <Form.Control as="select" name="sortoptions" onChange={handleSortOptions} defaultValue={"Best"}>
+                                                            <Form.Control as="select" name="sortoptions" defaultValue={sortOption} onChange={handleSortOptions}>
                                                                 <option value="0" hidden>Sort by</option>
                                                                 <option value="Best">Best</option>
                                                                 <option value="Cheapest First">Cheapest First</option>
@@ -771,8 +890,8 @@ const TicketBooking = (requestData) => {
                                                 <Row>
                                                     <Col xs={4} sm={4} className={sortOption == "Best" ? 'filter_tab text-center active' : 'filter_tab text-center'} data-tip data-for='best'>
                                                         <p onClick={handleSortBest}>Best<br></br>
-                                                        <b>{getSymbolFromCurrency(currencyCode)} 842.02</b>
-                                                        <br></br>10h 45m</p>
+                                                        <b>{getSymbolFromCurrency(currencyCode)} {bestPrice()}</b>
+                                                        <br></br>{bestDuration()}</p>
                                                     </Col>
                                                     <ReactTooltip id='best' place="top" type="light" effect="solid" aria-haspopup='true' role='example' className='tool'>
                                                         <p>We think these flights offer the best combination of <br></br><b>price</b> and <b>speed</b>. We may also consider factors like <br></br>number of stops and mount of hassle.</p>
@@ -811,7 +930,7 @@ const TicketBooking = (requestData) => {
                                                                     <br />
                                                                     <span className="top-currency">
                                                                         {getSymbolFromCurrency(currencyCode)}
-                                                                         &nbsp;{cheapest_price}
+                                                                         &nbsp;{cheapestPrice()}
                                                                     </span>
                                                                 </div>
                                                             </Col>
@@ -825,7 +944,7 @@ const TicketBooking = (requestData) => {
                                             {jsondata.map((resultData, i = 1) => (
                                                 <Row className="sort-box" key={resultData.recommendationRefNo}>
                                                     <Col sm={9} style = {{ padding: '10px', borderRight: '1px dashed #03A9F4' }}>
-                                                        {resultData.totalFare == cheapest_price ? <button className="pink-button cheap">CHEAPEST</button> : <button className="pink-button cheap">VALUE FOR MONEY</button>}
+                                                        {resultData.totalFare == cheapestPrice() ? <button className="pink-button cheap">CHEAPEST</button> : <button className="pink-button cheap">VALUE FOR MONEY</button>}
                                                         {/* Departure flights */}
                                                         <Row className="travel-timing" style={{ marginTop: '6px' }}>
                                                             <Col md={12} sm={12}>
@@ -912,9 +1031,19 @@ const TicketBooking = (requestData) => {
                                                         {/* <a href={`/ticketdetails?id=${2}`}>
                                                             <button className="bpk-button">Select <i className="fa fa-arrow-right"></i></button>
                                                         </a> */}
-                                                        <Link href={{ pathname: 'ticketdetails', query: { id: resultData.recommendationRefNo }}}>
-                                                            <button className="bpk-button">Select <i className="fa fa-arrow-right"></i></button>
-                                                        </Link>
+                                                        {/* <Link href={{ pathname: 'ticketdetails', query: { id: resultData.recommendationRefNo }}}> */}
+                                                        {/* <button className="bpk-button" onClick={() => showFlightDetails(resultData.recommendationRefNo)}>Select <i className="fa fa-arrow-right"></i></button> */}
+                                                        <Button className="bpk-button" variant="danger" onClick={() => showFlightDetails(resultData.recommendationRefNo)} disabled={fetchLoading}>
+                                                        {fetchLoading && (
+                                                            <i
+                                                            className="fa fa-refresh fa-spin"
+                                                            style={{ marginRight: "5px" }}
+                                                            />
+                                                        )}
+                                                        {fetchLoading && <span>Loading</span>}
+                                                        {!fetchLoading && <span>Select</span>}
+                                                        </Button>
+                                                        {/* </Link> */}
                                                     </Col>
                                                     <Row className="flight-details">
                                                         <Col sm={12} className="text-center grey">
@@ -936,7 +1065,8 @@ const TicketBooking = (requestData) => {
                                             ))}
                                             {/* Ending Sorting Area */}
 
-                                        </Col> : <center>No data found</center> }
+                                                        </Col> : <center>No data found</center>  }
+                                       {/* --------End main datas------- */}
                                     </Row>
                                 </Col>
                                 
@@ -961,38 +1091,89 @@ const TicketBooking = (requestData) => {
                                     </Row>
                                 </Col>
                             </Row>
-                        </div>
-                    </div>
+                        </div> 
+                    </div>: <div className="nodata-msg text-center">
+                            {/* <img src="static/images/nodata1.png" className="img img-responsive"></img> */}
+                            <img className="fa fa-fighter-jet autocomplete-flight-img" alt="Flight" src="static/images/flight.png" style={{height:'70px',width:'70px',opacity:0.2}}/>
+                            <br/>Sorry! No result found.
+                            </div> } </div> }
                 </div>
             </Layout>
         )
 }
 
-TicketBooking.getInitialProps = ({ query: { departureLocationCode,arrivalLocationCode,departureDate,returnDate,isDirectFlight,searchType,adultCount,childCount,preferedFlightClass,departureTime,returnTime,departureLocationName,arrivalLocationName} }) => {
+// TicketBooking.getInitialProps = ({ query: { departureLocationCode,arrivalLocationCode,departureDate,returnDate,isDirectFlight,searchType,adultCount,childCount,preferedFlightClass,departureTime,returnTime,departureLocationName,arrivalLocationName} }) => {
+//     return { 
+//         departureLocationCode: departureLocationCode, 
+// 		arrivalLocationCode: arrivalLocationCode, 
+//         departureDate: departureDate,
+//         returnDate: returnDate,
+//         isDirectFlight : isDirectFlight,
+//         searchType: searchType,
+//         adultCount: adultCount,
+//         childCount: childCount,
+//         preferedFlightClass: preferedFlightClass,
+//         departureTime: "Any",
+//         returnTime: "Any",
+//         departureLocationName: departureLocationName,
+//         arrivalLocationName: arrivalLocationName
+//      }
+//   }
+
+TicketBooking.getInitialProps = async ({ query: {adultCount,childCount,infantCount,isDirectFlight,isPlusOrMinus3Days,searchType,preferedFlightClass,departureLocationCode,departureDate,arrivalLocationCode,returnDate,departureTime,returnTime,PageIndex,PageSize,departureLocationName,arrivalLocationName } }) => {
+const request = {
+    "adultCount": adultCount,
+    "childCount": childCount,
+    "infantCount": infantCount,
+    "isDirectFlight": isDirectFlight,
+    "isPlusOrMinus3Days": isPlusOrMinus3Days,
+    "searchType": searchType,
+    "preferedFlightClass": preferedFlightClass,
+        "segments": [
+        {
+            "departureLocationCode": departureLocationCode,
+            "departureDate": departureDate,
+            "arrivalLocationCode": arrivalLocationCode,
+            "returnDate": returnDate,
+            "departureTime": departureTime,
+            "returnTime": returnTime
+        }
+    ],
+    "paging": {
+        "PageIndex": PageIndex,
+        "PageSize": PageSize
+    }};
+
+    const res = await getFlights(request)
+    const json = await res;
     return { 
-        departureLocationCode: departureLocationCode, 
-		arrivalLocationCode: arrivalLocationCode, 
-        departureDate: departureDate,
-        returnDate: returnDate,
-        isDirectFlight : isDirectFlight,
-        searchType: searchType,
-        adultCount: adultCount,
-        childCount: childCount,
-        preferedFlightClass: preferedFlightClass,
-        departureTime: "Any",
-        returnTime: "Any",
-        departureLocationName: departureLocationName,
-        arrivalLocationName: arrivalLocationName
-     }
-  }
+        flights: json,
+        request: { 
+            "adultCount": adultCount,
+            "childCount": childCount,
+            "infantCount": infantCount,
+            "isDirectFlight": isDirectFlight,
+            "isPlusOrMinus3Days": isPlusOrMinus3Days,
+            "searchType": searchType,
+            "preferedFlightClass": preferedFlightClass,
+            "departureLocationName": departureLocationName,
+            "arrivalLocationName": arrivalLocationName,
+                "segments": [
+                {
+                    "departureLocationCode": departureLocationCode,
+                    "departureDate": departureDate,
+                    "arrivalLocationCode": arrivalLocationCode,
+                    "returnDate": returnDate,
+                    "departureTime": departureTime,
+                    "returnTime": returnTime
+                }
+            ],
+            "paging": {
+                "PageIndex": PageIndex,
+                "PageSize": PageSize
+            }
+        }
+        }
+        }
 
-
-// TicketBooking.getInitialProps = async ({ store }) => {
-//    store.dispatch(flightIndexRequested());
-// }
-
-// const mapStateToProps = (state) => ({
-//     flight: state
-// })
-
-export default TicketBooking;
+  export default TicketBooking;

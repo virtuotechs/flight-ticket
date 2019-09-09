@@ -3,14 +3,14 @@ import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 import DatePicker from "react-datepicker";
 import Router from 'next/router';
 import dateFormat from 'dateformat';
-
+import { connect } from 'react-redux'
 //Number Input
 import NumericInput from 'react-numeric-input';
-
 //Auto complete imports
 import Autosuggest from 'react-autosuggest';
 import AutosuggestHighlightMatch from 'autosuggest-highlight/match';
 import AutosuggestHighlightParse from 'autosuggest-highlight/parse';
+
 // Auto complete
 const languages = require('../data/countries.json');
 function escapeRegexCharacters(str) {
@@ -111,7 +111,7 @@ function escapeRegexCharacters(str) {
   }
   
 // Index Page
-const Index = (props) => {	
+const Home = (props) => {	
 
 
 	//Number input ref
@@ -142,6 +142,7 @@ const Index = (props) => {
 	const [returnDate_err,setReturndate_err] = useState(false);
 	const [adults_err,setAdults_err] = useState(false);
 	const [child_err,setChild_err] = useState(false);
+	const [fetchLoading,setFetchLoading] = useState(false);
 
 	const showAnother = (e) => {
 		setShowAnn(true);
@@ -237,8 +238,8 @@ const Index = (props) => {
 		{
 			setArrival_err(!arrival_err);
 		}
-		console.log("Departure date: ",departureDate);
-		console.log("Return date: ",returnDate);
+		console.log("Departure date: ",dateFormat(departureDate, "dd-mm-yyyy"));
+		console.log("Return date: ",dateFormat(returnDate, "dd-mm-yyyy"));
 		console.log("Adult count: ",adultCount);
 		console.log("child count",childCount);
 		console.log("Location1: ",departureLocationCode);
@@ -246,52 +247,32 @@ const Index = (props) => {
 		console.log("prefered class: ",preferedFlightClass);
 		console.log("direct flight",isDirectFlight);
 		console.log("search type: ",searchType);
-			setRequest([
-				{
-				"adultCount": adultCount,
-				"childCount": childCount,
-				"infantCount": 0,
-				"isDirectFlight": isDirectFlight,
-				"isPlusOrMinus3Days": false,	 
-				"searchType": searchType,
-				"preferedFlightClass": preferedFlightClass,
-					 "segments": [
-				   {
-					  "departureLocationCode": departureLocationCode,	 
-					  "departureDate": dateFormat(departureDate, "dd-mm-yyyy"),
-					  "arrivalLocationCode": arrivalLocationCode,
-					  "returnDate": dateFormat(returnDate, "dd-mm-yyyy"),
-					  "departureTime": "Any",
-					  "returnTime": "Any"
-				   }
-				],
-				"paging": {
-				   "PageIndex": "1",
-				   "PageSize": "50"
-				}
-			 }
-			])
-			if(departureLocationCode != "" && arrivalLocationCode !="" && adultCount != null && childCount != null)
-			{
-				Router.push({
+		if(departureLocationCode != "" && arrivalLocationCode !="" && adultCount != null && childCount != null)
+		{
+			setFetchLoading(true);
+			Router.push({
 				pathname: '/ticketBooking',
 				query: {
-					departureLocationCode: departureLocationCode, 
-					arrivalLocationCode: arrivalLocationCode, 
-					departureDate: dateFormat(departureDate, "dd-mm-yyyy"),
-					returnDate: dateFormat(returnDate, "dd-mm-yyyy"),
-					isDirectFlight : isDirectFlight,
-					searchType: searchType,
-					adultCount: adultCount,
-					childCount: childCount,
-					preferedFlightClass: preferedFlightClass,
-					departureTime: "Any",
-					returnTime: "Any",
-					departureLocationName: departureLocationName,
-					arrivalLocationName: arrivalLocationName
+					"adultCount": adultCount,
+					"childCount": childCount,
+					"infantCount": "0",
+					"isDirectFlight": isDirectFlight,
+					"isPlusOrMinus3Days": "false",
+					"searchType": searchType,
+					"preferedFlightClass": preferedFlightClass,
+					"departureLocationCode": departureLocationCode,
+					"departureDate": dateFormat(departureDate, "dd-mm-yyyy"),
+					"arrivalLocationCode": arrivalLocationCode,
+					"returnDate": dateFormat(returnDate, "dd-mm-yyyy"),
+					"departureTime": "Any",
+					"returnTime": "Any",
+					"PageIndex": "1",
+					"PageSize": "50",
+					"departureLocationName": departureLocationName,
+					"arrivalLocationName": arrivalLocationName
 					}
-				})
-			}
+				}) 	
+		}
 	}
 	const onChangeHome = (id, suggestion) => {
 		if(id=="countries1")
@@ -323,7 +304,7 @@ const Index = (props) => {
 							<img className='flight_img' src='static/images/airplane-flight.svg' width='25' ></img> Flights
                         </h5>
 						<div className="flight">
-							<Form onSubmit={flightsforRoundTrip}>
+							<Form>
 								<div className="mb-3">
 									<Form.Check name="searchType" defaultValue="1" className='radio_btn' inline label="One Way" type="radio" defaultChecked={searchType == '1'} onClick={handleoneway} id={`inline-radio-2`} />
 									<Form.Check name="searchType" defaultValue="2" className='radio_btn' inline label="Round Trip" defaultChecked={searchType == '2'} type="radio" onClick={handleround} id={`inline-radio-1`} />
@@ -404,7 +385,7 @@ const Index = (props) => {
 														{/* <i className="fa fa-calendar"> </i>  */}
 														<img className='fa fa-calendar' src='static/images/calendar.svg' width='25'></img>
 														<DatePicker 
-														name="departureDate" 
+														name="departureDate"
 														className="form-control" 
 														showMonthDropdown 
 														showYearDropdown 
@@ -416,7 +397,7 @@ const Index = (props) => {
 												</Form.Group>
 											</Col>
 											<Col sm={6}>
-												<Form.Group controlId="exampleForm.ControlSelect1">
+												<Form.Group controlId="exampleForm.ControlSelect1s">
 													<Form.Label>Return</Form.Label>
 													<div className="date">
 														{/* <i className="fa fa-calendar"> </i>  */}
@@ -458,12 +439,21 @@ const Index = (props) => {
 											</Col>
 											<Col sm={6}>
 												{/* <a href='/ticketBooking'><Button className='form-control' variant="danger">SEARCH FLIGHTS</Button></a> */}
-												<Button className='form-control' variant="danger" type="submit">SEARCH FLIGHTS</Button>
+												{/* <Button className='form-control' variant="danger" type="submit">SEARCH FLIGHTS</Button> */}
+												<Button className="form-control" variant="danger" onClick={flightsforRoundTrip} disabled={fetchLoading}>
+												{fetchLoading && (
+													<i
+													className="fa fa-refresh fa-spin"
+													style={{ marginRight: "5px" }}
+													/>
+												)}
+												{fetchLoading && <span>Loading Data from Server</span>}
+												{!fetchLoading && <span>SEARCH FLIGHTS</span>}
+												</Button>
 											</Col>
 										</Row>
 									</Col>
 								</Row>
-
 								<Row hidden={!oneway}>
 									<Col md={9} sm={12}>
 										<Row>
@@ -996,5 +986,4 @@ const Index = (props) => {
 			</div>
 		);
 	}
-
-export default Index;
+export default Home;

@@ -8,7 +8,7 @@ const Layout = (props) => {
         return(
             <div>
                 <Head>
-                    <title>Ticket Booking</title>
+                    <title>Deal Checker</title>
                     <meta charset="utf-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"></meta>
                     <link rel="icon" href="../static/images/dc_fav-01.png" type="image/png" sizes="16x16"></link>

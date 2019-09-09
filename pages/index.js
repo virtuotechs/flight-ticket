@@ -10,6 +10,6 @@ const Index = () => {
   </Layout>)
 }
 
-export default connect()(Index);
+export default Index;
 
 

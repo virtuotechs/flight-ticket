@@ -10,7 +10,7 @@
     "build": "next build",
     "mock:api": "json-server --watch data/autocomplete.json --port 4000",
     "mock:api1": "json-server --watch data/Aw_Request.json --port 4001",
-    "mock:api2": "json-server --watch data/Aw_Response.json --port 4002"
+    "mock:api2": "json-server --watch data/live_data.json --port 4002"
   },
   "author": "",
   "license": "ISC",
