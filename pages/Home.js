@@ -26,7 +26,6 @@ function escapeRegexCharacters(str) {
 	if(value.length <= 3)
 	{
 		const regex = new RegExp('^' + escapedValue, 'i');
-		console.log("Reg ex value: ",regex);
 		return languages.filter(language => regex.test(language.PlaceId));
 	}
 	else

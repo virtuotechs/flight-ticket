@@ -24,7 +24,7 @@ const languages = require('../data/countries.json');
 function escapeRegexCharacters(str) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
-  function getSuggestions(value) {
+function getSuggestions(value) {
     console.log("Get suggestions",value);
     const escapedValue = escapeRegexCharacters(value.trim());
     
@@ -154,6 +154,7 @@ const TicketBooking = (flights) => {
             const [return1,setreturn1] = useState(false);
             const [return2,setreturn2] = useState(false);
             const [return3,setreturn3] = useState(false);
+            const [flightId,setFlightId] = useState('');
 
             console.log(requestData);
             const handleChange = (date) => {
@@ -271,8 +272,10 @@ const TicketBooking = (flights) => {
         useEffect(() => {
                 window.addEventListener('scroll', handleScrollToElement);
             });
+        
         const showFlightDetails = (id) =>
         {
+            setFlightId(id);
             setFetchLoading(true);
             Router.push({
 				pathname: '/ticketdetails',
@@ -1033,15 +1036,16 @@ const TicketBooking = (flights) => {
                                                         </a> */}
                                                         {/* <Link href={{ pathname: 'ticketdetails', query: { id: resultData.recommendationRefNo }}}> */}
                                                         {/* <button className="bpk-button" onClick={() => showFlightDetails(resultData.recommendationRefNo)}>Select <i className="fa fa-arrow-right"></i></button> */}
-                                                        <Button className="bpk-button" variant="danger" onClick={() => showFlightDetails(resultData.recommendationRefNo)} disabled={fetchLoading}>
-                                                        {fetchLoading && (
+                                                        <Button className="bpk-button" variant="danger" onClick={() => showFlightDetails(resultData.recommendationRefNo)} disabled={resultData.recommendationRefNo == flightId ? fetchLoading : null}>
+                                                        {resultData.recommendationRefNo == flightId ? 
+                                                        fetchLoading && (
                                                             <i
                                                             className="fa fa-refresh fa-spin"
                                                             style={{ marginRight: "5px" }}
                                                             />
-                                                        )}
-                                                        {fetchLoading && <span>Loading</span>}
-                                                        {!fetchLoading && <span>Select</span>}
+                                                        ) : null}
+                                                        {resultData.recommendationRefNo == flightId ? fetchLoading && <span>Loading</span> : null}
+                                                        {resultData.recommendationRefNo == flightId ? !fetchLoading && <span>Select</span> : <span>Select</span>}
                                                         </Button>
                                                         {/* </Link> */}
                                                     </Col>
