@@ -23,10 +23,18 @@ function escapeRegexCharacters(str) {
     if (escapedValue === '') {
       return [];
     }
-  
-    const regex = new RegExp('^' + escapedValue, 'i');
-  
-    return languages.filter(language => regex.test(language.CityName));
+	if(value.length <= 3)
+	{
+		const regex = new RegExp('^' + escapedValue, 'i');
+		console.log("Reg ex value: ",regex);
+		return languages.filter(language => regex.test(language.PlaceId));
+	}
+	else
+	{
+		const regex = new RegExp('^' + escapedValue, 'i');
+		console.log("Reg ex value: ",regex);
+		return languages.filter(language => regex.test(language.CityName));
+	}
   }
   
   function getSuggestionValue(suggestion) {

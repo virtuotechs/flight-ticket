@@ -862,7 +862,7 @@ const TicketBooking = (flights) => {
                                             </div>
                                         </Col>
                                                                                {/* ------ Main Datas ------ */}
-                                                                               {total_response > 0 ? 
+                                        {total_response > 0 ? 
                                         <Col sm={12} md={9}>
                                             
                                             {/* Sorting Title */}
@@ -1025,7 +1025,7 @@ const TicketBooking = (flights) => {
                                                             <span className="deals_no">
                                                                 8 deals
                                                             </span><br/>
-                                                            {getSymbolFromCurrency(jsondata.currencyCode)}
+                                                            {getSymbolFromCurrency(currencyCode)}
                                                             &nbsp;{resultData.totalFare}
                                                         </span>
                                                         {/* <a href={`/ticketdetails?id=${2}`}>
