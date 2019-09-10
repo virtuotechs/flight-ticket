@@ -57,7 +57,7 @@ class Header extends Component {
                                     {/* <Link href='/'>
                                         <div className="logo"><img src="static/images/dc_fav-01.png"></img></div>
                                     </Link> */}
-                                    <Link href='/'><img src='static/images/dealchecker.svg'></img></Link>
+                                    <Link href='/'><img src='static/images/dealchecker.svg' style={{cursor:'pointer'}}></img></Link>
                                 </Col>
                                 <Col xs={9} className="text-right">
                                     <div className="callus">

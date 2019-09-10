@@ -904,6 +904,7 @@ span.react-numeric-input b {
     background: transparent !important;
     font-size: 25px !important;
     font-weight: bold !important;
+    border: 0 !important;
 }
 
 .quantity {

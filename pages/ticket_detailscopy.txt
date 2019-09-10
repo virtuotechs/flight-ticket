@@ -1,14 +1,138 @@
+import React, { useState } from 'react';
+import Layout from '../components/layout';
+import { Row, Col, Button, Accordion, Card } from 'react-bootstrap';
+import dateFormat from 'dateformat';
+import datetimeDifference from "datetime-difference";
+import {getFlights} from '../api';
+import { Router } from 'next/router';
 
+const TicketDetails = (flights) => {
+
+    console.log(flights);
+    const [condition1,setCondition1] = useState(true);
+    const [condition2,setCondition2] = useState(false);
+    const [condition3,setCondition3] = useState(false);
+
+    var result = flights.flights.data.recommendation.filter(x => x.recommendationRefNo == flights.request.id);
+    const [jsondata,setJsondata] = useState(result);
+    const [requestData,setRequestData] = useState(flights.request);
+    console.log("JSON DATA: ",jsondata);
+
+    const handleClick = () => {
+        setCondition1(!condition1);
+    }
+
+    const handleClickFlight1 = () => {
+        setCondition2(!condition2);
+    }
+
+    const handleClickFlight2 = () => {
+        setCondition3(!condition3);
+    }
+
+    const changeMonthDate = (dt) => {
+        var date1 = dt.split('-')
+        var newDate = date1[1] + '-' + date1[0] + '-' + date1[2];
+        var date = new Date(newDate);
+        return (date);
+    }
+    
+    const TimeSplit = (time) => {
+        time = time.replace(/(..?)/g, '$1:').slice(0, -1)
+        return (time);
+    }
+    const CalculateDuration = (duration) => {
+        duration = TimeSplit(duration);
+        var duration1 = duration.split(":");
+        var duration_str = duration1[0]+"hrs "+duration1[1]+"min";
+        return duration_str;
+    }
+
+    const ViaCityName = (cityname) => {
+        cityname = cityname.split("(");
+        return cityname[0];
+    }
+    const StopName = (stop) => {
+        if(stop == 0)
+        {
+            return "Non-stop";
+        }
+        else if(stop == 1)  
+        {
+            return "1 stop";
+        }
+        else if(stop == 2)
+        {
+            return "2 stops";
+        }
+    }
+    const StopClassName = (stop) => {
+        if(stop == 1)  
+        {
+            return "onestop";
+        }
+        else if(stop == 2)
+        {
+            return "twostop";
+        }
+    }
+    const preferedclassname = (classname) => {
+        if(classname == "1")
+        {
+            return "Any";
+        }
+        else if(classname == "2")
+        {
+            return "Business";
+        }
+        else if(classname == "3")
+        {
+            return "Economy";
+        }
+        else if(classname == "4")
+        {
+            return "First Class";
+        }
+        else if(classname == "5")
+        {
+            return "PremiumOrEconomy";
+        }
+        else if(classname == "6")
+        {
+            return "PremiumAndEconomy";
+        }
+    }
+    const calculateDurationFormat = (dt1, dt2, tm1, tm2) => {
+        var date1 = dt1.split('-')
+        var date1 = date1[1] + '-' + date1[0] + '-' + date1[2];
+        tm1 = tm1.replace(/(..?)/g, '$1:').slice(0, -1);
+        dt1 = date1 + ", " + tm1;
+        var date2 = dt2.split('-')
+        var date2 = date2[1] + '-' + date2[0] + '-' + date2[2];
+        tm2 = tm2.replace(/(..?)/g, '$1:').slice(0, -1);
+        dt2 = date2 + ", " + tm2;
+        var duration = datetimeDifference(new Date(dt1), new Date(dt2));
+        var hours = duration.hours;
+        var minutes = duration.minutes;
+        if (minutes != 0) {
+            var duration_time = hours + "hrs " + minutes + "min";
+        }
+        else {
+            var duration_time = hours + "hrs ";
+        }
+        return (duration_time);
+    }
+    return(
             <Layout>
                 <div className="container-fluid">
                     <div className='t_detail'>
                         <div className='top'>
                             <Row>
                                 <Col xs={4}>
-                                    <a href='/ticketBooking'><div className='arrowLeft'>
+                                    <div className='arrowLeft' onClick={() => window.history.back()}>
                                         <i className="fa fa-arrow-left" aria-hidden="true"></i>
                                         <span> Back to results</span>
-                                    </div></a>
+                                    </div>
                                 </Col>
                                 <Col xs={4} className='text-center'>
                                     <div className='arrowLeft Center'>
@@ -16,10 +140,8 @@
                                     </div>
                                 </Col>
                                 <Col xs={4} className='text-right'>
-                                    <div className='arrowLeft'>
-                                        <a href='/ticketBooking'>
-                                            <i className="fa fa-times" aria-hidden="true"></i>
-                                        </a>
+                                    <div className='arrowLeft' onClick={() =>window.history.back()}>
+                                        <i className="fa fa-times" aria-hidden="true"></i>
                                     </div>
                                 </Col>
                             </Row>
@@ -72,8 +194,8 @@
                                                                 </Row>
                                                             </Col>
                                                             <Col xs={12} sm={1} className='text-center'>
-                                                                <i className="fa fa-chevron-up" aria-hidden="true"  className= {condition2 ? "fa fa-chevron-up button_1 toggled" : "fa fa-chevron-up button_1" }></i>
-                                                                {/* <i className="fa fa-chevron-down" aria-hidden="true"  className= { condition3 ? "fa fa-chevron-down button_2 toggled" : "fa fa-chevron-down button_2" }></i> */}
+                                                                {/* <i className="fa fa-chevron-up" aria-hidden="true"  className= {condition2 ? "fa fa-chevron-up button_1 toggled" : "fa fa-chevron-up button_1" }></i> */}
+                                                                <i className="fa fa-chevron-down" aria-hidden="true"  className= { condition2 ? "fa fa-chevron-down button_1 toggled" : "fa fa-chevron-down button_1" }></i>
                                                             </Col>
                                                         </Row>
 
@@ -87,7 +209,6 @@
                                                             </Col>
                                                             <Col xs={10}>
                                                                 <div className='name'>
-                                                                    {/* <img className='jet_img' height='24' width='24' src='https://www.Dealchecker.net/images/airlines/favicon/0S.png' alt='Flight Name' /> */}
                                                                     <span>{resultData.marketingAirlineNames}</span>
                                                                 </div>
                                                             </Col>
@@ -124,9 +245,11 @@
                                                             </Row>
                                                              {/* connecting flight end */}
                                                              <br/>
-                                                             <Row>
+                                                             {resultData.flightLeg[0].flightDetails.stopOvers > 0 ?
+                                                             <div>
+                                                                 <Row>
                                                                  <Col xs={8} className="Detailssss text-center">
-                                                                        {/* <span className="duration-limit">{calculateDurationFormat(resultData.flightLeg[0].flightDetails.connectingFlightDetails[0].departureDate,resultData.flightLeg[0].flightDetails.connectingFlightDetails[1].departureDate,resultData.flightLeg[0].flightDetails.connectingFlightDetails[0].arrivalTime,resultData.flightLeg[0].flightDetails.connectingFlightDetails[1].departureTime)} Connect in airport</span> */}
+                                                                        <span className="duration-limit">{calculateDurationFormat(resultData.flightLeg[0].flightDetails.connectingFlightDetails[0].departureDate,resultData.flightLeg[0].flightDetails.connectingFlightDetails[1].departureDate,resultData.flightLeg[0].flightDetails.connectingFlightDetails[0].arrivalTime,resultData.flightLeg[0].flightDetails.connectingFlightDetails[1].departureTime)} Connect in airport</span>
                                                                  </Col>
                                                              </Row>
                                                              <br/>
@@ -135,12 +258,11 @@
                                                             </Col>
                                                             <Col xs={10}>
                                                                 <div className='name'>
-                                                                    {/* <img className='jet_img' height='24' width='24' src='https://www.Dealchecker.net/images/airlines/favicon/0S.png' alt='Flight Name' /> */}
                                                                     <span>{resultData.marketingAirlineNames}</span>
                                                                 </div>
                                                             </Col>
                                                             <Col sm={2}>
-                                                                {/* <p className='flight_hrs'>{calculateDurationFormat(resultData.flightLeg[0].flightDetails.connectingFlightDetails[1].departureDate,resultData.flightLeg[0].flightDetails.connectingFlightDetails[1].arrivalDate,resultData.flightLeg[0].flightDetails.connectingFlightDetails[1].departureTime,resultData.flightLeg[0].flightDetails.connectingFlightDetails[1].arrivalTime)}</p> */}
+                                                                <p className='flight_hrs'>{calculateDurationFormat(resultData.flightLeg[0].flightDetails.connectingFlightDetails[1].departureDate,resultData.flightLeg[0].flightDetails.connectingFlightDetails[1].arrivalDate,resultData.flightLeg[0].flightDetails.connectingFlightDetails[1].departureTime,resultData.flightLeg[0].flightDetails.connectingFlightDetails[1].arrivalTime)}</p>
                                                             </Col>
                                                             <Col xs={12} sm={10}>
                                                                 <Row className='track'>
@@ -169,7 +291,7 @@
                                                                 
                                                             </Col>
                                                            
-                                                            </Row>
+                                                            </Row></div> : null }
                                                              {/* connecting flight end */}
                                                              <br/>
                                                             <Row className="Detailssss">
@@ -214,7 +336,7 @@
                                                                 </Row>
                                                             </Col>
                                                             <Col xs={12} sm={1} className='text-center'>
-                                                                <i className="fa fa-chevron-down" aria-hidden="true"  className= { condition3 ? "fa fa-chevron-down button_2 toggled" : "fa fa-chevron-down button_2" }></i>
+                                                                <i className="fa fa-chevron-down" aria-hidden="true"  className= { condition3 ? "fa fa-chevron-down button_2" : "fa fa-chevron-down button_2 toggled" }></i>
                                                             </Col>
                                                         </Row>
                                                     </Accordion.Toggle>
@@ -227,7 +349,6 @@
                                                             </Col>
                                                             <Col xs={10}>
                                                                 <div className='name'>
-                                                                    {/* <img className='jet_img' height='24' width='24' src='https://www.Dealchecker.net/images/airlines/favicon/0S.png' alt='Flight Name' /> */}
                                                                     <span>{resultData.marketingAirlineNames}</span>
                                                                 </div>
                                                             </Col>
@@ -264,9 +385,10 @@
                                                             </Row>
                                                              {/* connecting flight end */}
                                                              <br/>
+                                                             {resultData.flightLeg[1].flightDetails.stopOvers > 0 ? <div>
                                                              <Row>
                                                                  <Col xs={8} className="Detailssss text-center">
-                                                                 {/* <span className="duration-limit">{calculateDurationFormat(resultData.flightLeg[1].flightDetails.connectingFlightDetails[0].departureDate,resultData.flightLeg[1].flightDetails.connectingFlightDetails[1].departureDate,resultData.flightLeg[1].flightDetails.connectingFlightDetails[0].arrivalTime,resultData.flightLeg[1].flightDetails.connectingFlightDetails[1].departureTime)} Connect in airport</span> */}
+                                                                 <span className="duration-limit">{calculateDurationFormat(resultData.flightLeg[1].flightDetails.connectingFlightDetails[0].departureDate,resultData.flightLeg[1].flightDetails.connectingFlightDetails[1].departureDate,resultData.flightLeg[1].flightDetails.connectingFlightDetails[0].arrivalTime,resultData.flightLeg[1].flightDetails.connectingFlightDetails[1].departureTime)} Connect in airport</span>
                                                                  </Col>
                                                              </Row>
                                                              <br/>
@@ -275,7 +397,6 @@
                                                             </Col>
                                                             <Col xs={10}>
                                                                 <div className='name'>
-                                                                    {/* <img className='jet_img' height='24' width='24' src='https://www.Dealchecker.net/images/airlines/favicon/0S.png' alt='Flight Name' /> */}
                                                                     <span>{resultData.marketingAirlineNames}</span>
                                                                 </div>
                                                             </Col>
@@ -309,7 +430,7 @@
                                                                 
                                                             </Col>
                                                            
-                                                            </Row>
+                                                            </Row> </div> : null }
                                                              {/* connecting flight end */}
                                                              <br/>
                                                             <Row className="Detailssss">
@@ -323,13 +444,13 @@
                                         </Accordion> ))}
                                         <div className='next-section'>
                                             <h3 className='book-your-ticket-header'>Book your ticket</h3>
-                                            <p className='book-subtitle'>Economy class, 1 adult</p>
+                                            <p className='book-subtitle'>{preferedclassname(requestData.preferedFlightClass)} class, {requestData.adultCount} adult</p>
                                             <Accordion className='read_before_booking' defaultActiveKey="0">
                                                 <Card>
                                                     <Card.Header>
                                                         <Accordion.Toggle as={Button} variant="new" eventKey="0" onClick={ handleClick } >
                                                             Read before booking
-                                                            <i className='fa fa-chevron-up' className= { condition1 ? "fa fa-chevron-up button" : "fa fa-chevron-up button toggled" }></i>
+                                                            <i className='fa fa-chevron-up' style={{float:'right'}} className= { condition1 ? "fa fa-chevron-up button toggled" : "fa fa-chevron-up button" }></i>
                                                         </Accordion.Toggle>
                                                     </Card.Header>
                                                     <Accordion.Collapse eventKey="0">
@@ -560,3 +681,65 @@
                     </div>
                 </div>
             </Layout>
+    )
+    }
+
+
+    TicketDetails.getInitialProps = async ({ query: {id,adultCount,childCount,infantCount,isDirectFlight,isPlusOrMinus3Days,searchType,preferedFlightClass,departureLocationCode,departureDate,arrivalLocationCode,returnDate,departureTime,returnTime,PageIndex,PageSize,departureLocationName,arrivalLocationName } }) => {
+        const request = {
+            "adultCount": adultCount,
+            "childCount": childCount,
+            "infantCount": infantCount,
+            "isDirectFlight": isDirectFlight,
+            "isPlusOrMinus3Days": isPlusOrMinus3Days,
+            "searchType": searchType,
+            "preferedFlightClass": preferedFlightClass,
+                "segments": [
+                {
+                    "departureLocationCode": departureLocationCode,
+                    "departureDate": departureDate,
+                    "arrivalLocationCode": arrivalLocationCode,
+                    "returnDate": returnDate,
+                    "departureTime": departureTime,
+                    "returnTime": returnTime
+                }
+            ],
+            "paging": {
+                "PageIndex": PageIndex,
+                "PageSize": PageSize
+            }};
+        
+            const res = await getFlights(request)
+            const json = await res;
+            return { 
+                flights: json,
+                request: { 
+                    "id": id,
+                    "adultCount": adultCount,
+                    "childCount": childCount,
+                    "infantCount": infantCount,
+                    "isDirectFlight": isDirectFlight,
+                    "isPlusOrMinus3Days": isPlusOrMinus3Days,
+                    "searchType": searchType,
+                    "preferedFlightClass": preferedFlightClass,
+                    "departureLocationName": departureLocationName,
+                    "arrivalLocationName": arrivalLocationName,
+                        "segments": [
+                        {
+                            "departureLocationCode": departureLocationCode,
+                            "departureDate": departureDate,
+                            "arrivalLocationCode": arrivalLocationCode,
+                            "returnDate": returnDate,
+                            "departureTime": departureTime,
+                            "returnTime": returnTime
+                        }
+                    ],
+                    "paging": {
+                        "PageIndex": PageIndex,
+                        "PageSize": PageSize
+                    }
+                }
+                }
+                }
+        
+        export default TicketDetails;

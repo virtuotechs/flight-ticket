@@ -4,6 +4,7 @@ import { Row, Col, Button, Accordion, Card } from 'react-bootstrap';
 import dateFormat from 'dateformat';
 import datetimeDifference from "datetime-difference";
 import {getFlights} from '../api';
+import { Router } from 'next/router';
 
 const TicketDetails = (flights) => {
 
@@ -11,7 +12,7 @@ const TicketDetails = (flights) => {
     const [condition1,setCondition1] = useState(true);
     const [condition2,setCondition2] = useState(false);
     const [condition3,setCondition3] = useState(false);
-
+    const [flightData,setFlightData] = useState(flights.flights.data.recommendation);
     var result = flights.flights.data.recommendation.filter(x => x.recommendationRefNo == flights.request.id);
     const [jsondata,setJsondata] = useState(result);
     const [requestData,setRequestData] = useState(flights.request);
@@ -75,7 +76,45 @@ const TicketDetails = (flights) => {
             return "twostop";
         }
     }
-
+    const preferedclassname = (classname) => {
+        if(classname == "1")
+        {
+            return "Any";
+        }
+        else if(classname == "2")
+        {
+            return "Business";
+        }
+        else if(classname == "3")
+        {
+            return "Economy";
+        }
+        else if(classname == "4")
+        {
+            return "First Class";
+        }
+        else if(classname == "5")
+        {
+            return "PremiumOrEconomy";
+        }
+        else if(classname == "6")
+        {
+            return "PremiumAndEconomy";
+        }
+    }
+    const uniqueAirlines = () => {
+        const categories = [...new Set(flightData.map(newdata => newdata.marketingAirlineNames))];
+        return categories;
+    }
+    const airlineprice = (airname) => {
+        var price_array = flightData.filter(x => x.marketingAirlineNames == airname);
+        var price_val = Math.min.apply(Math,price_array.map(function (o) { return o.totalFareInDouble; }))
+        return price_val;
+    }
+    const airlinelink = (airname) => {
+        var temp_airline = flightData.filter(x => x.marketingAirlineNames == airname);
+        return temp_airline[0].Deeplink;
+    }
     const calculateDurationFormat = (dt1, dt2, tm1, tm2) => {
         var date1 = dt1.split('-')
         var date1 = date1[1] + '-' + date1[0] + '-' + date1[2];
@@ -103,12 +142,10 @@ const TicketDetails = (flights) => {
                         <div className='top'>
                             <Row>
                                 <Col xs={4}>
-                                    {/* <a href='/ticketBooking'> */}
-                                        <div className='arrowLeft'>
+                                    <div className='arrowLeft' onClick={() => window.history.back()}>
                                         <i className="fa fa-arrow-left" aria-hidden="true"></i>
                                         <span> Back to results</span>
                                     </div>
-                                    {/* </a> */}
                                 </Col>
                                 <Col xs={4} className='text-center'>
                                     <div className='arrowLeft Center'>
@@ -116,10 +153,8 @@ const TicketDetails = (flights) => {
                                     </div>
                                 </Col>
                                 <Col xs={4} className='text-right'>
-                                    <div className='arrowLeft'>
-                                        {/* <a href='/ticketBooking'> */}
-                                            <i className="fa fa-times" aria-hidden="true"></i>
-                                        {/* </a> */}
+                                    <div className='arrowLeft' onClick={() =>window.history.back()}>
+                                        <i className="fa fa-times" aria-hidden="true"></i>
                                     </div>
                                 </Col>
                             </Row>
@@ -422,7 +457,7 @@ const TicketDetails = (flights) => {
                                         </Accordion> ))}
                                         <div className='next-section'>
                                             <h3 className='book-your-ticket-header'>Book your ticket</h3>
-                                            <p className='book-subtitle'>Economy class, 1 adult</p>
+                                            <p className='book-subtitle'>{preferedclassname(requestData.preferedFlightClass)} class, {requestData.adultCount} adult</p>
                                             <Accordion className='read_before_booking' defaultActiveKey="0">
                                                 <Card>
                                                     <Card.Header>
@@ -448,27 +483,27 @@ const TicketDetails = (flights) => {
                                                     </Accordion.Collapse>
                                                 </Card>
                                             </Accordion>
-
-                                            <Row className='tripdotcom'>
+                                            {uniqueAirlines().map((airname,i=1) => 
+                                            <Row className='tripdotcom' key={i}>
                                                 <Col xs={6}>
                                                     <div className='trip-1st'>
-                                                        <p>EaseMyTrip.com</p>
+                                                        <p>{airname}</p>
                                                         <div className='star_rating'>
                                                             <i className="fa fa-star" aria-hidden="true"></i>
                                                             <i className="fa fa-star" aria-hidden="true"></i>
                                                             <i className="fa fa-star" aria-hidden="true"></i>
                                                             <i className="fa fa-star-half-o" aria-hidden="true"></i>
                                                             <i className="fa fa-star-o" aria-hidden="true"></i>
-                                                            <div className='comment_number'>
+                                                            {/* <div className='comment_number'>
                                                                 5555
-                                                            </div>
+                                                            </div> */}
                                                         </div>
                                                     </div>
                                                 </Col>
                                                 <Col xs={6} className='text-right'>
                                                     <div className='trip-2st'>
-                                                        <h4>₹ 9,959</h4>
-                                                        <a href='https://www.lycafly.com' target="_blank">
+                                                        <h4><i className="fa fa-inr"></i> {airlineprice(airname)}</h4>
+                                                        <a href={airlinelink(airname)} target="_blank">
                                                             <button className='bpk-button'>
                                                                 Select <i className='fa fa-arrow-right'></i>
                                                             </button>
@@ -489,167 +524,7 @@ const TicketDetails = (flights) => {
                                                         <p>*Refer to Terms and Conditions at bit.ly/CT_Dealchecker</p>
                                                     </div> */}
                                                 </Col>
-                                            </Row>
-
-                                            <Row className='tripdotcom'>
-                                                <Col xs={6}>
-                                                    <div className='trip-1st'>
-                                                        <p>Happy easy go</p>
-                                                        <div className='star_rating'>
-                                                            <i className="fa fa-star" aria-hidden="true"></i>
-                                                            <i className="fa fa-star" aria-hidden="true"></i>
-                                                            <i className="fa fa-star" aria-hidden="true"></i>
-                                                            <i className="fa fa-star-half-o" aria-hidden="true"></i>
-                                                            <i className="fa fa-star-o" aria-hidden="true"></i>
-                                                            <div className='comment_number'>
-                                                                5555
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </Col>
-                                                <Col xs={6} className='text-right'>
-                                                    <div className='trip-2st'>
-                                                        <h4>₹ 9,959</h4>
-                                                        <button className='bpk-button'>
-                                                            Select <i className='fa fa-arrow-right'></i>
-                                                        </button>
-                                                    </div>
-                                                </Col>
-                                                <Col s={12}>
-                                                    <div className='info'>
-                                                        <img src='static/images/info.svg'></img>
-                                                        <p>All-inclusive price. No additional charges.</p>
-                                                    </div>
-                                                    <div className='info'>
-                                                        <img src='static/images/flight.svg'></img>
-                                                        <p>Dealchecker Exclusive: Use coupon CTDealchecker to get up to INR 3,000 Cashback on domestic flights*.</p>
-                                                    </div>
-                                                    <div className='info comment'>
-                                                        <img src='static/images/comment.svg'></img>
-                                                        <p>*Refer to Terms and Conditions at bit.ly/CT_Dealchecker</p>
-                                                    </div>
-                                                </Col>
-                                            </Row>
-
-                                            <Row className='tripdotcom'>
-                                                <Col xs={6}>
-                                                    <div className='trip-1st'>
-                                                        <p>Cleartrip</p>
-                                                        <div className='star_rating'>
-                                                            <i className="fa fa-star" aria-hidden="true"></i>
-                                                            <i className="fa fa-star" aria-hidden="true"></i>
-                                                            <i className="fa fa-star" aria-hidden="true"></i>
-                                                            <i className="fa fa-star-half-o" aria-hidden="true"></i>
-                                                            <i className="fa fa-star-o" aria-hidden="true"></i>
-                                                            <div className='comment_number'>
-                                                                5555
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </Col>
-                                                <Col xs={6} className='text-right'>
-                                                    <div className='trip-2st'>
-                                                        <h4>₹ 9,959</h4>
-                                                        <button className='bpk-button'>
-                                                            Select <i className='fa fa-arrow-right'></i>
-                                                        </button>
-                                                    </div>
-                                                </Col>
-                                                <Col s={12}>
-                                                    {/* <div className='info'>
-                                                        <img src='static/images/info.svg'></img>
-                                                        <p>All-inclusive price. No additional charges.</p>
-                                                    </div>
-                                                    <div className='info'>
-                                                        <img src='static/images/flight.svg'></img>
-                                                        <p>Dealchecker Exclusive: Use coupon CTDealchecker to get up to INR 3,000 Cashback on domestic flights*.</p>
-                                                    </div>
-                                                    <div className='info comment'>
-                                                        <img src='static/images/comment.svg'></img>
-                                                        <p>*Refer to Terms and Conditions at bit.ly/CT_Dealchecker</p>
-                                                    </div> */}
-                                                </Col>
-                                            </Row>
-
-                                            <Row className='tripdotcom'>
-                                                <Col xs={6}>
-                                                    <div className='trip-1st'>
-                                                        <p>Cheapticket.in</p>
-                                                        <div className='star_rating'>
-                                                            <i className="fa fa-star" aria-hidden="true"></i>
-                                                            <i className="fa fa-star" aria-hidden="true"></i>
-                                                            <i className="fa fa-star" aria-hidden="true"></i>
-                                                            <i className="fa fa-star-half-o" aria-hidden="true"></i>
-                                                            <i className="fa fa-star-o" aria-hidden="true"></i>
-                                                            <div className='comment_number'>
-                                                                5555
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </Col>
-                                                <Col xs={6} className='text-right'>
-                                                    <div className='trip-2st'>
-                                                        <h4>₹ 9,959</h4>
-                                                        <button className='bpk-button bpk-button--featured'>
-                                                            Book <i className='fa fa-arrow-right'></i>
-                                                        </button>
-                                                    </div>
-                                                </Col>
-                                                <Col s={12}>
-                                                    <div className='info'>
-                                                        <img src='static/images/info.svg'></img>
-                                                        <p>All-inclusive price. No additional charges.</p>
-                                                    </div>
-                                                    <div className='info'>
-                                                        <img src='static/images/flight.svg'></img>
-                                                        <p>Dealchecker Exclusive: Use coupon CTDealchecker to get up to INR 3,000 Cashback on domestic flights*.</p>
-                                                    </div>
-                                                    <div className='info comment'>
-                                                        <img src='static/images/comment.svg'></img>
-                                                        <p>*Refer to Terms and Conditions at bit.ly/CT_Dealchecker</p>
-                                                    </div>
-                                                </Col>
-                                            </Row>
-
-                                            <Row className='tripdotcom'>
-                                                <Col xs={6}>
-                                                    <div className='trip-1st'>
-                                                        <p>SpiceJet</p>
-                                                        <div className='star_rating'>
-                                                            <i className="fa fa-star" aria-hidden="true"></i>
-                                                            <i className="fa fa-star" aria-hidden="true"></i>
-                                                            <i className="fa fa-star" aria-hidden="true"></i>
-                                                            <i className="fa fa-star-half-o" aria-hidden="true"></i>
-                                                            <i className="fa fa-star-o" aria-hidden="true"></i>
-                                                            <div className='comment_number'>
-                                                                5555
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </Col>
-                                                <Col xs={6} className='text-right'>
-                                                    <div className='trip-2st'>
-                                                        <h4>₹ 9,959</h4>
-                                                        <button className='bpk-button'>
-                                                            Select <i className='fa fa-arrow-right'></i>
-                                                        </button>
-                                                    </div>
-                                                </Col>
-                                                {/* <Col s={12}>
-                                                    <div className='info'>
-                                                        <img src='static/images/info.svg'></img>
-                                                        <p>All-inclusive price. No additional charges.</p>
-                                                    </div>
-                                                    <div className='info'>
-                                                        <img src='static/images/flight.svg'></img>
-                                                        <p>Dealchecker Exclusive: Use coupon CTDealchecker to get up to INR 3,000 Cashback on domestic flights*.</p>
-                                                    </div>
-                                                    <div className='info comment'>
-                                                        <img src='static/images/comment.svg'></img>
-                                                        <p>*Refer to Terms and Conditions at bit.ly/CT_Dealchecker</p>
-                                                    </div>
-                                                </Col> */}
-                                            </Row>
+                                            </Row>)}
                                         </div>
                                     </Col>
                                 </Row>

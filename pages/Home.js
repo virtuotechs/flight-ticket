@@ -454,7 +454,7 @@ const Home = (props) => {
 													style={{ marginRight: "5px" }}
 													/>
 												)}
-												{fetchLoading && <span>Loading Data from Server</span>}
+												{fetchLoading && <span>Please wait!</span>}
 												{!fetchLoading && <span>SEARCH FLIGHTS</span>}
 												</Button>
 											</Col>
