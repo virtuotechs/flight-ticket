@@ -315,6 +315,7 @@ const TicketDetails = (flights) => {
                                                     </Card.Body>
                                                 </Accordion.Collapse>
                                             </Card>
+                                            {requestData.searchType == 2 ?
                                             <Card>
                                                 <Card.Header>
                                                     <p className='outbound'><b>Return, </b>{dateFormat(changeMonthDate(resultData.flightLeg[1].flightDetails.departureDate), "ddd, mmm d,yyyy")}</p>
@@ -453,7 +454,7 @@ const TicketDetails = (flights) => {
                                                         </Row>
                                                     </Card.Body>
                                                 </Accordion.Collapse>
-                                            </Card>
+                                            </Card> : null }
                                         </Accordion> ))}
                                         <div className='next-section'>
                                             <h3 className='book-your-ticket-header'>Book your ticket</h3>
@@ -552,9 +553,9 @@ const TicketDetails = (flights) => {
                     "departureLocationCode": departureLocationCode,
                     "departureDate": departureDate,
                     "arrivalLocationCode": arrivalLocationCode,
-                    "returnDate": returnDate,
+                    "returnDate": searchType == 2 ? returnDate : null,
                     "departureTime": departureTime,
-                    "returnTime": returnTime
+                    "returnTime": searchType == 2 ? returnTime : null
                 }
             ],
             "paging": {
@@ -582,9 +583,9 @@ const TicketDetails = (flights) => {
                             "departureLocationCode": departureLocationCode,
                             "departureDate": departureDate,
                             "arrivalLocationCode": arrivalLocationCode,
-                            "returnDate": returnDate,
+                            "returnDate": searchType == 2 ? returnDate : null,
                             "departureTime": departureTime,
-                            "returnTime": returnTime
+                            "returnTime": searchType == 2 ? returnTime : null
                         }
                     ],
                     "paging": {

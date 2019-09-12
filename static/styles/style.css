@@ -606,7 +606,7 @@ img.flight_img {
     }
     .title {
         position: relative;
-        font-size: 5em;
+        font-size: 4em;
         padding: 0;
     }
 }
@@ -1438,6 +1438,41 @@ button.bpk-button {
     color: var(--bpk-button-primary-hover-text-color, #fff);
     background-color: #00bd68;
     background-color: var(--bpk-button-primary-hover-background-color, #00bd68);
+}
+section.footer ul li {
+    cursor: pointer;
+}
+
+.faq.container {
+    margin-top: 100px;
+}
+
+section.faq {
+    background: url('../../static/images/plane1.jpg') no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 40vh 0;
+    position: relative;
+    margin-top: 80px;
+}
+
+.padding-40 {
+    padding: 40px 0;
+}
+
+.padding-20 {
+    padding: 20px 0;
+}
+
+.uses p {
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.uses h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    margin-bottom: 4px;
 }
 
 .trip-2st {

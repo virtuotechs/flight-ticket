@@ -53,13 +53,13 @@ class Header extends Component {
                             </div>
 
                             <Row>
-                                <Col xs={3} className="text-left">
+                                <Col xs={12} lg={3} className="text-left">
                                     {/* <Link href='/'>
                                         <div className="logo"><img src="static/images/dc_fav-01.png"></img></div>
                                     </Link> */}
                                     <Link href='/'><img src='static/images/dealchecker.svg' style={{cursor:'pointer'}}></img></Link>
                                 </Col>
-                                <Col xs={9} className="text-right">
+                                <Col xs={12} lg={9} className="text-right">
                                     <div className="callus">
                                         Call Us: 0123 456 789
                                     </div>

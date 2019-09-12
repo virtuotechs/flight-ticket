@@ -10,6 +10,7 @@ import datetimeDifference from "datetime-difference";
 import 'isomorphic-fetch';
 import {getFlights} from '../api';
 import Router from 'next/router';
+import moment from 'moment';
 
 //Auto complete imports
 import Autosuggest from 'react-autosuggest';
@@ -128,32 +129,46 @@ const TicketBooking = (flights) => {
                 var date = new Date(newDate);
                 return (date);
             }
+
             // State initialisation
             const [requestData,setRequestData] = useState(flights.request);
-            const [jsondata,setJsondata] = useState(flights.flights.data.recommendation);   
+            const [jsondata,setJsondata] = useState(flights.flights.data.recommendation);     
             const [flightData,setFlightData] = useState(flights.flights.data.recommendation);   
             const [departureDate,setDepartureDate] =useState(changeMonthDate(requestData.segments[0].departureDate));
-            const [returnDate,setReturnDate] = useState(changeMonthDate(requestData.segments[0].returnDate));
+            const [returnDate,setReturnDate] = requestData.searchType == 2 ? useState(changeMonthDate(requestData.segments[0].returnDate)) : useState(null);
             const [departureLocationCode,setDeparturelocationcode] = useState(requestData.segments[0].departureLocationCode);
 	        const [arrivalLocationCode,setArrivallocationcode] = useState(requestData.segments[0].arrivalLocationCode);
             const [departureLocationName,setDepartureLocationName] = useState(requestData.departureLocationName);
             const [arrivalLocationName,setArrivalLocationName] = useState(requestData.arrivalLocationName)
             const [sortToggler,setSortToggler]=useState(false);
+            const [searchType,setSearchType] = useState(requestData.searchType);
             const [filterToggler,setFilterToggler]=useState(false);
-            const [sortOption,setSortOption]=useState('Best');
+            const [sortOption,setSortOption]=useState('Best');  
             const [fetchLoading,setFetchLoading] = useState(false);
             const [localLoading,setLocalLoading] = useState(false);
-            const [nonstop,setnonstop] = useState(false);
-            const [onestop,setonestop] = useState(false);
-            const [twostop,settwostop] = useState(false);
-            const [departure1,setdeparture1] = useState(false);
-            const [departure2,setdeparture2] = useState(false);
-            const [departure3,setdeparture3] = useState(false);
-            const [return1,setreturn1] = useState(false);
-            const [return2,setreturn2] = useState(false);
-            const [return3,setreturn3] = useState(false);
+            var check_nonstop = jsondata!= undefined ? jsondata.filter(x => x.flightLeg[0].flightDetails.stopOvers == '0').length : 0;
+            const [nonstop,setnonstop] = check_nonstop>0 ? useState(true) : useState(false);
+            var check_onestop = jsondata!= undefined ? jsondata.filter(x => x.flightLeg[0].flightDetails.stopOvers == '1').length : 0;
+            const [onestop,setonestop] = check_onestop>0 ? useState(true) : useState(false);
+            var check_twostop = jsondata!= undefined ? jsondata.filter(x => x.flightLeg[0].flightDetails.stopOvers == '2').length: 0;
+            const [twostop,settwostop] = check_twostop>0 ? useState(true) : useState(false);
+            var check_departure1 = jsondata!= undefined ? jsondata.filter(x => x.flightLeg[0].flightDetails.departureTime >= 600 && x.flightLeg[0].flightDetails.departureTime <= 1200).length: 0;
+            const [departure1,setdeparture1] = check_departure1>0 ? useState(true) : useState(false);
+            var check_departure2 = jsondata!= undefined ? jsondata.filter(x => x.flightLeg[0].flightDetails.departureTime >= 1800).length : 0;
+            const [departure2,setdeparture2] = check_departure2>0 ? useState(true) : useState(false);
+            var check_departure3 = jsondata!= undefined ? jsondata.filter(x => x.flightLeg[0].flightDetails.departureTime >= 1200 && x.flightLeg[0].flightDetails.departureTime <= 1800).length : 0;
+            const [departure3,setdeparture3] = check_departure3>0 ? useState(true) : useState(false);            
+            var check_return1 = jsondata!= undefined ? (requestData.searchType == 2 ? (jsondata.filter(x => x.flightLeg[1].flightDetails.departureTime >= 600 && x.flightLeg[0].flightDetails.departureTime <= 1200).length) : null):0;
+            const [return1,setreturn1] = check_return1>0 ? useState(true) : useState(false);
+            var check_return2 = jsondata!= undefined ? (requestData.searchType == 2 ? (jsondata.filter(x => x.flightLeg[1].flightDetails.departureTime >= 1800).length) : null) : 0;
+            const [return2,setreturn2] = check_return2>0 ? useState(true) : useState(false);
+            var check_return3 = jsondata!= undefined ? (requestData.searchType == 2 ? (jsondata.filter(x => x.flightLeg[1].flightDetails.departureTime >= 1200 && x.flightLeg[0].flightDetails.departureTime <= 1800).length) : null ) : 0;
+            const [return3,setreturn3] = check_return3>0 ? useState(true) : useState(false);
+            
             const [flightId,setFlightId] = useState('');
             const [airlineName,setAirlineName] = useState('');
+            const [airlinesCheck,setAirlinesCheck] = useState(true);
+
             console.log(jsondata);
 
             const handleChange = (date) => {
@@ -165,8 +180,9 @@ const TicketBooking = (flights) => {
             const changePlace = () => {
             setDepartureLocationName(arrivalLocationName);
             setArrivalLocationName(departureLocationName);
+            console.log("Auto1: ",departureLocationName);
+            console.log("Auto2: ",arrivalLocationName);
             }
-
             const TimeSplit = (time) => {
                 time = time.replace(/(..?)/g, '$1:').slice(0, -1)
                 return (time);
@@ -275,7 +291,7 @@ const TicketBooking = (flights) => {
                 window.addEventListener('scroll', handleScrollToElement);
             });
         const uniqueAirlines = () => {
-            const categories = [...new Set(flightData.map(newdata => newdata.marketingAirlineNames))];
+            const categories = flightData!= undefined ? [...new Set(flightData.map(newdata => newdata.marketingAirlineNames))] : null;
             return categories;
         }
         const showFlightDetails = (id) =>
@@ -291,14 +307,14 @@ const TicketBooking = (flights) => {
 					"infantCount": requestData.infantCount,
 					"isDirectFlight": requestData.isDirectFlight,
 					"isPlusOrMinus3Days": requestData.isPlusOrMinus3Days,
-					"searchType": requestData.searchType,
+					"searchType": searchType,
 					"preferedFlightClass": requestData.preferedFlightClass,
 					"departureLocationCode": requestData.segments[0].departureLocationCode,
 					"departureDate": requestData.segments[0].departureDate,
 					"arrivalLocationCode": requestData.segments[0].arrivalLocationCode,
-					"returnDate": requestData.segments[0].returnDate,
+					"returnDate": requestData.searchType == 2 ? requestData.segments[0].returnDate: null,
 					"departureTime": requestData.segments[0].departureTime,
-					"returnTime": requestData.segments[0].returnTime,
+					"returnTime": requestData.searchType == 2 ? requestData.segments[0].returnTime : 0,
 					"PageIndex": "1",
 					"PageSize": "50",
 					"departureLocationName": requestData.departureLocationName,
@@ -306,48 +322,89 @@ const TicketBooking = (flights) => {
 					}
 				}) 	
         }
-       
+        const GetSortOrder = (prop) => {  
+            return function(a, b) {  
+                var aVal = a[prop], bVal = b[prop]
+                console.log(aVal," --- ",bVal);
+                if (aVal > bVal) {  
+                    return 1;  
+                } else if (aVal < bVal) {  
+                    return -1;  
+                }  
+                return 0;  
+            }  
+        }  
         async function handleSortOptions(e) {
             setSortOption(e.target.value);
-            setLocalLoading(true);
-            var response = await getFlights(requestData);
-            var sort_flights = await response;
-            setLocalLoading(false);
-            if(sortOption === "Best")
+            //setLocalLoading(true);
+            if(e.target.value == "Best")
             {   
-                sort_flights = sort_flights.data.recommendation.sort(function(obj1, obj2) {
-                    return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
-                });
-                setJsondata(sort_flights);
+                // var response = await getFlights(requestData);
+                // var sort_flights = await response;
+                // setLocalLoading(false);
+                // sort_flights = sort_flights.data.recommendation.sort(function(obj1, obj2) {
+                //     return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
+                // });
+                var x = jsondata.sort(function(obj1, obj2) {
+                         return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
+                     });
+                setJsondata(x);
             }
-            else if(sortOption === "Cheapest First")
+            else if(e.target.value == "Cheapest First")
             {
-                sort_flights = sort_flights.data.recommendation.sort(function (obj1, obj2) {
-                    return obj1.totalFare - obj2.totalFare;
-                    })
-                setJsondata(sort_flights);
+                // var response = await getFlights(requestData);
+                // var sort_flights = await response;
+                // setLocalLoading(false);
+                // console.log("jsondata",jsondata);
+                // var y = jsondata.sort(function (obj1, obj2) {
+                //     console.log(parseInt(obj1.totalFareInDouble) - parseInt(obj2.totalFareInDouble));
+                //     return parseInt(obj1.totalFareInDouble) - parseInt(obj2.totalFareInDouble);
+                //     })
+                // //setLocalLoading(y);
+                // console.log("SORTED: ",y);
+                // setJsondata(y);
+                const temp_arr = jsondata;
+                console.log(GetSortOrder("marketingAirlineNames"));
+                temp_arr.sort(GetSortOrder("marketingAirlineNames"));
+                console.log("TEMP: ",temp_arr);
             }
-            else if(sortOption === "Fastest First")
+            else if(e.target.value == "Fastest First")
             {
+                var response = await getFlights(requestData);
+                var sort_flights = await response;
+                setLocalLoading(false);
                 sort_flights = sort_flights.data.recommendation.sort(function (obj1, obj2) {
                     return obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
                     });
                 setJsondata(sort_flights);
             }
-            else if(sortOption === "Outbound: Departure Time")
+            else if(e.target.value == "Outbound: Departure Time")
             {
+                setLocalLoading(true);
+                var response = await getFlights(requestData);
+                var sort_flights = await response;
+                setLocalLoading(false);
                 sort_flights = sort_flights.data.recommendation.sort(function (obj1, obj2) {
                     return obj1.flightLeg[0].flightDetails.departureTime - obj2.flightLeg[0].flightDetails.departureTime;
                 });
                 setJsondata(sort_flights);
             }
-            else if(sortOption === "Airline")
+            else if(e.target.value == "Airline")
             {
-                sort_flights = sortJsonArray(sort_flights.data.recommendation, "marketingAirlineNames", "asc");
-                setJsondata(sort_flights);
+                // setLocalLoading(true);
+                // var response = await getFlights(requestData);
+                // var sort_flights = await response;
+                // setLocalLoading(false);
+                var z = sortJsonArray(jsondata, "marketingAirlineNames", "asc");
+                console.log("Z: ",z);
+                setJsondata(z);
             }
-            else if(sortOption === "Stops")
+            else if(e.target.value == "Stops")
             {
+                setLocalLoading(true);
+                var response = await getFlights(requestData);
+                var sort_flights = await response;
+                setLocalLoading(false);
                 sort_flights = sort_flights.data.recommendation.sort(function (obj1, obj2) {
                     return obj1.flightLeg[0].flightDetails.stopOvers - obj2.flightLeg[0].flightDetails.stopOvers;
                 });
@@ -364,24 +421,30 @@ const TicketBooking = (flights) => {
                     return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
                 });
                 setJsondata(best_flights);
+                console.log(jsondata);
             }
             async function handleSortCheapest(e) {
-                // setSortOption("Cheapest First");
-                // setLocalLoading(true);
-                // var response = await getFlights(requestData);
-                // var cheap_flights = await response;
-                // setLocalLoading(false);
-                // cheap_flights = cheap_flights.data.recommendation.sort(function (obj1, obj2) {
-                //     return obj1.totalFareInDouble - obj2.totalFareInDouble;
-                //     })
                 setSortOption("Cheapest First");
                 setLocalLoading(true);
-                setTimeout(() => {
+                // var response = await getFlights(requestData);
+                // var cheap_flights = await response;
+                // console.log(cheap_flights);
                 var cheap_flights = jsondata.sort(function (obj1, obj2) {
-                    return obj1.totalFareInDouble - obj2.totalFareInDouble;
-                    });
+                    return parseInt(obj1.totalFareInDouble) - parseInt(obj2.totalFareInDouble);
+                    })
+                console.log("CHEAP: ",cheap_flights);
                 setJsondata(cheap_flights);
-                setLocalLoading(false); },2000);
+                setLocalLoading(false);
+                console.log(jsondata);
+
+                // setSortOption("Cheapest First");
+                // setLocalLoading(true);
+                // setTimeout(() => {
+                // var cheap_flights = jsondata.sort(function (obj1, obj2) {
+                //     return obj1.totalFareInDouble - obj2.totalFareInDouble;
+                //     });
+                // setJsondata(cheap_flights);
+                // setLocalLoading(false); },2000);
             }
             async function handleSortFastest(e){
                 setSortOption("Fastest First");
@@ -425,166 +488,202 @@ const TicketBooking = (flights) => {
                     return "PremiumAndEconomy";
                 }
             }
+            const changeSearchType = (e) => {
+                setSearchType(e.target.value);
+                console.log(searchType);
+            }
             async function filterAirline(airname){
                 console.log(airname);
                 setAirlineName(airname);
+                setAirlinesCheck(!airlinesCheck);
                 if(airlineName=='')
                 {
                     setLocalLoading(true);
                     var response = await getFlights(requestData);
                     var airways_flights = await response;
                     setLocalLoading(false);
-                    airways_flights = airways_flights.data.recommendation.filter(item => item.marketingAirlineNames == airname)
+                    airways_flights = airways_flights.data.recommendation.filter(item => item.marketingAirlineNames != airname)
                     setJsondata(airways_flights);
                 }
                 else
                 {
+                    setLocalLoading(true);
+                    var response = await getFlights(requestData);
+                    var airways_flights = await response;
                     setLocalLoading(false);
+                    setJsondata(airways_flights.data.recommendation);
                 }
             }
             async function filternonstop() {
                 setLocalLoading(true);
                 setnonstop(!nonstop);
-                if(!nonstop)
+                if(nonstop)
                 {
                     var response = await getFlights(requestData);
                     var nonstop_flights = await response;
                     setLocalLoading(false);
-                    nonstop_flights = nonstop_flights.data.recommendation.filter(item => item.flightLeg[0].flightDetails.stopOvers == '0' )
+                    nonstop_flights = nonstop_flights.data.recommendation.filter(item => item.flightLeg[0].flightDetails.stopOvers != '0' )
                     setJsondata(nonstop_flights);
                 }
                 else
                 {
+                    var response = await getFlights(requestData);
+                    var nonstop_flights = await response;
                     setLocalLoading(false);
+                    setJsondata(nonstop_flights.data.recommendation);
                 }
             }
 
             async function filteronestop(){
                 setLocalLoading(true);
                 setonestop(!onestop);
-                if(!onestop)
+                if(onestop)
                 {
                     var response = await getFlights(requestData);
                     var onestop_flights = await response;
                     setLocalLoading(false);
-                    onestop_flights = onestop_flights.data.recommendation.filter(item => item.flightLeg[0].flightDetails.stopOvers == '1' )
+                    onestop_flights = onestop_flights.data.recommendation.filter(item => item.flightLeg[0].flightDetails.stopOvers != '1' )
                     setJsondata(onestop_flights);
                 }
                 else
                 {
+                    var response = await getFlights(requestData);
+                    var onestop_flights = await response;
                     setLocalLoading(false);
+                    setJsondata(onestop_flights.data.recommendation);
                 }
             }
             async function filtertwostop(){
                 setLocalLoading(true);
                 settwostop(!twostop);
-                if(!twostop)
+                if(twostop)
                 {
                     var response = await getFlights(requestData);
                     var twostop_flights = await response;
                     setLocalLoading(false);
-                    twostop_flights = twostop_flights.data.recommendation.filter(item => item.flightLeg[0].flightDetails.stopOvers == '2' )                
+                    twostop_flights = twostop_flights.data.recommendation.filter(item => item.flightLeg[0].flightDetails.stopOvers != '2' )                
                     setJsondata(twostop_flights);
                 }
                 else
                 {
+                    var response = await getFlights(requestData);
+                    var twostop_flights = await response;
                     setLocalLoading(false);
+                    setJsondata(twostop_flights.data.recommendation);
                 }
             }
             async function filterdeparture1(){
                 setLocalLoading(true);
                 setdeparture1(!departure1);
-                if(!departure1)
+                if(departure1)
                 {
                     var response = await getFlights(requestData);
                     var departure1_flights = await response;
                     setLocalLoading(false);
-                    departure1_flights = departure1_flights.data.recommendation.filter(item => parseInt(item.flightLeg[0].flightDetails.departureTime) >= 600 && parseInt(item.flightLeg[0].flightDetails.departureTime) <= 1200);
+                    departure1_flights = departure1_flights.data.recommendation.filter(item => !(parseInt(item.flightLeg[0].flightDetails.departureTime) >= 600 && parseInt(item.flightLeg[0].flightDetails.departureTime) <= 1200));
                     setJsondata(departure1_flights);
                 }
                 else
                 {
+                    var response = await getFlights(requestData);
+                    var departure1_flights = await response;
                     setLocalLoading(false);
+                    setJsondata(departure1_flights.data.recommendation);
                 }
             }
             async function filterdeparture2(){
                 setLocalLoading(true);
                 setdeparture2(!departure2);
-                if(!departure2)
+                if(departure2)
                 {
                     var response = await getFlights(requestData);
                     var departure2_flights = await response;
                     setLocalLoading(false);
-                    departure2_flights = departure2_flights.data.recommendation.filter(item => parseInt(item.flightLeg[0].flightDetails.departureTime) >= 1800);
+                    departure2_flights = departure2_flights.data.recommendation.filter(item => !(parseInt(item.flightLeg[0].flightDetails.departureTime) >= 1800));
                     setJsondata(departure2_flights);
                 }
                 else
                 {
+                    var response = await getFlights(requestData);
+                    var departure2_flights = await response;
                     setLocalLoading(false);
+                    setJsondata(departure2_flights.data.recommendation);
                 }
             }
             async function filterdeparture3(){
                 setLocalLoading(true);
                 setdeparture3(!departure3);
-                if(!departure3)
+                if(departure3)
                 {
                     var response = await getFlights(requestData);
                     var departure3_flights = await response;
                     setLocalLoading(false);
-                    departure3_flights = departure3_flights.data.recommendation.filter(item => parseInt(item.flightLeg[0].flightDetails.departureTime) >= 1200 && parseInt(item.flightLeg[0].flightDetails.departureTime) <= 1800);
+                    departure3_flights = departure3_flights.data.recommendation.filter(item => !(parseInt(item.flightLeg[0].flightDetails.departureTime) >= 1200 && parseInt(item.flightLeg[0].flightDetails.departureTime) <= 1800));
                     setJsondata(departure3_flights);
                 }
                 else
                 {
+                    var response = await getFlights(requestData);
+                    var departure3_flights = await response;
                     setLocalLoading(false);
+                    setJsondata(departure3_flights.data.recommendation);
                 }
             }
             async function filterreturn1(){
                 setLocalLoading(true);
                 setreturn1(!return1);
-                if(!return1)
+                if(return1)
                 {
                     var response = await getFlights(requestData);
                     var return1_flights = await response;
                     setLocalLoading(false);
-                    return1_flights = return1_flights.data.recommendation.filter(item => parseInt(item.flightLeg[1].flightDetails.departureTime) >= 600 && parseInt(item.flightLeg[1].flightDetails.departureTime) <= 1200);
+                    return1_flights = return1_flights.data.recommendation.filter(item => !(parseInt(item.flightLeg[1].flightDetails.departureTime) >= 600 && parseInt(item.flightLeg[1].flightDetails.departureTime) <= 1200));
                     setJsondata(return1_flights);
                 }
                 else
                 {
+                    var response = await getFlights(requestData);
+                    var return1_flights = await response;
                     setLocalLoading(false);
+                    setJsondata(return1_flights.data.recommendation);
                 }
             }
             async function filterreturn2(){
                 setLocalLoading(true);
                 setreturn2(!return2);
-                if(!return2)
+                if(return2)
                 {
                     var response = await getFlights(requestData);
                     var return2_flights = await response;
                     setLocalLoading(false);
-                    return2_flights = return2_flights.data.recommendation.filter(item => parseInt(item.flightLeg[1].flightDetails.departureTime) >= 1800);
+                    return2_flights = return2_flights.data.recommendation.filter(item => !(parseInt(item.flightLeg[1].flightDetails.departureTime) >= 1800));
                     setJsondata(return2_flights);
                 }
                 else
                 {
+                    var response = await getFlights(requestData);
+                    var return2_flights = await response;
                     setLocalLoading(false);
+                    setJsondata(return2_flights.data.recommendation);
                 }
             }
             async function filterreturn3(){
                 setLocalLoading(true);
                 setreturn3(!return3);
-                if(!return3)
+                if(return3)
                 {
                     var response = await getFlights(requestData);
                     var return3_flights = await response;
                     setLocalLoading(false);
-                    return3_flights = return3_flights.data.recommendation.filter(item => parseInt(item.flightLeg[1].flightDetails.departureTime) >= 1200 && parseInt(item.flightLeg[1].flightDetails.departureTime) <= 1800);
-                    setJsondata(return3_flights);
+                    return3_flights = return3_flights.data.recommendation.filter(item => !(parseInt(item.flightLeg[1].flightDetails.departureTime) >= 1200 && parseInt(item.flightLeg[1].flightDetails.departureTime) <= 1800));
+                    setJsondata(return3_flights.data.recommendation);
                 }
                 else
                 {
+                    var response = await getFlights(requestData);
+                    var return3_flights = await response;
                     setLocalLoading(false);
+                    setJsondata(return3_flights);
                 }
             }
             const onChangeHome = (id, suggestion,value) => {                
@@ -610,32 +709,22 @@ const TicketBooking = (flights) => {
             async function localSearch() {
                 setFetchLoading(true);
                 setLocalLoading(true);
-                setnonstop(false);
-                setonestop(false);
-                settwostop(false);
-                setdeparture1(false);
-                setdeparture2(false);
-                setdeparture3(false);
-                setreturn1(false);
-                setreturn2(false);
-                setreturn3(false);
-                setAirlineName('');
                 const request = {
                     "adultCount": requestData.adultCount,
                     "childCount": requestData.childCount,
                     "infantCount": requestData.infantCount,
                     "isDirectFlight": requestData.isDirectFlight,
                     "isPlusOrMinus3Days": requestData.isPlusOrMinus3Days,
-                    "searchType": requestData.searchType,
+                    "searchType": searchType,
                     "preferedFlightClass": requestData.preferedFlightClass,
                         "segments": [
                         {   
                             "departureLocationCode": departureLocationCode,
                             "departureDate": dateFormat(departureDate, "dd-mm-yyyy"),
                             "arrivalLocationCode": arrivalLocationCode,
-                            "returnDate": dateFormat(returnDate, "dd-mm-yyyy"),
+                            "returnDate": requestData.searchType == 2 ? dateFormat(returnDate, "dd-mm-yyyy") : null,
                             "departureTime": requestData.segments[0].departureTime,
-                            "returnTime": requestData.segments[0].returnTime
+                            "returnTime": requestData.searchType == 2 ? requestData.segments[0].returnTime : null
                         }
                     ],
                     "paging": {
@@ -648,7 +737,7 @@ const TicketBooking = (flights) => {
                         "infantCount": requestData.infantCount,
                         "isDirectFlight": requestData.isDirectFlight,
                         "isPlusOrMinus3Days": requestData.isPlusOrMinus3Days,
-                        "searchType": requestData.searchType,
+                        "searchType": searchType,
                         "preferedFlightClass": requestData.preferedFlightClass,
                         "departureLocationName":requestData.departureLocationName,
                         "arrivalLocationName":requestData.arrivalLocationName,
@@ -657,9 +746,9 @@ const TicketBooking = (flights) => {
                                 "departureLocationCode": departureLocationCode,
                                 "departureDate": dateFormat(departureDate, "dd-mm-yyyy"),
                                 "arrivalLocationCode": arrivalLocationCode,
-                                "returnDate": dateFormat(returnDate, "dd-mm-yyyy"),
+                                "returnDate": requestData.searchType == 2 ? dateFormat(returnDate, "dd-mm-yyyy") : null,
                                 "departureTime": requestData.segments[0].departureTime,
-                                "returnTime": requestData.segments[0].returnTime
+                                "returnTime": requestData.searchType == 2 ? requestData.segments[0].returnTime : null
                             }
                         ],
                         "paging": {
@@ -671,13 +760,32 @@ const TicketBooking = (flights) => {
                         var json = await response;
                         setLocalLoading(false);
                         setFetchLoading(false);
-                        setJsondata(json.data.recommendation);                        
+                        setJsondata(json.data.recommendation != undefined ? json.data.recommendation: undefined);   
+                        setFlightData(json.data.recommendation != undefined ? json.data.recommendation: undefined);
+                        var check_nonstop = jsondata!= undefined ? (jsondata.filter(x => x.flightLeg[0].flightDetails.stopOvers == '0').length) : 0;
+                       setnonstop(check_nonstop>0 ? true : false);
+                        var check_onestop = jsondata!= undefined ? (jsondata.filter(x => x.flightLeg[0].flightDetails.stopOvers == '1').length) : 0;
+                        setonestop(check_onestop>0 ? true : false);
+                        var check_twostop = jsondata!= undefined ? (jsondata.filter(x => x.flightLeg[0].flightDetails.stopOvers == '2').length) : 0;
+                        settwostop(check_twostop>0 ? true : false);
+                        var check_departure1 = jsondata!= undefined ? (jsondata.filter(x => x.flightLeg[0].flightDetails.departureTime >= 600 && x.flightLeg[0].flightDetails.departureTime <= 1200).length) : 0;
+                        setdeparture1(check_departure1>0 ? true: false);
+                        var check_departure2 = jsondata!= undefined ? (jsondata.filter(x => x.flightLeg[0].flightDetails.departureTime >= 1800).length) : 0;
+                        setdeparture2(check_departure2>0 ? true : false);
+                        var check_departure3 = jsondata!= undefined ? (jsondata.filter(x => x.flightLeg[0].flightDetails.departureTime >= 1200 && x.flightLeg[0].flightDetails.departureTime <= 1800).length) : 0;
+                        setdeparture3(check_departure3>0 ? true : false);
+                        var check_return1 = jsondata!= undefined ? (requestData.searchType == 2 ? (jsondata.filter(x => x.flightLeg[1].flightDetails.departureTime >= 600 && x.flightLeg[0].flightDetails.departureTime <= 1200).length) : null) : 0;
+                        setreturn1(check_return1>0 ? true : false);
+                        var check_return2 = jsondata!= undefined ? (requestData.searchType == 2 ? (jsondata.filter(x => x.flightLeg[1].flightDetails.departureTime >= 1800).length) : null):0;
+                        setreturn2(check_return2>0 ? true : false);
+                        var check_return3 = jsondata!= undefined ? (requestData.searchType == 2 ? (jsondata.filter(x => x.flightLeg[1].flightDetails.departureTime >= 1200 && x.flightLeg[0].flightDetails.departureTime <= 1800).length) : null) : 0;
+                        setreturn3(check_return3>0 ? true : false);                   
                     }
-        if(jsondata !== undefined)
-          {
-            var currencyCode = flights.flights.data.currencyCode;
-            var total_response = jsondata.length;
-          }
+                if(jsondata !== undefined)
+                {
+                    var currencyCode = flights.flights.data.currencyCode;
+                    var total_response = jsondata.length;
+                }
             return (
             <Layout>
                 <div className="container-fluid">
@@ -691,7 +799,7 @@ const TicketBooking = (flights) => {
                                                 <Col sm={5} xs={5}>
                                                     <div className='passanger-class'>
                                                         <small className="pink-text absl-text">TRIP TYPE</small>
-                                                        <Form.Control className='trip_select' as="select" defaultValue={requestData.searchType}>
+                                                        <Form.Control className='trip_select' as="select" defaultValue={searchType} onChange={changeSearchType}>
                                                             <option value="1">One Way</option>
                                                             <option value="2">Round Trip</option>
                                                             <option value="3">Multi-city</option>
@@ -751,19 +859,23 @@ const TicketBooking = (flights) => {
                                                                 showYearDropdown
                                                                 dateFormat="eee, MMM d"
                                                                 selected={departureDate}
+                                                                minDate={moment().toDate()}
                                                                 onChange={handleChange} />
-                                                            <span className='separt'> | </span>
+                                                             {requestData.searchType == 2 ? <span className='separt'> | </span> : null }
                                                         </div>
+                                                        {requestData.searchType == 2 ?
                                                         <div className='calendar'>
-                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DatePicker
-                                                                name="departureDate"
+                                                        <img className="img_calendar" src="static/images/calendar.svg" width='25'></img>
+                                                            <DatePicker
+                                                                name="returnDate"
                                                                 className="form-control"
                                                                 showMonthDropdown
                                                                 showYearDropdown
                                                                 dateFormat="eee, MMM d"
                                                                 selected={returnDate}
+                                                                minDate={moment().toDate()}
                                                                 onChange={handleChange1} />
-                                                        </div>
+                                                        </div> : null }
                                                     </div>
                                                 </Col>
                                                 <Col lg={4} md={4} sm={3} xs={12} className='pad-6'>
@@ -788,47 +900,21 @@ const TicketBooking = (flights) => {
                     </div>
 
                     {/* Filtering component */}
+                    { jsondata != undefined ?
                     <div className="mobile-filterscreen">
                         <div className="visible-xs filter-mobile">
                             <Row className="filtering-row">
-                                <Col sm={6} xs={6} lg={6} style={{ borderRight: '1px solid #FF4057' }}>
+                                {/* <Col sm={6} xs={6} lg={6} style={{ borderRight: '1px solid #FF4057' }}>
                                     <span onClick={handlesortToggler} className="mob-togglehead">Sort </span>
-                                </Col>
-                                <Col sm={6} xs={6} lg={6}>
+                                </Col> */}
+                                <Col sm={12} xs={12} lg={12} className="text-center">
                                     <span onClick={handleFilterToggler} className="mob-togglehead">Filter </span>
                                 </Col>
                             </Row>
-                            <div style={{ position: 'relative' }} hidden={!sortToggler}>
-                                <Row className='sort'>
-                                    <Col md={12} xs={12}>
-                                        <p>
-                                            <span className="bold-text" style={{ fontSize: '13px' }}>Sort by:</span>
-                                            <Button variant="outline-danger" style={{ float: 'right' }} onClick={() => this.setState({ sortToggler: false, filterToggler: false })}>Close</Button>
-                                        </p>
-                                        <ul className="mobile-sortlist">
-                                            <li>
-                                                <span>
-                                                    <input className='sort_name' type="radio" name="mobile_sorting" defaultValue="Popularity" /> Popularity
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span>
-                                                    <input className='sort_name' type="radio" name="mobile_sorting" defaultValue="Duration" /> Duration
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span>
-                                                    <input className='sort_name' type="radio" name="mobile_sorting" defaultValue="Price" /> Price
-                                                </span>
-                                            </li>
-                                        </ul>
-                                    </Col>
-                                </Row>
-                            </div>
-                        </div>
+                        </div> 
 
                         {filterToggler ?
-                        <div className="datas">
+                        <div className="datas"> 
                             <Row>
                                 <Col xs={12}>
                                     <p>
@@ -867,6 +953,7 @@ const TicketBooking = (flights) => {
                                                 </Col>
                                             </Row>
                                         </Col>
+                                        {requestData.searchType == 2 ? 
                                         <Col xs={12}>
                                             <p className='small_txt'>
                                                 <b>Departure from <span className="filter-cname">{filtercname(requestData.arrivalLocationName)}</span></b>
@@ -881,7 +968,7 @@ const TicketBooking = (flights) => {
                                                     </div>
                                                 </Col>
                                             </Row>
-                                        </Col>
+                                        </Col> : null }
                                     </Row>
                                 </Col>
                                 <Col xs={12}>
@@ -895,8 +982,8 @@ const TicketBooking = (flights) => {
                                             <Row>
                                                 <Col xs={12}>
                                                    <div className='checkbox-custom'>
-                                                       { total_response > 0 ?
-                                                        <div>{uniqueAirlines().map((airname,i=1) => <Form.Check type="checkbox" value={airname} label={airname} key={i} defaultChecked={airlineName == airname} onClick={() => filterAirline(airname)}/>)} </div> : null }
+                                                       { total_response > 0 && jsondata != undefined ?
+                                                        <div>{uniqueAirlines().map((airname,i=1) => <Form.Check type="checkbox" value={airname} label={airname} key={i} defaultChecked={airlineName != airname || airlinesCheck} onClick={() => filterAirline(airname)}/>)} </div> : null }
                                                     </div>
                                                 </Col>
                                             </Row>
@@ -905,7 +992,7 @@ const TicketBooking = (flights) => {
                                 </Col>
                             </Row>
                         </div> : null}
-                    </div>
+                    </div>: null }
                     {/* ---------------- end for mobile ---------------- */}
 
                     {/* ----------- Desktop Filters, Datas and Ad.. -----------  */}
@@ -954,6 +1041,7 @@ const TicketBooking = (flights) => {
                                                     </Col>
                                                 </Row>
                                             </div>
+                                            {requestData.searchType == 2 ?
                                             <div className='filter_Set'>
                                                 <p className='small_txt'>
                                                     <b>Departure from <span className="filter-cname">{filtercname(arrivalLocationName)}</span></b>
@@ -970,7 +1058,7 @@ const TicketBooking = (flights) => {
                                                         </div>
                                                     </Col>
                                                 </Row>
-                                            </div>
+                                            </div> : null }
                                             <div className='filter_Set'>
                                                 <p className='small_txt'>
                                                     <b>Airlines</b>
@@ -982,7 +1070,7 @@ const TicketBooking = (flights) => {
                                                     <Col xs={12}>
                                                     <div className='checkbox-custom'>
                                                        { total_response > 0 ?
-                                                        <div>{uniqueAirlines().map((airname,i=1) => <Form.Check type="checkbox" value={airname} label={airname} key={i} defaultChecked={airlineName == airname} onClick={() => filterAirline(airname)}/>)} </div> : null }
+                                                        <div>{uniqueAirlines().map((airname,i=1) => <Form.Check type="checkbox" value={airname} label={airname} key={i} defaultChecked={airlineName != airname || airlinesCheck} onClick={() => filterAirline(airname)}/>)} </div> : null }
                                                     </div>
                                                     </Col>
                                                 </Row>
@@ -1110,6 +1198,7 @@ const TicketBooking = (flights) => {
                                                         </Row>
                                                         {/* End Departure Flights */}
                                                         {/* Return Flights */}
+                                                        {requestData.searchType == 2 ? <div>
                                                         <Row className="travel-timing" style={{ marginTop: '6px' }}>
                                                             <Col md={12} sm={12}>
                                                                 <b>Return</b> | {dateFormat(changeMonthDate(resultData.flightLeg[1].flightDetails.departureDate), "ddd, mmm d")} | {resultData.flightLeg[1].flightDetails.operatingAirlineName}
@@ -1144,7 +1233,7 @@ const TicketBooking = (flights) => {
                                                                     </Col>
                                                                 </Row>
                                                             </Col>
-                                                        </Row>
+                                                        </Row> </div> : null }
                                                         {/* End Return Flights */}
                                                     </Col>
                                                     <Col sm={3} className='text-center set_bg'>
@@ -1160,7 +1249,7 @@ const TicketBooking = (flights) => {
                                                         </a> */}
                                                         {/* <Link href={{ pathname: 'ticketdetails', query: { id: resultData.recommendationRefNo }}}> */}
                                                         {/* <button className="bpk-button" onClick={() => showFlightDetails(resultData.recommendationRefNo)}>Select <i className="fa fa-arrow-right"></i></button> */}
-                                                        <Button className="bpk-button" variant="danger" onClick={() => showFlightDetails(resultData.recommendationRefNo)} disabled={resultData.recommendationRefNo == flightId ? fetchLoading : null}>
+                                                        <Button className="bpk-button" onClick={() => showFlightDetails(resultData.recommendationRefNo)} disabled={resultData.recommendationRefNo == flightId ? fetchLoading : null}>
                                                         {resultData.recommendationRefNo == flightId ? 
                                                         fetchLoading && (
                                                             <i
@@ -1221,32 +1310,14 @@ const TicketBooking = (flights) => {
                             </Row>
                         </div> 
                     </div>: <div className="nodata-msg text-center">
-                            {/* <img src="static/images/nodata1.png" className="img img-responsive"></img> */}
-                            <img className="fa fa-fighter-jet autocomplete-flight-img" alt="Flight" src="static/images/flight.png" style={{height:'70px',width:'70px',opacity:0.2}}/>
-                            <br/>Sorry! No result found.
+                            <img src="static/images/nodata2.png" className="img img-responsive" style={{height:'200px',width:'250px'}}></img>
+                            {/* <img className="fa fa-fighter-jet autocomplete-flight-img" alt="Flight" src="static/images/flight.png" style={{height:'70px',width:'70px',opacity:0.2}}/> */}
+                            {/* <br/>Sorry! No result found. */}
                             </div> } </div> }
                 </div>
             </Layout>
         )
 }
-
-// TicketBooking.getInitialProps = ({ query: { departureLocationCode,arrivalLocationCode,departureDate,returnDate,isDirectFlight,searchType,adultCount,childCount,preferedFlightClass,departureTime,returnTime,departureLocationName,arrivalLocationName} }) => {
-//     return { 
-//         departureLocationCode: departureLocationCode, 
-// 		arrivalLocationCode: arrivalLocationCode, 
-//         departureDate: departureDate,
-//         returnDate: returnDate,
-//         isDirectFlight : isDirectFlight,
-//         searchType: searchType,
-//         adultCount: adultCount,
-//         childCount: childCount,
-//         preferedFlightClass: preferedFlightClass,
-//         departureTime: "Any",
-//         returnTime: "Any",
-//         departureLocationName: departureLocationName,
-//         arrivalLocationName: arrivalLocationName
-//      }
-//   }
 
 TicketBooking.getInitialProps = async ({ query: {adultCount,childCount,infantCount,isDirectFlight,isPlusOrMinus3Days,searchType,preferedFlightClass,departureLocationCode,departureDate,arrivalLocationCode,returnDate,departureTime,returnTime,PageIndex,PageSize,departureLocationName,arrivalLocationName } }) => {
 const request = {
@@ -1262,9 +1333,9 @@ const request = {
             "departureLocationCode": departureLocationCode,
             "departureDate": departureDate,
             "arrivalLocationCode": arrivalLocationCode,
-            "returnDate": returnDate,
+            "returnDate": searchType == 2 ? returnDate : null,
             "departureTime": departureTime,
-            "returnTime": returnTime
+            "returnTime": searchType == 2 ? returnTime : null
         }
     ],
     "paging": {
@@ -1291,9 +1362,9 @@ const request = {
                     "departureLocationCode": departureLocationCode,
                     "departureDate": departureDate,
                     "arrivalLocationCode": arrivalLocationCode,
-                    "returnDate": returnDate,
+                    "returnDate": searchType == 2 ? returnDate : null,
                     "departureTime": departureTime,
-                    "returnTime": returnTime
+                    "returnTime": searchType == 2 ? returnTime : null
                 }
             ],
             "paging": {

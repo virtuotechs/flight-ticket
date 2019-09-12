@@ -16,12 +16,11 @@ class Footer extends Component {
 					<Container>
 						<Row>
 							<Col md={5} sm={12}>
-							<Link href='/'><img src='static/images/dealchecker.svg' style={{ height: '45px', width: '235px', cursor: 'pointer' }}></img></Link>
+							<Link href='/'><img src='static/images/dealchecker.svg' style={{height:'45px',width:'235px'}}></img></Link>
 								<p className='address'><b>A:</b> Addressline1Addressline1Addressline1<br></br>
 								<b>P:</b> 24/7 Customer Support: 1-222-2222-22-22<br></br>
 								<b>E:</b> info@dealchecker.com</p>
 								<h6><b>Follow us:</b></h6>
-
 								<div className='social-media'>
 									<div className='twitter'>
 										<img src='static/images/twitter.svg' alt='' width='32'></img>
@@ -45,11 +44,10 @@ class Footer extends Component {
 									<Col md={6} sm={6}>
 										<h6><b>CUSTOMER SUPPORT</b></h6>
 										<ul>
-											<Link href='/about'><li>About</li></Link>
-											<Link href='/ticketreservation'><li>How do I make a reservation?</li></Link>
-											<Link href='/faq'><li>FAQ</li></Link>
-											<Link href='/privacy_policy'><li>Privacy Policy</li></Link>
-											{/* <Link href='/'><li>Contact Us</li></Link> */}
+											<li>FAQ</li>
+											<li>How do I make a reservation?</li>
+											<li>Booking Tips</li>
+											<li>Contact Us</li>
 										</ul>
 									</Col>
 									<Col md={6} sm={6}>

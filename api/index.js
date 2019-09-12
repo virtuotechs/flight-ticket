@@ -6,24 +6,17 @@ const url = 'https://pln.lycafly.com/Affiliate/Flight/Aw_SearchFlight';
 export function getFlights(request) {
   return axios(url,{method: 'POST',headers:{
     'Authorization': 'Basic 0b017b0c0d414e20ee0d2e4adbed686d7c297a6d2f8ec8f9eddc2016d9513482a086fe8712ef0530',
-                               'content-Type': 'application/json'
+    'content-Type': 'application/json'
   },
   data: JSON.stringify(request),
 })
 }
 
-// export function nonstopFlights(request) {
-//   console.log("Non stop flights");
-//   console.log("Function non stop:",request);
-//   return axios(url,{method: 'POST',headers:{
-//     'Authorization': 'Basic 0b017b0c0d414e20ee0d2e4adbed686d7c297a6d2f8ec8f9eddc2016d9513482a086fe8712ef0530',
-//                                'content-Type': 'application/json'
-//   },
-//   data: JSON.stringify(request),
-// })
-//}
-
-
 // export function getPost(slug) {
 //   return fetch(`https://jsonplaceholder.typicode.com/posts?title=${slug}`)
 // }
+
+export function getLocalFlights() {
+
+  return axios.get(`https://jsonplaceholder.typicode.com/users`)
+}
