@@ -39,7 +39,7 @@ function getSuggestions(value) {
 		return languages.filter(language => regex.test(language.CityName));
 	}
   }
-  
+
   function getSuggestionValue(suggestion) {
     return `${suggestion.CityName} - ${suggestion.PlaceName} (${suggestion.PlaceId})`;
   }
@@ -73,7 +73,7 @@ function getSuggestions(value) {
       super(props);
       this.state = {
         value: this.props.value,
-        suggestions: ["name"]
+        suggestions: []
       };    
     }
   
@@ -100,7 +100,7 @@ function getSuggestions(value) {
   
     render() {
       const { id, placeholder } = this.props;
-	  const { value, suggestions } = this.state;
+	  const { value, suggestions } = this.state || this.props;
       const inputProps = {
         placeholder,
         value,
@@ -146,6 +146,7 @@ const TicketBooking = (flights) => {
             const [sortOption,setSortOption]=useState('Best');  
             const [fetchLoading,setFetchLoading] = useState(false);
             const [localLoading,setLocalLoading] = useState(false);
+
             var check_nonstop = jsondata!= undefined ? jsondata.filter(x => x.flightLeg[0].flightDetails.stopOvers == '0').length : 0;
             const [nonstop,setnonstop] = check_nonstop>0 ? useState(true) : useState(false);
             var check_onestop = jsondata!= undefined ? jsondata.filter(x => x.flightLeg[0].flightDetails.stopOvers == '1').length : 0;
@@ -173,15 +174,16 @@ const TicketBooking = (flights) => {
 
             const handleChange = (date) => {
                 setDepartureDate(date);
+                setReturnDate(date);
             }
+            
             const handleChange1 = (date) => {
                 setReturnDate(date);
             }
+
             const changePlace = () => {
-            setDepartureLocationName(arrivalLocationName);
-            setArrivalLocationName(departureLocationName);
-            console.log("Auto1: ",departureLocationName);
-            console.log("Auto2: ",arrivalLocationName);
+                setDepartureLocationName(arrivalLocationName);
+                setArrivalLocationName(departureLocationName);
             }
             const TimeSplit = (time) => {
                 time = time.replace(/(..?)/g, '$1:').slice(0, -1)
@@ -245,44 +247,43 @@ const TicketBooking = (flights) => {
             }
         const fastestDuration = () =>
         {
-            var fastest_duration = Math.min.apply(Math,jsondata.map(function (o) { return o.flightLeg[0].flightDetails.totalFlyingHours; }))
+            var fastest_duration = Math.min.apply(Math,flightData.map(function (o) { return o.flightLeg[0].flightDetails.totalFlyingHours; }))
             fastest_duration = fastest_duration.toString();
             if(fastest_duration.length <=3)
             {
                 fastest_duration = "0"+fastest_duration;
             }
             return CalculateDuration(fastest_duration);
-            
         }
         const fastestPrice = () =>
         {
-            var fastest_duration = Math.min.apply(Math,jsondata.map(function (o) { return o.flightLeg[0].flightDetails.totalFlyingHours; })) 
-            var fastest_price =  jsondata.filter(function(price) { return price.flightLeg[0].flightDetails.totalFlyingHours == fastest_duration});
+            var fastest_duration = Math.min.apply(Math,flightData.map(function (o) { return o.flightLeg[0].flightDetails.totalFlyingHours; })) 
+            var fastest_price =  flightData.filter(function(price) { return price.flightLeg[0].flightDetails.totalFlyingHours == fastest_duration});
             fastest_price = fastest_price[0].totalFare;
             return fastest_price;
         }
         const cheapestDuration = () =>
         {
-            var cheapest_price = Math.min.apply(Math,jsondata.map(function (o) { return o.totalFare;}))
-            var cheapest_duration =  jsondata.filter(function(price) { return price.totalFare == cheapest_price});
+            var cheapest_price = Math.min.apply(Math,flightData.map(function (o) { return o.totalFare;}))
+            var cheapest_duration =  flightData.filter(function(price) { return price.totalFare == cheapest_price});
             cheapest_duration = cheapest_duration[0].flightLeg[0].flightDetails.totalFlyingHours;
             return CalculateDuration(cheapest_duration);
         }
         const cheapestPrice = () =>
         {
-            var cheapest_price = Math.min.apply(Math,jsondata.map(function (o) { return o.totalFare;}))
+            var cheapest_price = Math.min.apply(Math,flightData.map(function (o) { return o.totalFare;}))
             return cheapest_price;
         }
         const bestDuration = () =>
         {
-        var best_price = jsondata.sort(function(obj1, obj2) {
+        var best_price = flightData.sort(function(obj1, obj2) {
             return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
         });
         return CalculateDuration(best_price[0].flightLeg[0].flightDetails.totalFlyingHours);
         }
         const bestPrice = () =>
         {
-        var best_price = jsondata.sort(function(obj1, obj2) {
+        var best_price = flightData.sort(function(obj1, obj2) {
             return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
         });
         return best_price[0].totalFare;
@@ -322,140 +323,119 @@ const TicketBooking = (flights) => {
 					}
 				}) 	
         }
-        const GetSortOrder = (prop) => {  
-            return function(a, b) {  
-                var aVal = a[prop], bVal = b[prop]
-                console.log(aVal," --- ",bVal);
-                if (aVal > bVal) {  
-                    return 1;  
-                } else if (aVal < bVal) {  
-                    return -1;  
-                }  
-                return 0;  
-            }  
-        }  
-        async function handleSortOptions(e) {
+        // const GetSortOrder = (prop) => {  
+        //     return function(a, b) {  
+        //         var aVal = a[prop], bVal = b[prop]
+        //         console.log(aVal," --- ",bVal);
+        //         if (aVal > bVal) {  
+        //             return 1;  
+        //         } else if (aVal < bVal) {  
+        //             return -1;  
+        //         }  
+        //         return 0;  
+        //     }  
+        // }  
+
+        const handleSortOptions = (e) => {
             setSortOption(e.target.value);
-            //setLocalLoading(true);
             if(e.target.value == "Best")
             {   
-                // var response = await getFlights(requestData);
-                // var sort_flights = await response;
-                // setLocalLoading(false);
-                // sort_flights = sort_flights.data.recommendation.sort(function(obj1, obj2) {
-                //     return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
-                // });
-                var x = jsondata.sort(function(obj1, obj2) {
+                setLocalLoading(true);
+                setTimeout(() => {
+                    const new_array = [...jsondata].sort(function(obj1, obj2) {
                          return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
                      });
-                setJsondata(x);
+                    setJsondata(new_array);
+                    setLocalLoading(false);
+                },1000);
             }
             else if(e.target.value == "Cheapest First")
             {
-                // var response = await getFlights(requestData);
-                // var sort_flights = await response;
-                // setLocalLoading(false);
-                // console.log("jsondata",jsondata);
-                // var y = jsondata.sort(function (obj1, obj2) {
-                //     console.log(parseInt(obj1.totalFareInDouble) - parseInt(obj2.totalFareInDouble));
-                //     return parseInt(obj1.totalFareInDouble) - parseInt(obj2.totalFareInDouble);
-                //     })
-                // //setLocalLoading(y);
-                // console.log("SORTED: ",y);
-                // setJsondata(y);
-                const temp_arr = jsondata;
-                console.log(GetSortOrder("marketingAirlineNames"));
-                temp_arr.sort(GetSortOrder("marketingAirlineNames"));
-                console.log("TEMP: ",temp_arr);
+                setLocalLoading(true);
+                setTimeout(() => {
+                        const new_array = [...jsondata].sort(function (obj1, obj2) {
+                         return obj1.totalFare - obj2.totalFare;
+                         });
+                setJsondata(new_array);
+                setLocalLoading(false);
+                },1000);
             }
             else if(e.target.value == "Fastest First")
             {
-                var response = await getFlights(requestData);
-                var sort_flights = await response;
-                setLocalLoading(false);
-                sort_flights = sort_flights.data.recommendation.sort(function (obj1, obj2) {
+                setLocalLoading(true);
+                setTimeout(() => {
+                    const new_array = [...jsondata].sort(function (obj1, obj2) {
                     return obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
                     });
-                setJsondata(sort_flights);
+                setJsondata(new_array);
+                setLocalLoading(false);
+                },1000);
             }
             else if(e.target.value == "Outbound: Departure Time")
             {
                 setLocalLoading(true);
-                var response = await getFlights(requestData);
-                var sort_flights = await response;
-                setLocalLoading(false);
-                sort_flights = sort_flights.data.recommendation.sort(function (obj1, obj2) {
+                setTimeout(() => {
+                    const new_array = [...jsondata].sort(function (obj1, obj2) {
                     return obj1.flightLeg[0].flightDetails.departureTime - obj2.flightLeg[0].flightDetails.departureTime;
                 });
-                setJsondata(sort_flights);
+                setJsondata(new_array);
+                setLocalLoading(false);
+                },1000);
             }
             else if(e.target.value == "Airline")
             {
-                // setLocalLoading(true);
-                // var response = await getFlights(requestData);
-                // var sort_flights = await response;
-                // setLocalLoading(false);
-                var z = sortJsonArray(jsondata, "marketingAirlineNames", "asc");
-                console.log("Z: ",z);
-                setJsondata(z);
+                setLocalLoading(true);
+                setTimeout(() => {
+                const new_array = sortJsonArray([...jsondata], "marketingAirlineNames", "asc");
+                setJsondata(new_array);
+                setLocalLoading(false);
+                },1000);
             }
             else if(e.target.value == "Stops")
             {
                 setLocalLoading(true);
-                var response = await getFlights(requestData);
-                var sort_flights = await response;
-                setLocalLoading(false);
-                sort_flights = sort_flights.data.recommendation.sort(function (obj1, obj2) {
+                setTimeout(() => {
+                    const new_array = [...jsondata].sort(function (obj1, obj2) {
                     return obj1.flightLeg[0].flightDetails.stopOvers - obj2.flightLeg[0].flightDetails.stopOvers;
                 });
-                setJsondata(sort_flights);
+                setJsondata(new_array);
+                setLocalLoading(false);
+                },1000);
             }
         }
-            async function handleSortBest(e) {
+            const handleSortBest = () => {
                 setSortOption("Best");
                 setLocalLoading(true);
-                var response = await getFlights(requestData);
-                var best_flights = await response;
-                setLocalLoading(false);
-                best_flights = best_flights.data.recommendation.sort(function(obj1, obj2) {
-                    return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
-                });
-                setJsondata(best_flights);
-                console.log(jsondata);
+                setTimeout(() => {
+                    const new_array = [...jsondata].sort(function(obj1, obj2) {
+                         return obj1.totalFare - obj2.totalFare && obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
+                     });
+                    setJsondata(new_array);
+                    setLocalLoading(false);
+                },1000);
             }
-            async function handleSortCheapest(e) {
+            const handleSortCheapest = () => {
                 setSortOption("Cheapest First");
                 setLocalLoading(true);
-                // var response = await getFlights(requestData);
-                // var cheap_flights = await response;
-                // console.log(cheap_flights);
-                var cheap_flights = jsondata.sort(function (obj1, obj2) {
-                    return parseInt(obj1.totalFareInDouble) - parseInt(obj2.totalFareInDouble);
-                    })
-                console.log("CHEAP: ",cheap_flights);
-                setJsondata(cheap_flights);
+                setTimeout(() => {
+                        const new_array = [...jsondata].sort(function (obj1, obj2) {
+                         return obj1.totalFare - obj2.totalFare;
+                         });
+                setJsondata(new_array);
                 setLocalLoading(false);
-                console.log(jsondata);
-
-                // setSortOption("Cheapest First");
-                // setLocalLoading(true);
-                // setTimeout(() => {
-                // var cheap_flights = jsondata.sort(function (obj1, obj2) {
-                //     return obj1.totalFareInDouble - obj2.totalFareInDouble;
-                //     });
-                // setJsondata(cheap_flights);
-                // setLocalLoading(false); },2000);
+                },1000);
             }
-            async function handleSortFastest(e){
+            const handleSortFastest = () => {
                 setSortOption("Fastest First");
                 setLocalLoading(true);
-                var response = await getFlights(requestData);
-                var fast_flights = await response;
-                setLocalLoading(false);
-                fast_flights = fast_flights.data.recommendation.sort(function (obj1, obj2) {
+                setTimeout(() => {
+                    const new_array = [...jsondata].sort(function (obj1, obj2) {
                     return obj1.flightLeg[0].flightDetails.totalFlyingHours - obj2.flightLeg[0].flightDetails.totalFlyingHours;
                     });
-                setJsondata(fast_flights);
+                setJsondata(new_array);
+                setLocalLoading(false);
+                },1000);
+               
             }
             const filtercname = (text) => {
                 var filter_text = text.trim();
@@ -760,8 +740,8 @@ const TicketBooking = (flights) => {
                         var json = await response;
                         setLocalLoading(false);
                         setFetchLoading(false);
-                        setJsondata(json.data.recommendation != undefined ? json.data.recommendation: undefined);   
-                        setFlightData(json.data.recommendation != undefined ? json.data.recommendation: undefined);
+                        setJsondata(json.data.recommendation);   
+                        setFlightData(json.data.recommendation);
                         var check_nonstop = jsondata!= undefined ? (jsondata.filter(x => x.flightLeg[0].flightDetails.stopOvers == '0').length) : 0;
                        setnonstop(check_nonstop>0 ? true : false);
                         var check_onestop = jsondata!= undefined ? (jsondata.filter(x => x.flightLeg[0].flightDetails.stopOvers == '1').length) : 0;
@@ -832,7 +812,7 @@ const TicketBooking = (flights) => {
                                                                 <MyAutosuggest id="countries1" onChange={onChangeHome} value={departureLocationName}/>
                                                         </InputGroup>
                                                     </Form.Group>
-                                                    <i className="fa fa-exchange" aria-hidden="true" onClick={changePlace}></i>
+                                                    <i className="fa fa-exchange" aria-hidden="true" onClick={changePlace} ></i>
                                                 </Col>
                                                 <Col md={6} sm={6} xs={12} className='pad-6'>
                                                 <Form.Group className='auto_countries'>
@@ -861,9 +841,9 @@ const TicketBooking = (flights) => {
                                                                 selected={departureDate}
                                                                 minDate={moment().toDate()}
                                                                 onChange={handleChange} />
-                                                             {requestData.searchType == 2 ? <span className='separt'> | </span> : null }
+                                                             {searchType == 2 ? <span className='separt'> | </span> : null }
                                                         </div>
-                                                        {requestData.searchType == 2 ?
+                                                        {searchType == 2 ?
                                                         <div className='calendar'>
                                                         <img className="img_calendar" src="static/images/calendar.svg" width='25'></img>
                                                             <DatePicker
@@ -873,7 +853,7 @@ const TicketBooking = (flights) => {
                                                                 showYearDropdown
                                                                 dateFormat="eee, MMM d"
                                                                 selected={returnDate}
-                                                                minDate={moment().toDate()}
+                                                                minDate={new Date(departureDate)}
                                                                 onChange={handleChange1} />
                                                         </div> : null }
                                                     </div>

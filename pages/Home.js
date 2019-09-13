@@ -199,6 +199,7 @@ const Home = (props) => {
 	
 	const handlestartChange = (date) => {
 		setDeparturedate(date);
+		setReturndate(date);
 	}
 	const oneway_handlestartChange = (date) => {
 		setoneway_Departuredate(date);
@@ -535,7 +536,7 @@ const Home = (props) => {
 															showMonthDropdown 
 															showYearDropdown 
 															selected={returnDate} 
-															minDate={moment().toDate()}
+															minDate={new Date(departureDate)}
 															onChange={handleendChange}
 															/>
 															{returnDate_err ? (<i className="err-msg">Return date is required</i>): null}

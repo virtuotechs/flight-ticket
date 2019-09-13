@@ -4,7 +4,8 @@ import { Row, Col, Button, Accordion, Card } from 'react-bootstrap';
 import dateFormat from 'dateformat';
 import datetimeDifference from "datetime-difference";
 import {getFlights} from '../api';
-import { Router } from 'next/router';
+import Router from 'next/router';
+import Loaderspinner from '../components/loaderspinner';
 
 const TicketDetails = (flights) => {
 
@@ -15,6 +16,7 @@ const TicketDetails = (flights) => {
     const [flightData,setFlightData] = useState(flights.flights.data.recommendation);
     var result = flights.flights.data.recommendation.filter(x => x.recommendationRefNo == flights.request.id);
     const [jsondata,setJsondata] = useState(result);
+    const [fetchLoading,setFetchLoading] = useState(false);
     const [requestData,setRequestData] = useState(flights.request);
     console.log("JSON DATA: ",jsondata);
 
@@ -135,14 +137,41 @@ const TicketDetails = (flights) => {
         }
         return (duration_time);
     }
-    return(
+    const backToResult = () => {
+        setFetchLoading(true);
+        Router.push({
+            pathname: '/ticketBooking',
+            query: {
+                "adultCount": requestData.adultCount,
+                "childCount":requestData.childCount,
+                "infantCount": "0",
+                "isDirectFlight": requestData.isDirectFlight,
+                "isPlusOrMinus3Days": "false",
+                "searchType": requestData.searchType,
+                "preferedFlightClass": requestData.preferedFlightClass,
+                "departureLocationCode": requestData.segments[0].departureLocationCode,
+                "departureDate": requestData.segments[0].departureDate,
+                "arrivalLocationCode": requestData.segments[0].arrivalLocationCode,
+                "returnDate": requestData.searchType == 2 ? requestData.segments[0].returnDate : null,
+                "departureTime": requestData.segments[0].departureTime,
+                "returnTime": requestData.searchType == 2 ? requestData.segments[0].returnTime : 0,
+                "PageIndex": "1",
+                "PageSize": "50",
+                "departureLocationName": requestData.departureLocationName,
+                "arrivalLocationName": requestData.arrivalLocationName
+                }
+            }) 	
+    }
+        return(
+            <div>
+                {fetchLoading ?  <Loaderspinner /> :
             <Layout>
                 <div className="container-fluid">
                     <div className='t_detail'>
                         <div className='top'>
                             <Row>
                                 <Col xs={4}>
-                                    <div className='arrowLeft' onClick={() => window.history.back()}>
+                                    <div className='arrowLeft' onClick={backToResult}>
                                         <i className="fa fa-arrow-left" aria-hidden="true"></i>
                                         <span> Back to results</span>
                                     </div>
@@ -153,7 +182,7 @@ const TicketDetails = (flights) => {
                                     </div>
                                 </Col>
                                 <Col xs={4} className='text-right'>
-                                    <div className='arrowLeft' onClick={() =>window.history.back()}>
+                                    <div className='arrowLeft' onClick={backToResult}>
                                         <i className="fa fa-times" aria-hidden="true"></i>
                                     </div>
                                 </Col>
@@ -534,7 +563,7 @@ const TicketDetails = (flights) => {
                         </div>
                     </div>
                 </div>
-            </Layout>
+            </Layout>  }</div>
     )
     }
 

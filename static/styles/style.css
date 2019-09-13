@@ -267,7 +267,7 @@ h5.title_flight {
     position: absolute;
     font-family: 'Lato', sans-serif;
     letter-spacing: 2px;
-    top: 21%;
+    top: 22%;
     left: 17%;
     color: #fff;
     padding: 1em 2em 2em 2em;
@@ -1697,4 +1697,29 @@ span.twostop {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transform: translate(0, 0);
+}
+
+.traveldet-popdown {
+    background: white;
+    position: absolute;
+    z-index: 999;
+    padding: 20px 10px;
+    margin-top: 18px;
+    border: transparent;
+    border-radius: 14px;
+    color: #413f3f;
+}
+.traveldet-popdown:after {
+    content: " ";
+    position: absolute;
+    right: 50%;
+    top: -13px;
+    border-top: none;
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+    border-bottom: 15px solid #f8eded;
+}
+.traveldet-popdown select
+{
+    border:1px solid red;
 }
