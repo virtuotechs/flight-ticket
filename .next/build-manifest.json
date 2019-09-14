@@ -12,11 +12,11 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/next/dist/pages/_error": [
+    "/ticketBooking": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/ticketBooking": [
+    "/ticketdetails": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

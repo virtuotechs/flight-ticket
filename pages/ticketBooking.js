@@ -160,6 +160,7 @@ const TicketBooking = (flights) => {
             const [filterToggler,setFilterToggler]=useState(false);
             const [sortOption,setSortOption]=useState('Best');
             const [fetchLoading,setFetchLoading] = useState(false);
+            const [fetchLoading1,setFetchLoading1] = useState(false);
             const [localLoading,setLocalLoading] = useState(false);
 
             var check_nonstop = jsondata!= undefined ? jsondata.filter(x => x.flightLeg[0].flightDetails.stopOvers == '0').length : 0;
@@ -313,7 +314,7 @@ const TicketBooking = (flights) => {
         const showFlightDetails = (id) =>
         {
             setFlightId(id);
-            setFetchLoading(true);
+            setFetchLoading1(true);
             Router.push({
 				pathname: '/ticketdetails',
 				query: {
@@ -1413,14 +1414,14 @@ const TicketBooking = (flights) => {
                                                         {/* <button className="bpk-button" onClick={() => showFlightDetails(resultData.recommendationRefNo)}>Select <i className="fa fa-arrow-right"></i></button> */}
                                                         <Button className="bpk-button" onClick={() => showFlightDetails(resultData.recommendationRefNo)} disabled={resultData.recommendationRefNo == flightId ? fetchLoading : null}>
                                                         {resultData.recommendationRefNo == flightId ? 
-                                                        fetchLoading && (
+                                                        fetchLoading1 && (
                                                             <i
                                                             className="fa fa-refresh fa-spin"
                                                             style={{ marginRight: "5px" }}
                                                             />
                                                         ) : null}
-                                                        {resultData.recommendationRefNo == flightId ? fetchLoading && <span>Loading</span> : null}
-                                                        {resultData.recommendationRefNo == flightId ? !fetchLoading && <span>Select</span> : <span>Select</span>}
+                                                        {resultData.recommendationRefNo == flightId ? fetchLoading1 && <span>Loading</span> : null}
+                                                        {resultData.recommendationRefNo == flightId ? !fetchLoading1 && <span>Select</span> : <span>Select</span>}
                                                         </Button>
                                                         {/* </Link> */}
                                                     </Col>
