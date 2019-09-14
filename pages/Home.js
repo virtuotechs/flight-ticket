@@ -31,7 +31,6 @@ function escapeRegexCharacters(str) {
 	else
 	{
 		const regex = new RegExp('^' + escapedValue, 'i');
-		console.log("Reg ex value: ",regex);
 		return languages.filter(language => regex.test(language.CityName));
 	}
   }
@@ -118,18 +117,14 @@ function escapeRegexCharacters(str) {
   }
   
 // Index Page
-const Home = (props) => {	
+const Home = () => {	
 
-
-	//Number input ref
 	const adultCountref = React.createRef();
 	const childCountref = React.createRef();
 	const node = React.createRef();
 	//states
-	const [request,setRequest] = useState([]);
 	const [showAnn,setShowAnn] = useState(false);
 	const [round,setRound] = useState(true);
-	const [oneway,setOneway] = useState(false);
 	const [multi,setMulti] = useState(false); 
 	const [searchType,setSearchtype] = useState(2);
 	const [isDirectFlight,setDirectflight] = useState(false);
@@ -148,51 +143,25 @@ const Home = (props) => {
 	const [childCount,setchildCount] = useState(0);
 	const [departure_err,setDeparture_err] = useState(false);
 	const [arrival_err,setArrival_err] = useState(false);
-	const [cabin_err,setCabin_err] = useState(false);
-	const [departureDate_err,setDeparturedate_err] = useState(false);
-	const [returnDate_err,setReturndate_err] = useState(false);
 	const [adults_err,setAdults_err] = useState(false);
 	const [child_err,setChild_err] = useState(false);
+	const [departureDate_err,setDeparturedate_err] = useState(false);
+	const [returnDate_err,setReturndate_err] = useState(false);
 	
-	// oneway states
-	const [oneway_departureLocationCode,setoneway_DepartureLocationCode] = useState('');
-	const [oneway_arrivalLocationCode,setoneway_ArrivalLocationCode] = useState('');
-	const [oneway_departureLocationName,setoneway_DepartureLocationName] = useState('');
-	const [oneway_arrivalLocationName,setoneway_ArrivalLocationName] = useState('');
-	const [oneway_preferedFlightClass,setoneway_PreferedFlightClass] = useState(1);
-	const [oneway_departureDate,setoneway_Departuredate] = useState(new Date());
-	const [oneway_adultCount,setoneway_AdultCount] = useState(1);
-	const [oneway_childCount,setoneway_ChildCount] = useState(0);
-	const [oneway_departure_err,setoneway_Departure_err] = useState(false);
-	const [oneway_arrival_err,setoneway_Arrival_err] = useState(false);
-	const [oneway_cabin_err,setoneway_Cabin_err] = useState(false);
-	const [oneway_departureDate_err,setoneway_DepartureDate_err] = useState(false);
-	const [oneway_adults_err,setoneway_Adults_err] = useState(false);
-	const [oneway_child_err,setoneway_Child_err] = useState(false);
 
 	const showAnother = (e) => {
 		setShowAnn(true);
 	}
-	const handleround = (date) => {
-		setRound(true);
-		setOneway(false);
-		setMulti(false);
-		setSearchtype(2);
-		
+	const handleRadio = (e) => {
+		console.log(e.target.value);
+		setSearchtype(e.target.value);
 	}
-	const handleoneway = (date) => {
-		setRound(false);
-		setOneway(true);
-		setMulti(false);
-		setSearchtype(1);
-	}
-
-	const handlemulti = (date) => {
-		setRound(false);
-		setOneway(false);
-		setMulti(true);
-		setSearchtype(3);
-	}
+	// const handlemulti = (date) => {
+	// 	setRound(false);
+	// 	setOneway(false);
+	// 	setMulti(true);
+	// 	setSearchtype(3);
+	// }
 
 	const handleendChange = (date) => {
 		setReturndate(date);
@@ -202,31 +171,15 @@ const Home = (props) => {
 		setDeparturedate(date);
 		setReturndate(date);
 	}
-	const oneway_handlestartChange = (date) => {
-		setoneway_Departuredate(date);
-	}
-	const handleSelect = (selectedTab) => {
-		setActiveTab(selectedTab);
-	}
+
 	const changedirectFlight = (e) => {
 		setDirectflight(!isDirectFlight);
 	}
-	const changeDeparture = (e) => {
-		setDeparturelocationcode(e.target.value);
-		setDeparture_err(false);
-	}
-	const changeArrival = (e) => {
-		setArrivallocationcode(e.target.value);
-		setArrival_err(false);
-	}
+
 	const changeClass = (e) => {
-		setPreferedflightclass(e.target.value);
-		setCabin_err(false);
+		setPreferedflightclass(e.target.value);		
 	}
-	const oneway_changeClass = (e) => {
-		setoneway_PreferedFlightClass(e.target.value);
-		setoneway_Cabin_err(false);
-	}
+
 	const adultChanged = (e) =>{
 		if(e<=9)
 		{
@@ -239,18 +192,7 @@ const Home = (props) => {
 			setAdultcount(1);
 		}
 	}
-	const oneway_adultChanged = (e) =>{
-		if(e<=9)
-		{
-			setoneway_Adults_err(false);
-			setoneway_AdultCount(e);
-		}
-		else
-		{
-			setoneway_Adults_err(true);
-			setoneway_AdultCount(1);
-		}
-	}
+
 	const childChanged = (e) =>{
 		if(e<=9)
 		{
@@ -263,19 +205,8 @@ const Home = (props) => {
 			setchildCount(0);
 		}
 	}
-	const oneway_childChanged = (e) =>{
-		if(e<=9)
-		{
-			setoneway_Child_err(false);
-			setoneway_ChildCount(e);
-		}
-		else
-		{
-			setoneway_Child_err(true);
-			setoneway_ChildCount(0);
-		}
-	}
-	const flightsforRoundTrip = (e) => {
+
+	const flightDetails = (e) => {
 		e.preventDefault();
 		if(adultCount < 1 || adultCount == null)
 		{
@@ -302,6 +233,8 @@ const Home = (props) => {
 		console.log("prefered class: ",preferedFlightClass);
 		console.log("direct flight",isDirectFlight);
 		console.log("search type: ",searchType);
+		console.log("Location name1: ",departureLocationName);
+		console.log("Location name2: ",arrivalLocationName);
 		if(departureLocationCode != "" && arrivalLocationCode !="" && adultCount != null && childCount != null)
 		{
 			setFetchLoading(true);
@@ -318,9 +251,9 @@ const Home = (props) => {
 					"departureLocationCode": departureLocationCode,
 					"departureDate": dateFormat(departureDate, "dd-mm-yyyy"),
 					"arrivalLocationCode": arrivalLocationCode,
-					"returnDate": dateFormat(returnDate, "dd-mm-yyyy"),
+					"returnDate": searchType==2 ? dateFormat(returnDate, "dd-mm-yyyy") : null,
 					"departureTime": "Any",
-					"returnTime": "Any",
+					"returnTime": searchType==2 ? "Any" : "0",
 					"PageIndex": "1",
 					"PageSize": "50",
 					"departureLocationName": departureLocationName,
@@ -329,61 +262,8 @@ const Home = (props) => {
 				}) 	
 		}
 	}
-	const flightsforOneway = (e) => {
-		console.log("One way");
-		e.preventDefault();
-		if(oneway_adultCount < 1 || oneway_adultCount == null)
-		{
-			setoneway_Adults_err(!oneway_adults_err);
-		}
-		if(oneway_childCount < 0 || oneway_childCount == null)
-		{
-			setoneway_Child_err(!oneway_child_err);
-		}
-		if(oneway_departureLocationCode == "")	
-		{
-			setoneway_Departure_err(!oneway_departure_err);
-		}
-		if(oneway_arrivalLocationCode == "")
-		{
-			setoneway_Arrival_err(!oneway_arrival_err);
-		}
-		console.log("Departure date: ",dateFormat(oneway_departureDate, "dd-mm-yyyy"));
-		console.log("Adult count: ",oneway_adultCount);
-		console.log("child count",oneway_childCount);
-		console.log("Location1: ",oneway_departureLocationCode);
-		console.log("Location2: ",oneway_arrivalLocationCode);
-		console.log("prefered class: ",oneway_preferedFlightClass);
-		console.log("direct flight",isDirectFlight);
-		console.log("search type: ",searchType);
-		if(oneway_departureLocationCode != "" && oneway_arrivalLocationCode !="" && oneway_adultCount != null && oneway_childCount != null)
-		{
-			setFetchLoading(true);
-			Router.push({
-				pathname: '/ticketBooking',
-				query: {
-					"adultCount": oneway_adultCount,
-					"childCount": oneway_childCount,
-					"infantCount": "0",
-					"isDirectFlight": isDirectFlight,
-					"isPlusOrMinus3Days": "false",
-					"searchType": searchType,
-					"preferedFlightClass": oneway_preferedFlightClass,
-					"departureLocationCode": oneway_departureLocationCode,
-					"departureDate": dateFormat(oneway_departureDate, "dd-mm-yyyy"),
-					"arrivalLocationCode": oneway_arrivalLocationCode,
-					"returnDate": "null",
-					"departureTime": "Any",
-					"returnTime": 0,
-					"PageIndex": "1",
-					"PageSize": "50",
-					"departureLocationName": oneway_departureLocationName,
-					"arrivalLocationName": oneway_arrivalLocationName
-					}
-				}) 	
-		}
-	}
-	const onChangeHome = (id, suggestion) => {
+	
+	const onChangeLocation = (id, suggestion) => {
 		if(id=="countries1")
 		{		
 			var suggestion = suggestion.trim();
@@ -401,24 +281,6 @@ const Home = (props) => {
 			var exact_match = suggestion.substring(length - 4, length-1);
 			exact_match = exact_match.trim();
 			setArrivallocationcode(exact_match);
-		}
-		else if(id=="one-countries1")
-		{
-			var suggestion = suggestion.trim();
-			setoneway_DepartureLocationName(suggestion);
-			var length = suggestion.length;
-			var exact_match = suggestion.substring(length - 4, length-1);
-			exact_match = exact_match.trim();
-			setoneway_DepartureLocationCode(exact_match);
-		}
-		else if(id=="one-countries2")
-		{
-			var suggestion = suggestion.trim();
-			setoneway_ArrivalLocationName(suggestion);
-			var length = suggestion.length;
-			var exact_match = suggestion.substring(length - 4, length-1);
-			exact_match = exact_match.trim();
-			setoneway_ArrivalLocationCode(exact_match);
 		}
 	  }
 	  const preferedclassname = (classname) => {
@@ -458,9 +320,7 @@ const Home = (props) => {
 		}
 		const handleOutsideClick = (e) => 
 		{
-			console.log(node.current);
-			console.log(e.target);
-			if (node.current && node.current.contains(event.target)) {
+				if (node.current && node.current.contains(event.target)) {
 				setPopup(false);
 			}
 		}
@@ -477,8 +337,8 @@ const Home = (props) => {
 						<div className="flight">
 							<Form>
 								<div className="mb-3">
-									<Form.Check name="searchType" defaultValue="1" className='radio_btn' inline label="One Way" type="radio" defaultChecked={searchType == '1'} onClick={handleoneway} id={`inline-radio-2`} />
-									<Form.Check name="searchType" defaultValue="2" className='radio_btn' inline label="Round Trip" defaultChecked={searchType == '2'} type="radio" onClick={handleround} id={`inline-radio-1`} />
+									<Form.Check name="searchType" defaultValue="1" className='radio_btn' inline label="One Way" type="radio" defaultChecked={searchType == '1'} onClick={handleRadio} id={`inline-radio-2`} />
+									<Form.Check name="searchType" defaultValue="2" className='radio_btn' inline label="Round Trip" defaultChecked={searchType == '2'} type="radio" onClick={handleRadio} id={`inline-radio-1`} />
 									{/* <Form.Check name="searchType" defaultValue="3" className='radio_btn' inline label="Multi-city" type="radio" defaultChecked={searchType == '3'} onClick={handlemulti} id={`inline-radio-3`} /> */}
 								</div>
 								<Row hidden={!round}>
@@ -490,7 +350,7 @@ const Home = (props) => {
 													<div className="select_box2">
 														<MyAutosuggest
 														id="countries1"
-														onChange={onChangeHome}
+														onChange={onChangeLocation}
 														/>
 														{departure_err ? (<i className="err-msg">Departure Location required</i>): null}
 													</div>
@@ -509,7 +369,7 @@ const Home = (props) => {
 													<div className="select_box2">
 														<MyAutosuggest
 														id="countries2"	
-														onChange = {onChangeHome}													
+														onChange = {onChangeLocation}													
 														/>
 														{arrival_err ? (<i className="err-msg">Arrival Location required</i>): null}
 													</div>
@@ -545,6 +405,7 @@ const Home = (props) => {
 													<Col sm={6} className="less-padleft less-padright">
 														<Form.Group controlId="exampleForm.ControlSelect1s">
 															<Form.Label>Return</Form.Label>
+															{searchType == 2 ?
 															<div className="date">
 																{/* <i className="fa fa-calendar"> </i>  */}
 																<DatePicker 
@@ -558,7 +419,11 @@ const Home = (props) => {
 																	onChange={handleendChange}
 																	/>
 																	{returnDate_err ? (<i className="err-msg">Return date is required</i>): null}
+															</div> :
+															<div className="date-text">
+															(One way)
 															</div>
+															}
 														</Form.Group>
 													</Col>
 												</Row>
@@ -596,7 +461,7 @@ const Home = (props) => {
 																<Form.Label className="label-dark">Adults</Form.Label>
 																<div className="arrow">
 																	<NumericInput mobile name="adultCount" className="number-input form-control" value={adultCount} min={1} max={9} step={1} onChange={adultChanged}/>
-																	{adults_err ? (<i className="err-msg">Put value between 1-9</i>): null}
+																	{adults_err ? (<i className="err-msg red-err">Put value between 1-9</i>): null}
 																	</div>
 															</Form.Group>
 														</Col>
@@ -610,7 +475,7 @@ const Home = (props) => {
 															<Form.Label className="label-dark">Children</Form.Label>
 															<div className="arrow">
 															<NumericInput mobile name="childCount" className="number-input form-control" value={childCount} min={0} max={9} step={1} onChange={childChanged}/>
-															{child_err ? (<i className="err-msg">Put value between 0-9</i>): null}
+															{child_err ? (<i className="err-msg red-err">Put value between 0-9</i>): null}
 															</div>
 															</Form.Group>
 														</Col>
@@ -646,7 +511,7 @@ const Home = (props) => {
 												</div>
 											</Col>
 											<Col sm={4}>
-												<Button className="form-control search-btnmargin" variant="danger" onClick={flightsforRoundTrip} disabled={fetchLoading}>
+												<Button className="form-control search-btnmargin" variant="danger" onClick={flightDetails} disabled={fetchLoading}>
 												{fetchLoading && (
 													<i
 													className="fa fa-refresh fa-spin"
@@ -660,176 +525,6 @@ const Home = (props) => {
 										</Row>
 									</Col>
 								</Row>
-								{/* --------------------  One way  ----------------------------- */}
-								<Row hidden={!oneway}>
-									<Col md={9} sm={12}>
-										<Row>
-											<Col md={4} sm={6} className="less-padright">
-												<Form.Group controlId="exampleForm.ControlSelect1">
-													<Form.Label>From</Form.Label>
-													<div className="select_box2">
-														<MyAutosuggest
-														id="one-countries1"
-														onChange={onChangeHome}
-														/>
-														{oneway_departure_err ? (<i className="err-msg">Departure Location required</i>): null}
-													</div>
-												</Form.Group>
-												{['checkbox'].map(type => (
-													<div key={`inline-${type}`} className='checkbox-custom'>
-														<div  className="mb-3">
-															<Form.Check name="add_near_airport" inline label="Add Nearby Airports" type={type} id={`inline-${type}-1`} />
-														</div>
-													</div>
-												))}
-											</Col>
-											<Col md={4} sm={6} className="less-padleft less-padright">
-												<Form.Group controlId="exampleForm.ControlSelect1">
-													<Form.Label>To</Form.Label>
-													<div className="select_box2">
-														<MyAutosuggest
-														id="one-countries2"
-														onChange = {onChangeHome}													
-														/>
-														{oneway_arrival_err ? (<i className="err-msg">Arrival Location required</i>): null}
-													</div>
-												</Form.Group>
-												{['checkbox'].map(type => (
-													<div key={`inline-${type}`} className='checkbox-custom'>
-														<div className="mb-3">
-															<Form.Check name="add_near_airport" inline label="Add Nearby Airports" type={type} id={`inline-${type}-1`} />
-														</div>
-													</div>
-												))}
-											</Col>
-											<Col md={4} sm={6}>
-												<Row>
-													<Col sm={6} md={6} className="less-padleft less-padright">
-														<Form.Group controlId="exampleForm.ControlSelect1">
-																<Form.Label>Departure</Form.Label>
-																<div className="date">
-																	{/* <i className="fa fa-calendar"> </i>  */}
-																	<DatePicker 
-																	name="departureDate"
-																	className="form-control" 
-																	showMonthDropdown 
-																	showYearDropdown 
-																	dateFormat="dd/MM/yyyy" 
-																	selected={oneway_departureDate} 
-																	minDate={moment().toDate()}
-																	onChange={oneway_handlestartChange} />
-																	{oneway_departureDate_err ? (<i className="err-msg">Departure date is required</i>): null}
-																</div>
-														</Form.Group>
-													</Col>
-													<Col sm={6} className="less-padleft less-padright">
-														<Form.Group controlId="exampleForm.ControlSelect1s">
-															<Form.Label>Return</Form.Label>
-															<div className="date-text">
-																(One way)
-															</div>
-														</Form.Group>
-													</Col>
-												</Row>
-											</Col>
-										</Row>
-									</Col>
-									<Col md={3} sm={4} className="less-padleft">
-										<Form.Group controlId="exampleForm.ControlSelect1">
-											<Form.Label>Cabin Class & Travellers</Form.Label>
-											<div ref={node} className="traveldet-title">
-											<div onClick={handlepopup} style={{width:'100%'}}>
-											<span className="popup">{oneway_adultCount} Adult, {preferedclassname(oneway_preferedFlightClass)}</span>
-											</div>
-											{popup && (
-												<div className="traveldet-popdown">
-													<Row>
-														<Col md={12} sm={12}>
-														<Form.Label className="label-dark">Cabin class</Form.Label>
-														<span className="" style={{float:'right',color:'#17d8cf'}} onClick={()=>setPopup(false)}><i className="fa fa-times"></i></span>
-															<div className="select_box">
-															<Form.Control as="select" name="oneway_preferedFlightClass" onChange={oneway_changeClass}>
-																<option value="1">Any</option>
-																<option value="2">Business</option>
-																<option value="3">Economy</option>
-																<option value="4">First Class</option>
-																<option value="5">PremiumOrEconomy</option>
-																<option value="6">PremiumAndEconomy</option>
-															</Form.Control>
-															</div>
-														</Col>
-													</Row>
-													<Row>
-														<Col sm={6} xs={6}>
-															<Form.Group controlId="exampleForm.ControlSelect1">
-																<Form.Label className="label-dark">Adults</Form.Label>
-																<div className="arrow">
-																<NumericInput mobile name="oneway_adultCount" className="number-input form-control" value={oneway_adultCount} min={1} max={9} step={1} onChange={oneway_adultChanged}/>
-																{oneway_adults_err ? (<i className="err-msg">Put value between 1-9</i>): null}
-																</div>
-															</Form.Group>
-														</Col>
-														<Col sm={6} xs={6}>
-															<span className="agelimit-text">16+ years</span>
-														</Col>
-													</Row>
-													<Row>
-														<Col sm={6} xs={6}>
-															<Form.Group controlId="exampleForm.ControlSelect1">
-															<Form.Label className="label-dark">Children</Form.Label>
-															<div className="arrow">
-															<NumericInput mobile name="oneway_childCount" className="number-input form-control" value={oneway_childCount} min={0} max={9} step={1} onChange={oneway_childChanged}/>
-															{oneway_child_err ? (<i className="err-msg">Put value between 0-9</i>): null}
-															</div>
-															</Form.Group>
-														</Col>
-														<Col sm={6} xs={6}>
-														<span className="agelimit-text">0-15 years</span>
-														</Col>
-													</Row>
-													<Row>
-														<Col sm={12}>
-														<span className="age-instr">Your age at time of travel must be valid for the age category booked. Airlines have restrictions on under 18s travelling alone.
-														<br/>Age limits and policies fo	r travelling with children may vary so please check with the airline before booking.</span>
-														</Col>
-													</Row>
-													<br/>
-													<Row>
-														<Col sm={12} className="text-right">
-															<span className="label-skyblue" onClick={() => setPopup(false)}>Done</span>
-														</Col>
-													</Row>
-													</div>
-												)}
-											</div>
-										</Form.Group>
-									</Col>
-
-									<Col lg={12} md={12} className="text-center">
-										<Row>
-											<Col sm={8}>
-											<div className='checkbox-custom'>
-												<div className="mb-3 right">
-													<Form.Check name="isDirectFlight" inline label="Direct Flight Only" type="checkbox" id={`inline-check-1`} defaultChecked={isDirectFlight} defaultValue={isDirectFlight} onClick={changedirectFlight}/>
-												</div>
-											</div>
-											</Col>
-											<Col sm={4}>
-											<Button className="form-control search-btnmargin" variant="danger" onClick={flightsforOneway} disabled={fetchLoading}>
-												{fetchLoading && (
-													<i
-													className="fa fa-refresh fa-spin"
-													style={{ marginRight: "5px" }}
-													/>
-												)}
-												{fetchLoading && <span>Please wait!</span>}
-												{!fetchLoading && <span>SEARCH FLIGHTS</span>}
-											</Button>
-											</Col>
-										</Row>
-									</Col>
-								</Row>
-								{/* --------------------  End One way  ----------------------------- */}
 								{/* --------------------  Multicountry  ----------------------------- */}
 								<Row hidden={!multi}>
 									<Col md={4} sm={12}>

@@ -2387,12 +2387,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_24___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_24__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! moment */ "moment");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_25___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_25__);
-/* harmony import */ var react_autosuggest__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! react-autosuggest */ "react-autosuggest");
-/* harmony import */ var react_autosuggest__WEBPACK_IMPORTED_MODULE_26___default = /*#__PURE__*/__webpack_require__.n(react_autosuggest__WEBPACK_IMPORTED_MODULE_26__);
-/* harmony import */ var autosuggest_highlight_match__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! autosuggest-highlight/match */ "autosuggest-highlight/match");
-/* harmony import */ var autosuggest_highlight_match__WEBPACK_IMPORTED_MODULE_27___default = /*#__PURE__*/__webpack_require__.n(autosuggest_highlight_match__WEBPACK_IMPORTED_MODULE_27__);
-/* harmony import */ var autosuggest_highlight_parse__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! autosuggest-highlight/parse */ "autosuggest-highlight/parse");
-/* harmony import */ var autosuggest_highlight_parse__WEBPACK_IMPORTED_MODULE_28___default = /*#__PURE__*/__webpack_require__.n(autosuggest_highlight_parse__WEBPACK_IMPORTED_MODULE_28__);
+/* harmony import */ var react_numeric_input__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! react-numeric-input */ "react-numeric-input");
+/* harmony import */ var react_numeric_input__WEBPACK_IMPORTED_MODULE_26___default = /*#__PURE__*/__webpack_require__.n(react_numeric_input__WEBPACK_IMPORTED_MODULE_26__);
+/* harmony import */ var react_autosuggest__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! react-autosuggest */ "react-autosuggest");
+/* harmony import */ var react_autosuggest__WEBPACK_IMPORTED_MODULE_27___default = /*#__PURE__*/__webpack_require__.n(react_autosuggest__WEBPACK_IMPORTED_MODULE_27__);
+/* harmony import */ var autosuggest_highlight_match__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! autosuggest-highlight/match */ "autosuggest-highlight/match");
+/* harmony import */ var autosuggest_highlight_match__WEBPACK_IMPORTED_MODULE_28___default = /*#__PURE__*/__webpack_require__.n(autosuggest_highlight_match__WEBPACK_IMPORTED_MODULE_28__);
+/* harmony import */ var autosuggest_highlight_parse__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! autosuggest-highlight/parse */ "autosuggest-highlight/parse");
+/* harmony import */ var autosuggest_highlight_parse__WEBPACK_IMPORTED_MODULE_29___default = /*#__PURE__*/__webpack_require__.n(autosuggest_highlight_parse__WEBPACK_IMPORTED_MODULE_29__);
 
 
 
@@ -2407,6 +2409,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _jsxFileName = "D:\\react projects\\flight_ticket\\pages\\ticketBooking.js";
+
 
 
 
@@ -2460,20 +2463,20 @@ function renderSuggestion(suggestion, _ref) {
   var query = _ref.query;
   var suggestionText = "".concat(suggestion.CityName, " - ").concat(suggestion.PlaceName, " (").concat(suggestion.PlaceId, ")");
   var suggestionCountry = "".concat(suggestion.CountryId);
-  var matches = autosuggest_highlight_match__WEBPACK_IMPORTED_MODULE_27___default()(suggestionText, query);
-  var parts = autosuggest_highlight_parse__WEBPACK_IMPORTED_MODULE_28___default()(suggestionText, matches);
+  var matches = autosuggest_highlight_match__WEBPACK_IMPORTED_MODULE_28___default()(suggestionText, query);
+  var parts = autosuggest_highlight_parse__WEBPACK_IMPORTED_MODULE_29___default()(suggestionText, matches);
   return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
     className: 'suggestion-content ' + suggestion.twitter,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 53
+      lineNumber: 54
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
     className: "autocomplete-name",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 54
+      lineNumber: 55
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("img", {
@@ -2483,7 +2486,7 @@ function renderSuggestion(suggestion, _ref) {
     width: "25px",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 55
+      lineNumber: 56
     },
     __self: this
   }), parts.map(function (part, index) {
@@ -2493,21 +2496,21 @@ function renderSuggestion(suggestion, _ref) {
       key: index,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 61
+        lineNumber: 62
       },
       __self: this
     }, part.text);
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 65
+      lineNumber: 66
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("small", {
     className: "country-name",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 65
+      lineNumber: 66
     },
     __self: this
   }, suggestionCountry)));
@@ -2575,7 +2578,7 @@ function (_React$Component) {
         value: value,
         onChange: this.onChange
       };
-      return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_autosuggest__WEBPACK_IMPORTED_MODULE_26___default.a, {
+      return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_autosuggest__WEBPACK_IMPORTED_MODULE_27___default.a, {
         id: id,
         suggestions: suggestions,
         onSuggestionsFetchRequested: this.onSuggestionsFetchRequested,
@@ -2585,7 +2588,7 @@ function (_React$Component) {
         inputProps: inputProps,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 111
+          lineNumber: 112
         },
         __self: this
       });
@@ -2601,8 +2604,9 @@ var TicketBooking = function TicketBooking(flights) {
     var newDate = date1[1] + '-' + date1[0] + '-' + date1[2];
     var date = new Date(newDate);
     return date;
-  }; // State initialisation
+  };
 
+  var node = react__WEBPACK_IMPORTED_MODULE_13___default.a.createRef(); // State initialisation
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(flights.request),
       _useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState, 2),
@@ -2619,65 +2623,127 @@ var TicketBooking = function TicketBooking(flights) {
       flightData = _useState6[0],
       setFlightData = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(requestData.searchType),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(false),
       _useState8 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState7, 2),
-      searchType = _useState8[0],
-      setSearchType = _useState8[1];
+      popup = _useState8[0],
+      setPopup = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(changeMonthDate(requestData.segments[0].departureDate)),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(false),
       _useState10 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState9, 2),
-      departureDate = _useState10[0],
-      setDepartureDate = _useState10[1];
+      fullDrop = _useState10[0],
+      setFullDrop = _useState10[1];
 
-  var _ref5 = requestData.searchType == 2 || searchType == 2 ? Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(changeMonthDate(requestData.segments[0].returnDate)) : Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(null),
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(requestData.searchType),
+      _useState12 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState11, 2),
+      searchType = _useState12[0],
+      setSearchtype = _useState12[1];
+
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(requestData.isDirectFlight),
+      _useState14 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState13, 2),
+      isDirectFlight = _useState14[0],
+      setDirectflight = _useState14[1];
+
+  console.log("Direct flight", isDirectFlight);
+
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(requestData.segments[0].departureLocationCode),
+      _useState16 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState15, 2),
+      departureLocationCode = _useState16[0],
+      setDeparturelocationcode = _useState16[1];
+
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(requestData.segments[0].arrivalLocationCode),
+      _useState18 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState17, 2),
+      arrivalLocationCode = _useState18[0],
+      setArrivallocationcode = _useState18[1];
+
+  var _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(requestData.departureLocationName),
+      _useState20 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState19, 2),
+      departureLocationName = _useState20[0],
+      setDepartureLocationName = _useState20[1];
+
+  var _useState21 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(requestData.arrivalLocationName),
+      _useState22 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState21, 2),
+      arrivalLocationName = _useState22[0],
+      setArrivalLocationName = _useState22[1];
+
+  var _useState23 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(requestData.preferedFlightClass),
+      _useState24 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState23, 2),
+      preferedFlightClass = _useState24[0],
+      setPreferedflightclass = _useState24[1];
+
+  var _useState25 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(changeMonthDate(requestData.segments[0].departureDate)),
+      _useState26 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState25, 2),
+      departureDate = _useState26[0],
+      setDeparturedate = _useState26[1];
+
+  var _ref5 = searchType == 2 ? Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(changeMonthDate(requestData.segments[0].returnDate)) : Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(null),
       _ref6 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_ref5, 2),
       returnDate = _ref6[0],
-      setReturnDate = _ref6[1];
+      setReturndate = _ref6[1];
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(requestData.segments[0].departureLocationCode),
-      _useState12 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState11, 2),
-      departureLocationCode = _useState12[0],
-      setDeparturelocationcode = _useState12[1];
-
-  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(requestData.segments[0].arrivalLocationCode),
-      _useState14 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState13, 2),
-      arrivalLocationCode = _useState14[0],
-      setArrivallocationcode = _useState14[1];
-
-  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(requestData.departureLocationName),
-      _useState16 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState15, 2),
-      departureLocationName = _useState16[0],
-      setDepartureLocationName = _useState16[1];
-
-  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(requestData.arrivalLocationName),
-      _useState18 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState17, 2),
-      arrivalLocationName = _useState18[0],
-      setArrivalLocationName = _useState18[1];
-
-  var _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(false),
-      _useState20 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState19, 2),
-      sortToggler = _useState20[0],
-      setSortToggler = _useState20[1];
-
-  var _useState21 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(false),
-      _useState22 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState21, 2),
-      filterToggler = _useState22[0],
-      setFilterToggler = _useState22[1];
-
-  var _useState23 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])('Best'),
-      _useState24 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState23, 2),
-      sortOption = _useState24[0],
-      setSortOption = _useState24[1];
-
-  var _useState25 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(false),
-      _useState26 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState25, 2),
-      fetchLoading = _useState26[0],
-      setFetchLoading = _useState26[1];
-
-  var _useState27 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(false),
+  var _useState27 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(requestData.adultCount),
       _useState28 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState27, 2),
-      localLoading = _useState28[0],
-      setLocalLoading = _useState28[1];
+      adultCount = _useState28[0],
+      setAdultcount = _useState28[1];
+
+  var _useState29 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(requestData.childCount),
+      _useState30 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState29, 2),
+      childCount = _useState30[0],
+      setchildCount = _useState30[1];
+
+  var _useState31 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(false),
+      _useState32 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState31, 2),
+      departure_err = _useState32[0],
+      setDeparture_err = _useState32[1];
+
+  var _useState33 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(false),
+      _useState34 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState33, 2),
+      arrival_err = _useState34[0],
+      setArrival_err = _useState34[1];
+
+  var _useState35 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(false),
+      _useState36 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState35, 2),
+      adults_err = _useState36[0],
+      setAdults_err = _useState36[1];
+
+  var _useState37 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(false),
+      _useState38 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState37, 2),
+      child_err = _useState38[0],
+      setChild_err = _useState38[1];
+
+  var _useState39 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(false),
+      _useState40 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState39, 2),
+      departureDate_err = _useState40[0],
+      setDeparturedate_err = _useState40[1];
+
+  var _useState41 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(false),
+      _useState42 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState41, 2),
+      returnDate_err = _useState42[0],
+      setReturndate_err = _useState42[1];
+
+  var _useState43 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(false),
+      _useState44 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState43, 2),
+      sortToggler = _useState44[0],
+      setSortToggler = _useState44[1];
+
+  var _useState45 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(false),
+      _useState46 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState45, 2),
+      filterToggler = _useState46[0],
+      setFilterToggler = _useState46[1];
+
+  var _useState47 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])('Best'),
+      _useState48 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState47, 2),
+      sortOption = _useState48[0],
+      setSortOption = _useState48[1];
+
+  var _useState49 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(false),
+      _useState50 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState49, 2),
+      fetchLoading = _useState50[0],
+      setFetchLoading = _useState50[1];
+
+  var _useState51 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(false),
+      _useState52 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState51, 2),
+      localLoading = _useState52[0],
+      setLocalLoading = _useState52[1];
 
   var check_nonstop = jsondata != undefined ? jsondata.filter(function (x) {
     return x.flightLeg[0].flightDetails.stopOvers == '0';
@@ -2760,20 +2826,20 @@ var TicketBooking = function TicketBooking(flights) {
       return3 = _ref24[0],
       setreturn3 = _ref24[1];
 
-  var _useState29 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(''),
-      _useState30 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState29, 2),
-      flightId = _useState30[0],
-      setFlightId = _useState30[1];
+  var _useState53 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(''),
+      _useState54 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState53, 2),
+      flightId = _useState54[0],
+      setFlightId = _useState54[1];
 
-  var _useState31 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(''),
-      _useState32 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState31, 2),
-      airlineName = _useState32[0],
-      setAirlineName = _useState32[1];
+  var _useState55 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(''),
+      _useState56 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState55, 2),
+      airlineName = _useState56[0],
+      setAirlineName = _useState56[1];
 
-  var _useState33 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(true),
-      _useState34 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState33, 2),
-      airlinesCheck = _useState34[0],
-      setAirlinesCheck = _useState34[1];
+  var _useState57 = Object(react__WEBPACK_IMPORTED_MODULE_13__["useState"])(true),
+      _useState58 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__["default"])(_useState57, 2),
+      airlinesCheck = _useState58[0],
+      setAirlinesCheck = _useState58[1];
 
   console.log(jsondata);
 
@@ -2937,19 +3003,7 @@ var TicketBooking = function TicketBooking(flights) {
         "arrivalLocationName": requestData.arrivalLocationName
       }
     });
-  }; // const GetSortOrder = (prop) => {  
-  //     return function(a, b) {  
-  //         var aVal = a[prop], bVal = b[prop]
-  //         console.log(aVal," --- ",bVal);
-  //         if (aVal > bVal) {  
-  //             return 1;  
-  //         } else if (aVal < bVal) {  
-  //             return -1;  
-  //         }  
-  //         return 0;  
-  //     }  
-  // }  
-
+  };
 
   var handleSortOptions = function handleSortOptions(e) {
     setSortOption(e.target.value);
@@ -3714,7 +3768,65 @@ var TicketBooking = function TicketBooking(flights) {
     return _filterreturn3.apply(this, arguments);
   }
 
-  var onChangeHome = function onChangeHome(id, suggestion, value) {
+  var handleRadio = function handleRadio(e) {
+    console.log(e.target.value);
+    setSearchtype(e.target.value);
+  };
+
+  var handleendChange = function handleendChange(date) {
+    setReturndate(date);
+  };
+
+  var handlestartChange = function handlestartChange(date) {
+    setDeparturedate(date);
+    setReturndate(date);
+  };
+
+  var changedirectFlight = function changedirectFlight() {
+    setDirectflight(!isDirectFlight);
+  };
+
+  var changeClass = function changeClass(e) {
+    setPreferedflightclass(e.target.value);
+  };
+
+  var adultChanged = function adultChanged(e) {
+    if (e <= 9) {
+      setAdults_err(false);
+      setAdultcount(e);
+    } else {
+      setAdults_err(true);
+      setAdultcount(1);
+    }
+  };
+
+  var childChanged = function childChanged(e) {
+    if (e <= 9) {
+      setChild_err(false);
+      setchildCount(e);
+    } else {
+      setChild_err(true);
+      setchildCount(0);
+    }
+  }; //   Dropdown
+
+
+  Object(react__WEBPACK_IMPORTED_MODULE_13__["useEffect"])(function () {
+    document.addEventListener("click", handleOutsideClick);
+    document.removeEventListener("click", handleOutsideClick);
+  });
+
+  var handlepopup = function handlepopup() {
+    setPopup(!popup);
+  };
+
+  var handleOutsideClick = function handleOutsideClick(e) {
+    if (node.current && node.current.contains(event.target)) {
+      setPopup(false);
+    }
+  };
+
+  var onChangeLocation = function onChangeLocation(id, suggestion, value) {
     if (id == "countries1") {
       var suggestion = suggestion.trim();
       setDepartureLocationName(suggestion);
@@ -3740,7 +3852,7 @@ var TicketBooking = function TicketBooking(flights) {
     _localSearch = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])(
     /*#__PURE__*/
     _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee11() {
-      var request, localreq, response, json, check_nonstop, check_onestop, check_twostop, check_departure1, check_departure2, check_departure3, check_return1, check_return2, check_return3;
+      var request, localreq, response, json;
       return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee11$(_context11) {
         while (1) {
           switch (_context11.prev = _context11.next) {
@@ -3748,20 +3860,20 @@ var TicketBooking = function TicketBooking(flights) {
               setFetchLoading(true);
               setLocalLoading(true);
               request = {
-                "adultCount": requestData.adultCount,
-                "childCount": requestData.childCount,
-                "infantCount": requestData.infantCount,
-                "isDirectFlight": requestData.isDirectFlight,
+                "adultCount": adultCount,
+                "childCount": childCount,
+                "infantCount": "0",
+                "isDirectFlight": isDirectFlight,
                 "isPlusOrMinus3Days": requestData.isPlusOrMinus3Days,
                 "searchType": searchType,
-                "preferedFlightClass": requestData.preferedFlightClass,
+                "preferedFlightClass": preferedFlightClass,
                 "segments": [{
                   "departureLocationCode": departureLocationCode,
                   "departureDate": dateformat__WEBPACK_IMPORTED_MODULE_19___default()(departureDate, "dd-mm-yyyy"),
                   "arrivalLocationCode": arrivalLocationCode,
-                  "returnDate": requestData.searchType == 2 ? dateformat__WEBPACK_IMPORTED_MODULE_19___default()(returnDate, "dd-mm-yyyy") : null,
+                  "returnDate": searchType == 2 ? dateformat__WEBPACK_IMPORTED_MODULE_19___default()(returnDate, "dd-mm-yyyy") : null,
                   "departureTime": requestData.segments[0].departureTime,
-                  "returnTime": requestData.searchType == 2 ? requestData.segments[0].returnTime : null
+                  "returnTime": searchType == 2 ? requestData.segments[0].returnTime : null
                 }],
                 "paging": {
                   "PageIndex": requestData.paging.PageIndex,
@@ -3769,22 +3881,22 @@ var TicketBooking = function TicketBooking(flights) {
                 }
               };
               localreq = {
-                "adultCount": requestData.adultCount,
-                "childCount": requestData.childCount,
+                "adultCount": adultCount,
+                "childCount": childCount,
                 "infantCount": requestData.infantCount,
-                "isDirectFlight": requestData.isDirectFlight,
+                "isDirectFlight": isDirectFlight,
                 "isPlusOrMinus3Days": requestData.isPlusOrMinus3Days,
                 "searchType": searchType,
-                "preferedFlightClass": requestData.preferedFlightClass,
-                "departureLocationName": requestData.departureLocationName,
-                "arrivalLocationName": requestData.arrivalLocationName,
+                "preferedFlightClass": preferedFlightClass,
+                "departureLocationName": departureLocationName,
+                "arrivalLocationName": arrivalLocationName,
                 "segments": [{
                   "departureLocationCode": departureLocationCode,
                   "departureDate": dateformat__WEBPACK_IMPORTED_MODULE_19___default()(departureDate, "dd-mm-yyyy"),
                   "arrivalLocationCode": arrivalLocationCode,
-                  "returnDate": requestData.searchType == 2 ? dateformat__WEBPACK_IMPORTED_MODULE_19___default()(returnDate, "dd-mm-yyyy") : null,
+                  "returnDate": searchType == 2 ? dateformat__WEBPACK_IMPORTED_MODULE_19___default()(returnDate, "dd-mm-yyyy") : null,
                   "departureTime": requestData.segments[0].departureTime,
-                  "returnTime": requestData.searchType == 2 ? requestData.segments[0].returnTime : null
+                  "returnTime": searchType == 2 ? requestData.segments[0].returnTime : null
                 }],
                 "paging": {
                   "PageIndex": requestData.paging.PageIndex,
@@ -3802,48 +3914,31 @@ var TicketBooking = function TicketBooking(flights) {
 
             case 10:
               json = _context11.sent;
-              setLocalLoading(false);
-              setFetchLoading(false);
+              console.log(json);
               setJsondata(json.data.recommendation);
+              console.log("local JSON: ", jsondata);
               setFlightData(json.data.recommendation);
-              check_nonstop = jsondata != undefined ? jsondata.filter(function (x) {
-                return x.flightLeg[0].flightDetails.stopOvers == '0';
-              }).length : 0;
-              setnonstop(check_nonstop > 0 ? true : false);
-              check_onestop = jsondata != undefined ? jsondata.filter(function (x) {
-                return x.flightLeg[0].flightDetails.stopOvers == '1';
-              }).length : 0;
-              setonestop(check_onestop > 0 ? true : false);
-              check_twostop = jsondata != undefined ? jsondata.filter(function (x) {
-                return x.flightLeg[0].flightDetails.stopOvers == '2';
-              }).length : 0;
-              settwostop(check_twostop > 0 ? true : false);
-              check_departure1 = jsondata != undefined ? jsondata.filter(function (x) {
-                return x.flightLeg[0].flightDetails.departureTime >= 600 && x.flightLeg[0].flightDetails.departureTime <= 1200;
-              }).length : 0;
-              setdeparture1(check_departure1 > 0 ? true : false);
-              check_departure2 = jsondata != undefined ? jsondata.filter(function (x) {
-                return x.flightLeg[0].flightDetails.departureTime >= 1800;
-              }).length : 0;
-              setdeparture2(check_departure2 > 0 ? true : false);
-              check_departure3 = jsondata != undefined ? jsondata.filter(function (x) {
-                return x.flightLeg[0].flightDetails.departureTime >= 1200 && x.flightLeg[0].flightDetails.departureTime <= 1800;
-              }).length : 0;
-              setdeparture3(check_departure3 > 0 ? true : false);
-              check_return1 = jsondata != undefined ? requestData.searchType == 2 ? jsondata.filter(function (x) {
-                return x.flightLeg[1].flightDetails.departureTime >= 600 && x.flightLeg[0].flightDetails.departureTime <= 1200;
-              }).length : null : 0;
-              setreturn1(check_return1 > 0 ? true : false);
-              check_return2 = jsondata != undefined ? requestData.searchType == 2 ? jsondata.filter(function (x) {
-                return x.flightLeg[1].flightDetails.departureTime >= 1800;
-              }).length : null : 0;
-              setreturn2(check_return2 > 0 ? true : false);
-              check_return3 = jsondata != undefined ? requestData.searchType == 2 ? jsondata.filter(function (x) {
-                return x.flightLeg[1].flightDetails.departureTime >= 1200 && x.flightLeg[0].flightDetails.departureTime <= 1800;
-              }).length : null : 0;
-              setreturn3(check_return3 > 0 ? true : false);
+              setLocalLoading(false);
+              setFetchLoading(false); //     var check_nonstop = jsondata!= undefined ? (jsondata.filter(x => x.flightLeg[0].flightDetails.stopOvers == '0').length) : 0;
+              //    setnonstop(check_nonstop>0 ? true : false);
+              //     var check_onestop = jsondata!= undefined ? (jsondata.filter(x => x.flightLeg[0].flightDetails.stopOvers == '1').length) : 0;
+              //     setonestop(check_onestop>0 ? true : false);
+              //     var check_twostop = jsondata!= undefined ? (jsondata.filter(x => x.flightLeg[0].flightDetails.stopOvers == '2').length) : 0;
+              //     settwostop(check_twostop>0 ? true : false);
+              //     var check_departure1 = jsondata!= undefined ? (jsondata.filter(x => x.flightLeg[0].flightDetails.departureTime >= 600 && x.flightLeg[0].flightDetails.departureTime <= 1200).length) : 0;
+              //     setdeparture1(check_departure1>0 ? true: false);
+              //     var check_departure2 = jsondata!= undefined ? (jsondata.filter(x => x.flightLeg[0].flightDetails.departureTime >= 1800).length) : 0;
+              //     setdeparture2(check_departure2>0 ? true : false);
+              //     var check_departure3 = jsondata!= undefined ? (jsondata.filter(x => x.flightLeg[0].flightDetails.departureTime >= 1200 && x.flightLeg[0].flightDetails.departureTime <= 1800).length) : 0;
+              //     setdeparture3(check_departure3>0 ? true : false);
+              //     var check_return1 = jsondata!= undefined ? (requestData.searchType == 2 ? (jsondata.filter(x => x.flightLeg[1].flightDetails.departureTime >= 600 && x.flightLeg[0].flightDetails.departureTime <= 1200).length) : null) : 0;
+              //     setreturn1(check_return1>0 ? true : false);
+              //     var check_return2 = jsondata!= undefined ? (requestData.searchType == 2 ? (jsondata.filter(x => x.flightLeg[1].flightDetails.departureTime >= 1800).length) : null):0;
+              //     setreturn2(check_return2>0 ? true : false);
+              //     var check_return3 = jsondata!= undefined ? (requestData.searchType == 2 ? (jsondata.filter(x => x.flightLeg[1].flightDetails.departureTime >= 1200 && x.flightLeg[0].flightDetails.departureTime <= 1800).length) : null) : 0;
+              //     setreturn3(check_return3>0 ? true : false);                   
 
-            case 33:
+            case 17:
             case "end":
               return _context11.stop();
           }
@@ -3861,28 +3956,28 @@ var TicketBooking = function TicketBooking(flights) {
   return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(_components_layout__WEBPACK_IMPORTED_MODULE_14__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 771
+      lineNumber: 840
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "container-fluid",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 772
+      lineNumber: 841
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "bg-img",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 773
+      lineNumber: 842
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     className: "margin-0",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 774
+      lineNumber: 843
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -3892,398 +3987,850 @@ var TicketBooking = function TicketBooking(flights) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 775
+      lineNumber: 844
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "passanger-details",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 776
+      lineNumber: 845
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
+    className: "passanger-static",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 777
+      lineNumber: 846
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
-    xl: 3,
-    lg: 4,
-    md: 6,
     sm: 8,
-    xs: 9,
-    className: "pad-6",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 778
+      lineNumber: 847
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("i", {
+    className: "fa fa-search search-circle",
+    onClick: function onClick() {
+      return setFullDrop(!fullDrop);
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 848
+    },
+    __self: this
+  }), departureLocationName, " \xA0\xA0- \xA0\xA0", arrivalLocationName, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 850
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("small", {
+    style: {
+      position: 'absolute',
+      left: '70px',
+      top: '32px'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 850
+    },
+    __self: this
+  }, adultCount, " traveller \xA0\xA0| \xA0\xA0", preferedclassname(preferedFlightClass))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
+    sm: 4,
+    className: "text-right",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 852
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("img", {
+    className: "img_calendar",
+    src: "static/images/calendar.svg",
+    width: "25",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 853
+    },
+    __self: this
+  }), "\xA0\xA0", dateformat__WEBPACK_IMPORTED_MODULE_19___default()(departureDate, "ddd d,yyyy"), " \xA0\xA0", searchType == 2 ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 855
+    },
+    __self: this
+  }, "- \xA0\xA0", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("img", {
+    className: "img_calendar",
+    src: "static/images/calendar.svg",
+    width: "25",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 856
+    },
+    __self: this
+  }), "\xA0\xA0", dateformat__WEBPACK_IMPORTED_MODULE_19___default()(returnDate, "ddd d,yyyy"), " ") : null)), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+    hidden: !fullDrop,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 861
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 862
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
+    className: "fulldrop-panel",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 779
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
-    sm: 5,
-    xs: 5,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 780
+      lineNumber: 863
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-    className: "passanger-class",
+    className: "mb-3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 781
+      lineNumber: 864
     },
     __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("small", {
-    className: "pink-text absl-text",
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
+    name: "searchType",
+    defaultValue: "1",
+    className: "radio_btn",
+    inline: true,
+    label: "One Way",
+    type: "radio",
+    defaultChecked: searchType == '1',
+    onClick: handleRadio,
+    id: "inline-radio-2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 782
+      lineNumber: 865
     },
     __self: this
-  }, "TRIP TYPE"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Control, {
-    className: "trip_select",
+  }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
+    name: "searchType",
+    defaultValue: "2",
+    className: "radio_btn",
+    inline: true,
+    label: "Round Trip",
+    defaultChecked: searchType == '2',
+    type: "radio",
+    onClick: handleRadio,
+    id: "inline-radio-1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 866
+    },
+    __self: this
+  }))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
+    style: {
+      color: 'white'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 870
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
+    md: 9,
+    sm: 12,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 871
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 872
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
+    md: 4,
+    sm: 6,
+    className: "less-padright",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 873
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Group, {
+    controlId: "exampleForm.ControlSelect1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 874
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Label, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 875
+    },
+    __self: this
+  }, "From"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+    className: "select_box2",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 876
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(MyAutosuggest, {
+    id: "countries1",
+    onChange: onChangeLocation,
+    value: departureLocationName,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 877
+    },
+    __self: this
+  }), departure_err ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("i", {
+    className: "err-msg",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 882
+    },
+    __self: this
+  }, "Departure Location required") : null)), ['checkbox'].map(function (type) {
+    return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+      key: "inline-".concat(type),
+      className: "checkbox-custom",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 886
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+      className: "mb-3",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 887
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
+      name: "add_near_airport",
+      inline: true,
+      label: "Add Nearby Airports",
+      type: type,
+      id: "inline-".concat(type, "-1"),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 888
+      },
+      __self: this
+    })));
+  })), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
+    md: 4,
+    sm: 6,
+    className: "less-padleft less-padright",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 893
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Group, {
+    controlId: "exampleForm.ControlSelect1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 894
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Label, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 895
+    },
+    __self: this
+  }, "To"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+    className: "select_box2",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 896
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(MyAutosuggest, {
+    id: "countries2",
+    onChange: onChangeLocation,
+    value: arrivalLocationName,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 897
+    },
+    __self: this
+  }), arrival_err ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("i", {
+    className: "err-msg",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 902
+    },
+    __self: this
+  }, "Arrival Location required") : null)), ['checkbox'].map(function (type) {
+    return react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+      key: "inline-".concat(type),
+      className: "checkbox-custom",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 906
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+      className: "mb-3",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 907
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
+      name: "add_near_airport",
+      inline: true,
+      label: "Add Nearby Airports",
+      type: type,
+      id: "inline-".concat(type, "-1"),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 908
+      },
+      __self: this
+    })));
+  })), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
+    md: 4,
+    sm: 6,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 913
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 914
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
+    sm: 6,
+    md: 6,
+    className: "less-padleft less-padright",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 915
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Group, {
+    controlId: "exampleForm.ControlSelect1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 916
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Label, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 917
+    },
+    __self: this
+  }, "Departure"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+    className: "date",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 918
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_datepicker__WEBPACK_IMPORTED_MODULE_16___default.a, {
+    name: "departureDate",
+    className: "form-control",
+    showMonthDropdown: true,
+    showYearDropdown: true,
+    dateFormat: "dd/MM/yyyy",
+    selected: departureDate,
+    minDate: moment__WEBPACK_IMPORTED_MODULE_25___default()().toDate(),
+    onChange: handlestartChange,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 920
+    },
+    __self: this
+  }), departureDate_err ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("i", {
+    className: "err-msg",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 929
+    },
+    __self: this
+  }, "Departure date is required") : null))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
+    sm: 6,
+    className: "less-padleft less-padright",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 933
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Group, {
+    controlId: "exampleForm.ControlSelect1s",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 934
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Label, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 935
+    },
+    __self: this
+  }, "Return"), searchType == 2 ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+    className: "date",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 937
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_datepicker__WEBPACK_IMPORTED_MODULE_16___default.a, {
+    name: "returnDate",
+    className: "form-control",
+    dateFormat: "dd/MM/yyyy",
+    showMonthDropdown: true,
+    showYearDropdown: true,
+    selected: returnDate,
+    minDate: new Date(departureDate),
+    onChange: handleendChange,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 939
+    },
+    __self: this
+  }), returnDate_err ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("i", {
+    className: "err-msg",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 949
+    },
+    __self: this
+  }, "Return date is required") : null) : react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+    className: "date-text",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 951
+    },
+    __self: this
+  }, "(One way)"))))))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
+    md: 3,
+    sm: 4,
+    className: "less-padleft",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 961
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Group, {
+    controlId: "exampleForm.ControlSelect1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 962
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Label, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 963
+    },
+    __self: this
+  }, "Cabin Class & Travellers"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+    ref: node,
+    className: "traveldet-title",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 964
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+    onClick: handlepopup,
+    style: {
+      width: '100%'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 965
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
+    className: "popup",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 966
+    },
+    __self: this
+  }, adultCount, " Adult, ", preferedclassname(preferedFlightClass))), popup && react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+    className: "traveldet-popdown",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 969
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 970
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
+    md: 12,
+    sm: 12,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 971
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Label, {
+    className: "label-dark",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 972
+    },
+    __self: this
+  }, "Cabin class"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
+    className: "",
+    style: {
+      "float": 'right',
+      color: '#17d8cf'
+    },
+    onClick: function onClick() {
+      return setPopup(false);
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 973
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("i", {
+    className: "fa fa-times",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 973
+    },
+    __self: this
+  })), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+    className: "select_box",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 974
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Control, {
     as: "select",
-    defaultValue: searchType,
-    onChange: changeSearchType,
+    name: "oneway_preferedFlightClass",
+    onChange: changeClass,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 783
+      lineNumber: 975
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("option", {
     value: "1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 784
+      lineNumber: 976
     },
     __self: this
-  }, "One Way"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("option", {
+  }, "Any"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("option", {
     value: "2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 785
+      lineNumber: 977
     },
     __self: this
-  }, "Round Trip"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("option", {
+  }, "Business"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("option", {
     value: "3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 786
+      lineNumber: 978
     },
     __self: this
-  }, "Multi-city")), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("i", {
-    className: "fa fa-sort-desc",
-    "aria-hidden": "true",
+  }, "Economy"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("option", {
+    value: "4",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 788
+      lineNumber: 979
     },
     __self: this
-  }))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
-    sm: 7,
-    xs: 7,
+  }, "First Class"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("option", {
+    value: "5",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 791
+      lineNumber: 980
+    },
+    __self: this
+  }, "PremiumOrEconomy"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("option", {
+    value: "6",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 981
+    },
+    __self: this
+  }, "PremiumAndEconomy"))))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 986
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
+    sm: 6,
+    xs: 6,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 987
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Group, {
+    controlId: "exampleForm.ControlSelect1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 988
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Label, {
+    className: "label-dark",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 989
+    },
+    __self: this
+  }, "Adults"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+    className: "arrow",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 990
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_numeric_input__WEBPACK_IMPORTED_MODULE_26___default.a, {
+    mobile: true,
+    name: "adultCount",
+    className: "number-input form-control",
+    value: adultCount,
+    min: 1,
+    max: 9,
+    step: 1,
+    onChange: adultChanged,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 991
+    },
+    __self: this
+  }), adults_err ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("i", {
+    className: "err-msg red-err",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 992
+    },
+    __self: this
+  }, "Put value between 1-9") : null))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
+    sm: 6,
+    xs: 6,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 996
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
+    className: "agelimit-text",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 997
+    },
+    __self: this
+  }, "16+ years"))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1000
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
+    sm: 6,
+    xs: 6,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1001
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Group, {
+    controlId: "exampleForm.ControlSelect1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1002
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Label, {
+    className: "label-dark",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1003
+    },
+    __self: this
+  }, "Children"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+    className: "arrow",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1004
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_numeric_input__WEBPACK_IMPORTED_MODULE_26___default.a, {
+    mobile: true,
+    name: "childCount",
+    className: "number-input form-control",
+    value: childCount,
+    min: 0,
+    max: 9,
+    step: 1,
+    onChange: childChanged,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1005
+    },
+    __self: this
+  }), child_err ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("i", {
+    className: "err-msg red-err",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1006
+    },
+    __self: this
+  }, "Put value between 0-9") : null))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
+    sm: 6,
+    xs: 6,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1010
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
+    className: "agelimit-text",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1011
+    },
+    __self: this
+  }, "0-15 years"))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1014
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
+    sm: 12,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1015
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
+    className: "age-instr",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1016
+    },
+    __self: this
+  }, "Your age at time of travel must be valid for the age category booked. Airlines have restrictions on under 18s travelling alone.", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1017
+    },
+    __self: this
+  }), "Age limits and policies fo r travelling with children may vary so please check with the airline before booking."))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1020
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1021
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
+    sm: 12,
+    className: "text-right",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1022
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
+    className: "label-skyblue",
+    onClick: function onClick() {
+      return setPopup(false);
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1023
+    },
+    __self: this
+  }, "Done"))))))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
+    lg: 12,
+    md: 12,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1032
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1033
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
+    sm: 8,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1034
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-    className: "passanger-class",
+    className: "checkbox-custom",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 792
+      lineNumber: 1035
     },
     __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("small", {
-    className: "pink-text absl-text",
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+    className: "mb-3 right",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 793
+      lineNumber: 1036
     },
     __self: this
-  }, "Passanger & Class"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
+    name: "isDirectFlight",
+    inline: true,
+    label: "Direct Flight Only",
+    type: "checkbox",
+    defaultChecked: isDirectFlight,
+    value: isDirectFlight,
+    onClick: changedirectFlight,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 794
+      lineNumber: 1038
     },
     __self: this
-  }, requestData.adultCount, " Adult, ", preferedclassname(requestData.preferedFlightClass)))))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
-    xl: 9,
-    lg: 8,
-    md: 6,
+  })))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
     sm: 4,
-    xs: 3,
-    className: "pad-6",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 801
+      lineNumber: 1042
     },
     __self: this
-  })), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 804
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
-    sm: 12,
-    md: 12,
-    lg: 6,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 805
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 806
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
-    md: 6,
-    sm: 6,
-    xs: 12,
-    className: "pad-6",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 807
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Group, {
-    className: "auto_countries",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 808
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["InputGroup"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 809
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["InputGroup"].Prepend, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 810
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["InputGroup"].Text, {
-    id: "inputGroupPrepend",
-    className: "bluebg-igroup",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 811
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("i", {
-    className: "fa fa-map-marker",
-    "aria-hidden": "true",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 811
-    },
-    __self: this
-  }))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(MyAutosuggest, {
-    id: "countries1",
-    onChange: onChangeHome,
-    value: departureLocationName,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 813
-    },
-    __self: this
-  }))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("i", {
-    className: "fa fa-exchange",
-    "aria-hidden": "true",
-    onClick: changePlace,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 816
-    },
-    __self: this
-  })), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
-    md: 6,
-    sm: 6,
-    xs: 12,
-    className: "pad-6",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 818
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Group, {
-    className: "auto_countries",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 819
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["InputGroup"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 820
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["InputGroup"].Prepend, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 821
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["InputGroup"].Text, {
-    id: "inputGroupPrepend",
-    className: "bluebg-igroup",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 822
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("i", {
-    className: "fa fa-map-marker",
-    "aria-hidden": "true",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 822
-    },
-    __self: this
-  }))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(MyAutosuggest, {
-    id: "countries2",
-    onChange: onChangeHome,
-    value: arrivalLocationName,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 824
-    },
-    __self: this
-  })))))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
-    sm: 12,
-    md: 12,
-    lg: 6,
-    className: "padding-col",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 830
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 831
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
-    lg: 8,
-    md: 8,
-    sm: 9,
-    xs: 12,
-    className: "pad-6",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 832
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-    className: "dis_flex",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 833
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-    className: "calendar",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 834
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("img", {
-    className: "img_calendar",
-    src: "static/images/calendar.svg",
-    width: "25",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 835
-    },
-    __self: this
-  }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_datepicker__WEBPACK_IMPORTED_MODULE_16___default.a, {
-    name: "departureDate",
-    className: "form-control",
-    showMonthDropdown: true,
-    showYearDropdown: true,
-    dateFormat: "eee, MMM d",
-    selected: departureDate,
-    minDate: moment__WEBPACK_IMPORTED_MODULE_25___default()().toDate(),
-    onChange: handleChange,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 836
-    },
-    __self: this
-  }), searchType == 2 ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
-    className: "separt",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 845
-    },
-    __self: this
-  }, " | ") : null), searchType == 2 ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
-    className: "calendar",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 848
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("img", {
-    className: "img_calendar",
-    src: "static/images/calendar.svg",
-    width: "25",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 849
-    },
-    __self: this
-  }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_datepicker__WEBPACK_IMPORTED_MODULE_16___default.a, {
-    name: "returnDate",
-    className: "form-control",
-    showMonthDropdown: true,
-    showYearDropdown: true,
-    dateFormat: "eee, MMM d",
-    selected: returnDate,
-    minDate: new Date(departureDate),
-    onChange: handleChange1,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 850
-    },
-    __self: this
-  })) : null)), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
-    lg: 4,
-    md: 4,
-    sm: 3,
-    xs: 12,
-    className: "pad-6",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 862
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("button", {
-    className: "btn-search",
-    onClick: localSearch,
+  }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Button"], {
+    className: "form-control search-btnmargin",
+    variant: "danger",
     disabled: fetchLoading,
+    onClick: localSearch,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 864
+      lineNumber: 1043
     },
     __self: this
   }, fetchLoading && react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("i", {
@@ -4293,40 +4840,40 @@ var TicketBooking = function TicketBooking(flights) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 866
+      lineNumber: 1045
     },
     __self: this
   }), fetchLoading && react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 871
+      lineNumber: 1050
     },
     __self: this
   }, "Please wait!"), !fetchLoading && react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 872
+      lineNumber: 1051
     },
     __self: this
-  }, "SEARCH")))))))))), jsondata != undefined ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+  }, "SEARCH FLIGHTS")))))))))))), jsondata != undefined ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "mobile-filterscreen",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 885
+      lineNumber: 1066
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "visible-xs filter-mobile",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 886
+      lineNumber: 1067
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     className: "filtering-row",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 887
+      lineNumber: 1068
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -4336,7 +4883,7 @@ var TicketBooking = function TicketBooking(flights) {
     className: "text-center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 891
+      lineNumber: 1072
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
@@ -4344,40 +4891,40 @@ var TicketBooking = function TicketBooking(flights) {
     className: "mob-togglehead",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 892
+      lineNumber: 1073
     },
     __self: this
   }, "Filter ")))), filterToggler ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "datas",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 898
+      lineNumber: 1079
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 899
+      lineNumber: 1080
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
     xs: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 900
+      lineNumber: 1081
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 901
+      lineNumber: 1082
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
     className: "bold-text",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 902
+      lineNumber: 1083
     },
     __self: this
   }, "Filter by:"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Button"], {
@@ -4392,59 +4939,59 @@ var TicketBooking = function TicketBooking(flights) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 903
+      lineNumber: 1084
     },
     __self: this
   }, "Done")), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 905
+      lineNumber: 1086
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 906
+      lineNumber: 1087
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
     xs: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 907
+      lineNumber: 1088
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     className: "small_txt",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 908
+      lineNumber: 1089
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("b", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 909
+      lineNumber: 1090
     },
     __self: this
   }, "Stops")), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 912
+      lineNumber: 1093
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
     xs: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 913
+      lineNumber: 1094
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "checkbox-custom",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 914
+      lineNumber: 1095
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
@@ -4456,7 +5003,7 @@ var TicketBooking = function TicketBooking(flights) {
     defaultChecked: nonstop,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 915
+      lineNumber: 1096
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
@@ -4468,7 +5015,7 @@ var TicketBooking = function TicketBooking(flights) {
     defaultChecked: onestop,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 916
+      lineNumber: 1097
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
@@ -4480,54 +5027,54 @@ var TicketBooking = function TicketBooking(flights) {
     defaultChecked: twostop,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 917
+      lineNumber: 1098
     },
     __self: this
   }))))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
     xs: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 922
+      lineNumber: 1103
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     className: "small_txt",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 923
+      lineNumber: 1104
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("b", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 924
+      lineNumber: 1105
     },
     __self: this
   }, "Departure from ", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
     className: "filter-cname",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 924
+      lineNumber: 1105
     },
     __self: this
   }, filtercname(requestData.departureLocationName)))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 927
+      lineNumber: 1108
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
     xs: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 928
+      lineNumber: 1109
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "checkbox-custom",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 929
+      lineNumber: 1110
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
@@ -4538,7 +5085,7 @@ var TicketBooking = function TicketBooking(flights) {
     defaultChecked: departure1,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 930
+      lineNumber: 1111
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
@@ -4549,7 +5096,7 @@ var TicketBooking = function TicketBooking(flights) {
     defaultChecked: departure2,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 931
+      lineNumber: 1112
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
@@ -4560,54 +5107,54 @@ var TicketBooking = function TicketBooking(flights) {
     defaultChecked: departure3,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 932
+      lineNumber: 1113
     },
     __self: this
   }))))), requestData.searchType == 2 ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
     xs: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 938
+      lineNumber: 1119
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     className: "small_txt",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 939
+      lineNumber: 1120
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("b", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 940
+      lineNumber: 1121
     },
     __self: this
   }, "Departure from ", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
     className: "filter-cname",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 940
+      lineNumber: 1121
     },
     __self: this
   }, filtercname(requestData.arrivalLocationName)))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 943
+      lineNumber: 1124
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
     xs: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 944
+      lineNumber: 1125
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "checkbox-custom",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 945
+      lineNumber: 1126
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
@@ -4618,7 +5165,7 @@ var TicketBooking = function TicketBooking(flights) {
     defaultChecked: return1,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 946
+      lineNumber: 1127
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
@@ -4629,7 +5176,7 @@ var TicketBooking = function TicketBooking(flights) {
     defaultChecked: return2,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 947
+      lineNumber: 1128
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
@@ -4640,73 +5187,73 @@ var TicketBooking = function TicketBooking(flights) {
     defaultChecked: return3,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 948
+      lineNumber: 1129
     },
     __self: this
   }))))) : null)), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
     xs: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 955
+      lineNumber: 1136
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 956
+      lineNumber: 1137
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
     xs: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 957
+      lineNumber: 1138
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     className: "small_txt",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 958
+      lineNumber: 1139
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("b", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 959
+      lineNumber: 1140
     },
     __self: this
   }, "Airlines"))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
     xs: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 962
+      lineNumber: 1143
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 963
+      lineNumber: 1144
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
     xs: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 964
+      lineNumber: 1145
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "checkbox-custom",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 965
+      lineNumber: 1146
     },
     __self: this
   }, total_response > 0 && jsondata != undefined ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 967
+      lineNumber: 1148
     },
     __self: this
   }, uniqueAirlines().map(function (airname) {
@@ -4722,7 +5269,7 @@ var TicketBooking = function TicketBooking(flights) {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 967
+        lineNumber: 1148
       },
       __self: this
     });
@@ -4730,7 +5277,7 @@ var TicketBooking = function TicketBooking(flights) {
     className: "text-center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 981
+      lineNumber: 1162
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("img", {
@@ -4739,39 +5286,39 @@ var TicketBooking = function TicketBooking(flights) {
     width: "100",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 981
+      lineNumber: 1162
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 981
+      lineNumber: 1162
     },
     __self: this
   }), "Loading") : react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 981
+      lineNumber: 1162
     },
     __self: this
   }, jsondata !== undefined ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "filter-data",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 983
+      lineNumber: 1164
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "container-fluid",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 984
+      lineNumber: 1165
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 985
+      lineNumber: 1166
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -4781,13 +5328,13 @@ var TicketBooking = function TicketBooking(flights) {
     xl: 10,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 986
+      lineNumber: 1167
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 987
+      lineNumber: 1168
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -4796,27 +5343,27 @@ var TicketBooking = function TicketBooking(flights) {
     className: "hidden-xs",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 989
+      lineNumber: 1170
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "filter_Set",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 990
+      lineNumber: 1171
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     className: "small_txt",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 991
+      lineNumber: 1172
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("b", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 992
+      lineNumber: 1173
     },
     __self: this
   }, "Stops"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("small", {
@@ -4826,27 +5373,27 @@ var TicketBooking = function TicketBooking(flights) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 993
+      lineNumber: 1174
     },
     __self: this
   })), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 998
+      lineNumber: 1179
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
     xs: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 999
+      lineNumber: 1180
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "checkbox-custom",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1000
+      lineNumber: 1181
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
@@ -4858,7 +5405,7 @@ var TicketBooking = function TicketBooking(flights) {
     defaultChecked: nonstop,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1001
+      lineNumber: 1182
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
@@ -4870,7 +5417,7 @@ var TicketBooking = function TicketBooking(flights) {
     defaultChecked: onestop,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1002
+      lineNumber: 1183
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
@@ -4882,34 +5429,34 @@ var TicketBooking = function TicketBooking(flights) {
     defaultChecked: twostop,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1003
+      lineNumber: 1184
     },
     __self: this
   }))))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "filter_Set",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1008
+      lineNumber: 1189
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     className: "small_txt",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1009
+      lineNumber: 1190
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("b", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1010
+      lineNumber: 1191
     },
     __self: this
   }, "Departure from ", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
     className: "filter-cname",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1010
+      lineNumber: 1191
     },
     __self: this
   }, filtercname(departureLocationName))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("small", {
@@ -4919,27 +5466,27 @@ var TicketBooking = function TicketBooking(flights) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1011
+      lineNumber: 1192
     },
     __self: this
   })), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1015
+      lineNumber: 1196
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
     xs: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1016
+      lineNumber: 1197
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "checkbox-custom",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1017
+      lineNumber: 1198
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
@@ -4950,7 +5497,7 @@ var TicketBooking = function TicketBooking(flights) {
     defaultChecked: departure1,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1018
+      lineNumber: 1199
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
@@ -4961,7 +5508,7 @@ var TicketBooking = function TicketBooking(flights) {
     defaultChecked: departure2,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1019
+      lineNumber: 1200
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
@@ -4972,34 +5519,34 @@ var TicketBooking = function TicketBooking(flights) {
     defaultChecked: departure3,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1020
+      lineNumber: 1201
     },
     __self: this
   }))))), requestData.searchType == 2 ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "filter_Set",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1026
+      lineNumber: 1207
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     className: "small_txt",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1027
+      lineNumber: 1208
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("b", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1028
+      lineNumber: 1209
     },
     __self: this
   }, "Departure from ", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
     className: "filter-cname",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1028
+      lineNumber: 1209
     },
     __self: this
   }, filtercname(arrivalLocationName))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("small", {
@@ -5009,27 +5556,27 @@ var TicketBooking = function TicketBooking(flights) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1029
+      lineNumber: 1210
     },
     __self: this
   })), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1033
+      lineNumber: 1214
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
     xs: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1034
+      lineNumber: 1215
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "checkbox-custom",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1035
+      lineNumber: 1216
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
@@ -5040,7 +5587,7 @@ var TicketBooking = function TicketBooking(flights) {
     defaultChecked: return1,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1036
+      lineNumber: 1217
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
@@ -5051,7 +5598,7 @@ var TicketBooking = function TicketBooking(flights) {
     defaultChecked: return2,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1037
+      lineNumber: 1218
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Check, {
@@ -5062,27 +5609,27 @@ var TicketBooking = function TicketBooking(flights) {
     defaultChecked: return3,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1038
+      lineNumber: 1219
     },
     __self: this
   }))))) : null, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "filter_Set",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1043
+      lineNumber: 1224
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     className: "small_txt",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1044
+      lineNumber: 1225
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("b", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1045
+      lineNumber: 1226
     },
     __self: this
   }, "Airlines"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("small", {
@@ -5092,33 +5639,33 @@ var TicketBooking = function TicketBooking(flights) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1046
+      lineNumber: 1227
     },
     __self: this
   })), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1050
+      lineNumber: 1231
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
     xs: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1051
+      lineNumber: 1232
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "checkbox-custom",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1052
+      lineNumber: 1233
     },
     __self: this
-  }, total_response > 0 ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
+  }, jsondata != undefined && total_response > 0 ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1054
+      lineNumber: 1235
     },
     __self: this
   }, uniqueAirlines().map(function (airname) {
@@ -5134,7 +5681,7 @@ var TicketBooking = function TicketBooking(flights) {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1054
+        lineNumber: 1235
       },
       __self: this
     });
@@ -5143,13 +5690,13 @@ var TicketBooking = function TicketBooking(flights) {
     md: 9,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1062
+      lineNumber: 1243
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1065
+      lineNumber: 1246
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -5159,19 +5706,19 @@ var TicketBooking = function TicketBooking(flights) {
     xs: 6,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1066
+      lineNumber: 1247
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1067
+      lineNumber: 1248
     },
     __self: this
   }, total_response, " results sorted by ", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("b", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1067
+      lineNumber: 1248
     },
     __self: this
   }, sortOption))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -5182,7 +5729,7 @@ var TicketBooking = function TicketBooking(flights) {
     className: "text-right",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1069
+      lineNumber: 1250
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
@@ -5192,7 +5739,7 @@ var TicketBooking = function TicketBooking(flights) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1070
+      lineNumber: 1251
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Form"].Control, {
@@ -5202,7 +5749,7 @@ var TicketBooking = function TicketBooking(flights) {
     onChange: handleSortOptions,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1071
+      lineNumber: 1252
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("option", {
@@ -5210,62 +5757,62 @@ var TicketBooking = function TicketBooking(flights) {
     hidden: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1072
+      lineNumber: 1253
     },
     __self: this
   }, "Sort by"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("option", {
     value: "Best",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1073
+      lineNumber: 1254
     },
     __self: this
   }, "Best"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("option", {
     value: "Cheapest First",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1074
+      lineNumber: 1255
     },
     __self: this
   }, "Cheapest First"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("option", {
     value: "Fastest First",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1075
+      lineNumber: 1256
     },
     __self: this
   }, "Fastest First"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("option", {
     value: "Outbound: Departure Time",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1076
+      lineNumber: 1257
     },
     __self: this
   }, "Outbound: Departure Time"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("option", {
     value: "Airline",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1077
+      lineNumber: 1258
     },
     __self: this
   }, "Airline"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("option", {
     value: "Stops",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1078
+      lineNumber: 1259
     },
     __self: this
   }, "Stops"))))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "filter_sort",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1085
+      lineNumber: 1266
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1086
+      lineNumber: 1267
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -5276,32 +5823,32 @@ var TicketBooking = function TicketBooking(flights) {
     "data-for": "best",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1087
+      lineNumber: 1268
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     onClick: handleSortBest,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1088
+      lineNumber: 1269
     },
     __self: this
   }, "Best", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1088
+      lineNumber: 1269
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("b", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1089
+      lineNumber: 1270
     },
     __self: this
   }, currency_symbol_map__WEBPACK_IMPORTED_MODULE_20___default()(currencyCode), " ", bestPrice()), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1090
+      lineNumber: 1271
     },
     __self: this
   }), bestDuration())), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_18___default.a, {
@@ -5314,37 +5861,37 @@ var TicketBooking = function TicketBooking(flights) {
     className: "tool",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1092
+      lineNumber: 1273
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1093
+      lineNumber: 1274
     },
     __self: this
   }, "We think these flights offer the best combination of ", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1093
+      lineNumber: 1274
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("b", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1093
+      lineNumber: 1274
     },
     __self: this
   }, "price"), " and ", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("b", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1093
+      lineNumber: 1274
     },
     __self: this
   }, "speed"), ". We may also consider factors like ", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1093
+      lineNumber: 1274
     },
     __self: this
   }), "number of stops and mount of hassle.")), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -5355,32 +5902,32 @@ var TicketBooking = function TicketBooking(flights) {
     "data-for": "cheapest",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1095
+      lineNumber: 1276
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     onClick: handleSortCheapest,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1096
+      lineNumber: 1277
     },
     __self: this
   }, "Cheapest", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1096
+      lineNumber: 1277
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("b", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1097
+      lineNumber: 1278
     },
     __self: this
   }, currency_symbol_map__WEBPACK_IMPORTED_MODULE_20___default()(currencyCode), " ", cheapestPrice()), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1098
+      lineNumber: 1279
     },
     __self: this
   }), cheapestDuration())), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_18___default.a, {
@@ -5393,13 +5940,13 @@ var TicketBooking = function TicketBooking(flights) {
     className: "tool",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1100
+      lineNumber: 1281
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1101
+      lineNumber: 1282
     },
     __self: this
   }, "Sort by Cheatpest Price.")), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -5410,32 +5957,32 @@ var TicketBooking = function TicketBooking(flights) {
     "data-for": "fastest",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1103
+      lineNumber: 1284
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     onClick: handleSortFastest,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1104
+      lineNumber: 1285
     },
     __self: this
   }, "Fastest", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1104
+      lineNumber: 1285
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("b", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1105
+      lineNumber: 1286
     },
     __self: this
   }, currency_symbol_map__WEBPACK_IMPORTED_MODULE_20___default()(currencyCode), " ", fastestPrice(), " "), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1106
+      lineNumber: 1287
     },
     __self: this
   }), fastestDuration())), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_18___default.a, {
@@ -5448,20 +5995,20 @@ var TicketBooking = function TicketBooking(flights) {
     className: "tool",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1108
+      lineNumber: 1289
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1109
+      lineNumber: 1290
     },
     __self: this
   }, "Sort by Shortest Duration.")))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "custom-container",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1115
+      lineNumber: 1296
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
@@ -5471,20 +6018,20 @@ var TicketBooking = function TicketBooking(flights) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1116
+      lineNumber: 1297
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "sort-title d_flex",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1117
+      lineNumber: 1298
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1118
+      lineNumber: 1299
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -5492,20 +6039,20 @@ var TicketBooking = function TicketBooking(flights) {
     sm: 8,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1119
+      lineNumber: 1300
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("h3", {
     className: "bold-text",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1120
+      lineNumber: 1301
     },
     __self: this
   }, "Smart value Flights"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1121
+      lineNumber: 1302
     },
     __self: this
   }, "Popularity based on customer preference, duration & price")), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -5517,40 +6064,40 @@ var TicketBooking = function TicketBooking(flights) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1123
+      lineNumber: 1304
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "topright-price",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1124
+      lineNumber: 1305
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("big", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1125
+      lineNumber: 1306
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
     className: "pink-text",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1125
+      lineNumber: 1306
     },
     __self: this
   }, "Chepeast Starting at")), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1126
+      lineNumber: 1307
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
     className: "top-currency",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1127
+      lineNumber: 1308
     },
     __self: this
   }, currency_symbol_map__WEBPACK_IMPORTED_MODULE_20___default()(currencyCode), "\xA0", cheapestPrice()))))))), jsondata.map(function (resultData) {
@@ -5560,7 +6107,7 @@ var TicketBooking = function TicketBooking(flights) {
       key: resultData.recommendationRefNo,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1141
+        lineNumber: 1322
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -5571,21 +6118,21 @@ var TicketBooking = function TicketBooking(flights) {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1142
+        lineNumber: 1323
       },
       __self: this
     }, resultData.totalFare == cheapestPrice() ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("button", {
       className: "pink-button cheap",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1143
+        lineNumber: 1324
       },
       __self: this
     }, "CHEAPEST") : react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("button", {
       className: "pink-button cheap",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1143
+        lineNumber: 1324
       },
       __self: this
     }, "VALUE FOR MONEY"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
@@ -5595,7 +6142,7 @@ var TicketBooking = function TicketBooking(flights) {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1145
+        lineNumber: 1326
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -5603,19 +6150,19 @@ var TicketBooking = function TicketBooking(flights) {
       sm: 12,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1146
+        lineNumber: 1327
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("b", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1147
+        lineNumber: 1328
       },
       __self: this
     }, "Departure"), " | ", dateformat__WEBPACK_IMPORTED_MODULE_19___default()(changeMonthDate(resultData.flightLeg[0].flightDetails.departureDate), "ddd, mmm d"), " | ", resultData.flightLeg[0].flightDetails.operatingAirlineName)), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1150
+        lineNumber: 1331
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -5624,14 +6171,14 @@ var TicketBooking = function TicketBooking(flights) {
       className: "",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1151
+        lineNumber: 1332
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
       className: "sort-countryname",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1152
+        lineNumber: 1333
       },
       __self: this
     }, resultData.marketingAirlineNames)), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -5640,20 +6187,20 @@ var TicketBooking = function TicketBooking(flights) {
       className: "flight-details",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1154
+        lineNumber: 1335
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1155
+        lineNumber: 1336
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
       xs: 4,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1156
+        lineNumber: 1337
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
@@ -5661,14 +6208,14 @@ var TicketBooking = function TicketBooking(flights) {
       htmlFor: "test" + i,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1157
+        lineNumber: 1338
       },
       __self: this
     }, TimeSplit(resultData.flightLeg[0].flightDetails.departureTime), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
       className: "mini-text",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1159
+        lineNumber: 1340
       },
       __self: this
     }, resultData.flightLeg[0].flightDetails.departureLocationCode))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -5676,55 +6223,55 @@ var TicketBooking = function TicketBooking(flights) {
       className: "text-center",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1162
+        lineNumber: 1343
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
       className: "hrs",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1163
+        lineNumber: 1344
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       className: "mini-text",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1164
+        lineNumber: 1345
       },
       __self: this
     }, CalculateDuration(resultData.flightLeg[0].flightDetails.totalFlyingHours)), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       className: "line_jet",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1165
+        lineNumber: 1346
       },
       __self: this
     }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       className: StopClassName(resultData.flightLeg[0].flightDetails.stopOvers),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1166
+        lineNumber: 1347
       },
       __self: this
     }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       className: "mini-text sky-text",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1167
+        lineNumber: 1348
       },
       __self: this
     }, StopName(resultData.flightLeg[0].flightDetails.stopOvers), " ", resultData.flightLeg[0].flightDetails.stopOvers > 0 ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1167
+        lineNumber: 1348
       },
       __self: this
     }, " via ", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       className: "via-city",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1167
+        lineNumber: 1348
       },
       __self: this
     }, ViaCityName(resultData.flightLeg[0].flightDetails.connectingFlightDetails[0].arrivalLocationName)), " ") : null), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("img", {
@@ -5734,34 +6281,34 @@ var TicketBooking = function TicketBooking(flights) {
       width: "16px",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1168
+        lineNumber: 1349
       },
       __self: this
     }))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
       xs: 4,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1171
+        lineNumber: 1352
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
       className: "start-time",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1172
+        lineNumber: 1353
       },
       __self: this
     }, TimeSplit(resultData.flightLeg[0].flightDetails.arrivalTime), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
       className: "mini-text",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1174
+        lineNumber: 1355
       },
       __self: this
     }, resultData.flightLeg[0].flightDetails.arrivalLocationCode)))))), requestData.searchType == 2 ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1182
+        lineNumber: 1363
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
@@ -5771,7 +6318,7 @@ var TicketBooking = function TicketBooking(flights) {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1183
+        lineNumber: 1364
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -5779,19 +6326,19 @@ var TicketBooking = function TicketBooking(flights) {
       sm: 12,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1184
+        lineNumber: 1365
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("b", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1185
+        lineNumber: 1366
       },
       __self: this
     }, "Return"), " | ", dateformat__WEBPACK_IMPORTED_MODULE_19___default()(changeMonthDate(resultData.flightLeg[1].flightDetails.departureDate), "ddd, mmm d"), " | ", resultData.flightLeg[1].flightDetails.operatingAirlineName)), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1188
+        lineNumber: 1369
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -5800,14 +6347,14 @@ var TicketBooking = function TicketBooking(flights) {
       className: "",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1189
+        lineNumber: 1370
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
       className: "sort-countryname",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1190
+        lineNumber: 1371
       },
       __self: this
     }, resultData.marketingAirlineNames)), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -5816,20 +6363,20 @@ var TicketBooking = function TicketBooking(flights) {
       className: "flight-details",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1192
+        lineNumber: 1373
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1193
+        lineNumber: 1374
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
       xs: 4,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1194
+        lineNumber: 1375
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
@@ -5837,14 +6384,14 @@ var TicketBooking = function TicketBooking(flights) {
       htmlFor: "test" + i,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1195
+        lineNumber: 1376
       },
       __self: this
     }, TimeSplit(resultData.flightLeg[1].flightDetails.departureTime), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
       className: "mini-text",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1197
+        lineNumber: 1378
       },
       __self: this
     }, resultData.flightLeg[1].flightDetails.departureLocationCode))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -5852,55 +6399,55 @@ var TicketBooking = function TicketBooking(flights) {
       className: "text-center",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1200
+        lineNumber: 1381
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
       className: "hrs",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1201
+        lineNumber: 1382
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       className: "mini-text",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1202
+        lineNumber: 1383
       },
       __self: this
     }, CalculateDuration(resultData.flightLeg[1].flightDetails.totalFlyingHours)), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       className: "line_jet",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1203
+        lineNumber: 1384
       },
       __self: this
     }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       className: StopClassName(resultData.flightLeg[1].flightDetails.stopOvers),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1204
+        lineNumber: 1385
       },
       __self: this
     }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       className: "mini-text sky-text",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1205
+        lineNumber: 1386
       },
       __self: this
     }, StopName(resultData.flightLeg[1].flightDetails.stopOvers), resultData.flightLeg[1].flightDetails.stopOvers > 0 ? react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1205
+        lineNumber: 1386
       },
       __self: this
     }, " via ", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       className: "via-city",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1205
+        lineNumber: 1386
       },
       __self: this
     }, ViaCityName(resultData.flightLeg[1].flightDetails.connectingFlightDetails[0].arrivalLocationName)), " ") : null), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("img", {
@@ -5910,28 +6457,28 @@ var TicketBooking = function TicketBooking(flights) {
       width: "16px",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1206
+        lineNumber: 1387
       },
       __self: this
     }))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
       xs: 4,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1209
+        lineNumber: 1390
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
       className: "start-time",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1210
+        lineNumber: 1391
       },
       __self: this
     }, TimeSplit(resultData.flightLeg[1].flightDetails.arrivalTime), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
       className: "mini-text",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1212
+        lineNumber: 1393
       },
       __self: this
     }, resultData.flightLeg[1].flightDetails.arrivalLocationCode)))))), " ") : null), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -5939,27 +6486,27 @@ var TicketBooking = function TicketBooking(flights) {
       className: "text-center set_bg",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1220
+        lineNumber: 1401
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       className: "sort-currency",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1221
+        lineNumber: 1402
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       className: "deals_no",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1222
+        lineNumber: 1403
       },
       __self: this
     }, "8 deals"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("br", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1224
+        lineNumber: 1405
       },
       __self: this
     }), currency_symbol_map__WEBPACK_IMPORTED_MODULE_20___default()(currencyCode), "\xA0", resultData.totalFare), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Button"], {
@@ -5970,7 +6517,7 @@ var TicketBooking = function TicketBooking(flights) {
       disabled: resultData.recommendationRefNo == flightId ? fetchLoading : null,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1233
+        lineNumber: 1414
       },
       __self: this
     }, resultData.recommendationRefNo == flightId ? fetchLoading && react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("i", {
@@ -5980,32 +6527,32 @@ var TicketBooking = function TicketBooking(flights) {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1236
+        lineNumber: 1417
       },
       __self: this
     }) : null, resultData.recommendationRefNo == flightId ? fetchLoading && react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1241
+        lineNumber: 1422
       },
       __self: this
     }, "Loading") : null, resultData.recommendationRefNo == flightId ? !fetchLoading && react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1242
+        lineNumber: 1423
       },
       __self: this
     }, "Select") : react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1242
+        lineNumber: 1423
       },
       __self: this
     }, "Select"))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
       className: "flight-details",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1246
+        lineNumber: 1427
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -6013,20 +6560,20 @@ var TicketBooking = function TicketBooking(flights) {
       className: "text-center grey",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1247
+        lineNumber: 1428
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1248
+        lineNumber: 1429
       },
       __self: this
     }, "Cabin Baggage Only Flights"))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
       className: "flight-details bottom",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1251
+        lineNumber: 1432
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -6034,40 +6581,40 @@ var TicketBooking = function TicketBooking(flights) {
       xs: 7,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1252
+        lineNumber: 1433
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1253
+        lineNumber: 1434
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("i", {
       className: "fa fa-star",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1254
+        lineNumber: 1435
       },
       __self: this
     }), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("b", {
       className: "green-text",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1255
+        lineNumber: 1436
       },
       __self: this
     }, "8.5", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("small", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1255
+        lineNumber: 1436
       },
       __self: this
     }, "/10")), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       className: "",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1256
+        lineNumber: 1437
       },
       __self: this
     }, " Non-refundable"), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("i", {
@@ -6075,20 +6622,20 @@ var TicketBooking = function TicketBooking(flights) {
       "aria-hidden": "true",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1257
+        lineNumber: 1438
       },
       __self: this
     }), " |", react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("span", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 1258
+        lineNumber: 1439
       },
       __self: this
     }, "Seat varies by flight segment")))));
   })) : react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("center", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1266
+      lineNumber: 1447
     },
     __self: this
   }, "No data found"))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -6099,13 +6646,13 @@ var TicketBooking = function TicketBooking(flights) {
     className: "text-center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1272
+      lineNumber: 1453
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1273
+      lineNumber: 1454
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -6113,20 +6660,20 @@ var TicketBooking = function TicketBooking(flights) {
     lg: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1274
+      lineNumber: 1455
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "ad-block",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1275
+      lineNumber: 1456
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1276
+      lineNumber: 1457
     },
     __self: this
   }, "Place for ad"))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -6134,20 +6681,20 @@ var TicketBooking = function TicketBooking(flights) {
     lg: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1279
+      lineNumber: 1460
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "ad-block",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1280
+      lineNumber: 1461
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1281
+      lineNumber: 1462
     },
     __self: this
   }, "Place for ad"))), react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["Col"], {
@@ -6155,27 +6702,27 @@ var TicketBooking = function TicketBooking(flights) {
     lg: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1284
+      lineNumber: 1465
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "ad-block",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1285
+      lineNumber: 1466
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1286
+      lineNumber: 1467
     },
     __self: this
   }, "Place for ad")))))))) : react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("div", {
     className: "nodata-msg text-center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1293
+      lineNumber: 1474
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement("img", {
@@ -6187,7 +6734,7 @@ var TicketBooking = function TicketBooking(flights) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1294
+      lineNumber: 1475
     },
     __self: this
   })), " ")));
@@ -6719,6 +7266,17 @@ module.exports = require("react-bootstrap");
 /***/ (function(module, exports) {
 
 module.exports = require("react-datepicker");
+
+/***/ }),
+
+/***/ "react-numeric-input":
+/*!**************************************!*\
+  !*** external "react-numeric-input" ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-numeric-input");
 
 /***/ }),
 

@@ -1812,5 +1812,38 @@ span.react-numeric-input b:hover {
     font-size: 25px !important;
     font-weight: bold !important;
     border: 2px solid #17d8cf !important;
-    border-radius: 100% !important;
+    border-radius: 100% !important; 
+}
+.red-err
+{
+    color:red !important;
+}
+.passanger-static.row {
+    color: white;
+    font-size: 15px;
+    padding: 15px 0;
+}
+.search-circle {
+    margin-right: 15px;
+    background: white;
+    color: #1E2748;
+    padding: 12px;
+    border: 1px solid transparent;
+    border-radius: 100%;
+}
+.passanger-details .date-text
+{
+    background: white;
+    color: #0000005c;
+    text-align: center;
+    padding: 0.66em;
+}
+.passanger-details .traveldet-title {
+    background: white;
+    padding: 0.66em;
+    color: #777;
+}
+.fulldrop-panel.row {
+    color: white;
+    padding: 15px;
 }

@@ -33,7 +33,7 @@ body {
 .bg-img {
     margin-top: 80px;
     background-attachment: fixed;
-    height: 200px;
+    padding: 100px 0 0 0;
     background-image: url(../images/bg.jpg);
     background-size: contain;
     background-position: center center;
@@ -43,7 +43,7 @@ body {
     background: #1E2748;
     position: relative;
     width: 92%;
-    top: 33%;
+    top: 0%;
     left: 4%;
     bottom: 0;
     padding: 20px 50px 21px 50px;
@@ -137,7 +137,7 @@ p.small_txt {
     position: relative;
 }
 
-.passanger-details .react-autosuggest__input {
+/* .passanger-details .react-autosuggest__input {
     width: 135%;
     height: 54px;
     padding:0 0 0 20px;
@@ -153,7 +153,7 @@ p.small_txt {
     overflow-x: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
+} */
     
 .auto_countries.form-group {
     background: #3672d7;
