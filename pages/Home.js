@@ -1,4 +1,4 @@
-import React,{useEffect,useState,useContext} from 'react';
+import React,{useEffect,useState,useContext,useRef} from 'react';
 import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 import DatePicker from "react-datepicker";
 import Router from 'next/router';
@@ -124,7 +124,7 @@ const Home = (props) => {
 	//Number input ref
 	const adultCountref = React.createRef();
 	const childCountref = React.createRef();
-
+	const node = React.createRef();
 	//states
 	const [request,setRequest] = useState([]);
 	const [showAnn,setShowAnn] = useState(false);
@@ -134,6 +134,7 @@ const Home = (props) => {
 	const [searchType,setSearchtype] = useState(2);
 	const [isDirectFlight,setDirectflight] = useState(false);
 	const [fetchLoading,setFetchLoading] = useState(false);
+	const [popup,setPopup] = useState(false);
 
 	//round trip states
 	const [departureLocationCode,setDeparturelocationcode] = useState('');
@@ -420,6 +421,50 @@ const Home = (props) => {
 			setoneway_ArrivalLocationCode(exact_match);
 		}
 	  }
+	  const preferedclassname = (classname) => {
+		if(classname == "1")
+		{
+			return "Any";
+		}
+		else if(classname == "2")
+		{
+			return "Business";
+		}
+		else if(classname == "3")
+		{
+			return "Economy";
+		}
+		else if(classname == "4")
+		{
+			return "First Class";
+		}
+		else if(classname == "5")
+		{
+			return "PremiumOrEconomy";
+		}
+		else if(classname == "6")
+		{
+			return "PremiumAndEconomy";
+		}
+	}
+	//   Dropdown
+		useEffect(() => {
+			document.addEventListener("click", handleOutsideClick);
+			document.removeEventListener("click", handleOutsideClick);
+		})
+		const handlepopup = () => 
+		{
+			setPopup(!popup);
+		}
+		const handleOutsideClick = (e) => 
+		{
+			console.log(node.current);
+			console.log(e.target);
+			if (node.current && node.current.contains(event.target)) {
+				setPopup(false);
+			}
+		}
+	// end dropdown 
 
 		return (	
             <div>
@@ -436,18 +481,13 @@ const Home = (props) => {
 									<Form.Check name="searchType" defaultValue="2" className='radio_btn' inline label="Round Trip" defaultChecked={searchType == '2'} type="radio" onClick={handleround} id={`inline-radio-1`} />
 									{/* <Form.Check name="searchType" defaultValue="3" className='radio_btn' inline label="Multi-city" type="radio" defaultChecked={searchType == '3'} onClick={handlemulti} id={`inline-radio-3`} /> */}
 								</div>
-									<div className='checkbox-custom'>
-										<div className="mb-3 right">
-											<Form.Check name="isDirectFlight" inline label="Direct Flight Only" type="checkbox" id={`inline-check-1`} defaultChecked={isDirectFlight} defaultValue={isDirectFlight} onClick={changedirectFlight}/>
-										</div>
-									</div>
 								<Row hidden={!round}>
 									<Col md={9} sm={12}>
 										<Row>
-											<Col md={6} sm={6}>
+											<Col md={4} sm={6} className="less-padright">
 												<Form.Group controlId="exampleForm.ControlSelect1">
 													<Form.Label>From</Form.Label>
-													<div className="select_box1">
+													<div className="select_box2">
 														<MyAutosuggest
 														id="countries1"
 														onChange={onChangeHome}
@@ -457,16 +497,16 @@ const Home = (props) => {
 												</Form.Group>
 												{['checkbox'].map(type => (
 													<div key={`inline-${type}`} className='checkbox-custom'>
-														<div  className="mb-3 top-0">
+														<div  className="mb-3">
 															<Form.Check name="add_near_airport" inline label="Add Nearby Airports" type={type} id={`inline-${type}-1`} />
 														</div>
 													</div>
 												))}
 											</Col>
-											<Col md={6} sm={6}>
+											<Col md={4} sm={6} className="less-padleft less-padright">
 												<Form.Group controlId="exampleForm.ControlSelect1">
 													<Form.Label>To</Form.Label>
-													<div className="select_box1">
+													<div className="select_box2">
 														<MyAutosuggest
 														id="countries2"	
 														onChange = {onChangeHome}													
@@ -476,97 +516,137 @@ const Home = (props) => {
 												</Form.Group>
 												{['checkbox'].map(type => (
 													<div key={`inline-${type}`} className='checkbox-custom'>
-														<div className="mb-3 top-0">
+														<div className="mb-3">
 															<Form.Check name="add_near_airport" inline label="Add Nearby Airports" type={type} id={`inline-${type}-1`} />
 														</div>
 													</div>
 												))}
 											</Col>
+											<Col md={4} sm={6}>
+												<Row>
+													<Col sm={6} md={6} className="less-padleft less-padright">
+														<Form.Group controlId="exampleForm.ControlSelect1">
+																<Form.Label>Departure</Form.Label>
+																<div className="date">
+																	{/* <i className="fa fa-calendar"> </i>  */}
+																	<DatePicker 
+																	name="departureDate"
+																	className="form-control" 
+																	showMonthDropdown 
+																	showYearDropdown 
+																	dateFormat="dd/MM/yyyy" 
+																	selected={departureDate} 
+																	minDate={moment().toDate()}
+																	onChange={handlestartChange} />
+																	{departureDate_err ? (<i className="err-msg">Departure date is required</i>): null}
+																</div>
+														</Form.Group>
+													</Col>
+													<Col sm={6} className="less-padleft less-padright">
+														<Form.Group controlId="exampleForm.ControlSelect1s">
+															<Form.Label>Return</Form.Label>
+															<div className="date">
+																{/* <i className="fa fa-calendar"> </i>  */}
+																<DatePicker 
+																	name="returnDate" 
+																	className="form-control" 
+																	dateFormat="dd/MM/yyyy" 
+																	showMonthDropdown 
+																	showYearDropdown 
+																	selected={returnDate} 
+																	minDate={new Date(departureDate)}
+																	onChange={handleendChange}
+																	/>
+																	{returnDate_err ? (<i className="err-msg">Return date is required</i>): null}
+															</div>
+														</Form.Group>
+													</Col>
+												</Row>
+											</Col>
 										</Row>
 									</Col>
-									<Col md={3} sm={12}>
+									<Col md={3} sm={4} className="less-padleft">
 										<Form.Group controlId="exampleForm.ControlSelect1">
-											<Form.Label>Cabin Class</Form.Label>
-											<div className="select_box">
-												<Form.Control as="select" name="preferedFlightClass" onChange={changeClass}>
-													<option value="1">Any</option>
-													<option value="2">Business</option>
-													<option value="3">Economy</option>
-													<option value="4">First Class</option>
-													<option value="5">PremiumOrEconomy</option>
-													<option value="6">PremiumAndEconomy</option>
-												</Form.Control>
-												{cabin_err ? (<i className="err-msg">Cabin class is required</i>): null}
+											<Form.Label>Cabin Class & Travellers</Form.Label>
+											<div ref={node} className="traveldet-title">
+											<div onClick={handlepopup} style={{width:'100%'}}>
+											<span className="popup">{adultCount} Adult, {preferedclassname(preferedFlightClass)}</span>
+											</div>
+											{popup && (
+												<div className="traveldet-popdown">
+													<Row>
+														<Col md={12} sm={12}>
+														<Form.Label className="label-dark">Cabin class</Form.Label>
+															<span className="" style={{float:'right',color:'#17d8cf'}} onClick={()=>setPopup(false)}><i className="fa fa-times"></i></span>
+															<div className="select_box">
+																<Form.Control as="select" name="oneway_preferedFlightClass" onChange={changeClass}>
+																<option value="1">Any</option>
+																<option value="2">Business</option>
+																<option value="3">Economy</option>
+																<option value="4">First Class</option>
+																<option value="5">PremiumOrEconomy</option>
+																<option value="6">PremiumAndEconomy</option>
+																</Form.Control>
+															</div>
+														</Col>
+													</Row>
+													<Row>
+														<Col sm={6} xs={6}>
+															<Form.Group controlId="exampleForm.ControlSelect1">
+																<Form.Label className="label-dark">Adults</Form.Label>
+																<div className="arrow">
+																	<NumericInput mobile name="adultCount" className="number-input form-control" value={adultCount} min={1} max={9} step={1} onChange={adultChanged}/>
+																	{adults_err ? (<i className="err-msg">Put value between 1-9</i>): null}
+																	</div>
+															</Form.Group>
+														</Col>
+														<Col sm={6} xs={6}>
+															<span className="agelimit-text">16+ years</span>
+														</Col>
+													</Row>
+													<Row>
+														<Col sm={6} xs={6}>
+															<Form.Group controlId="exampleForm.ControlSelect1">
+															<Form.Label className="label-dark">Children</Form.Label>
+															<div className="arrow">
+															<NumericInput mobile name="childCount" className="number-input form-control" value={childCount} min={0} max={9} step={1} onChange={childChanged}/>
+															{child_err ? (<i className="err-msg">Put value between 0-9</i>): null}
+															</div>
+															</Form.Group>
+														</Col>
+														<Col sm={6} xs={6}>
+														<span className="agelimit-text">0-15 years</span>
+														</Col>
+													</Row>
+													<Row>
+														<Col sm={12}>
+														<span className="age-instr">Your age at time of travel must be valid for the age category booked. Airlines have restrictions on under 18s travelling alone.
+														<br/>Age limits and policies fo	r travelling with children may vary so please check with the airline before booking.</span>
+														</Col>
+													</Row>
+													<br/>
+													<Row>
+														<Col sm={12} className="text-right">
+															<span className="label-skyblue" onClick={() => setPopup(false)}>Done</span>
+														</Col>
+													</Row>
+													</div>
+												)}
 											</div>
 										</Form.Group>
 									</Col>
 
-									<Col lg={5} md={12}>
+									<Col lg={12} md={12}>
 										<Row>
-										{/* static/images/calendar.svg */}
-											<Col sm={6}>
-												<Form.Group controlId="exampleForm.ControlSelect1">
-													<Form.Label>Departure</Form.Label>
-													<div className="date">
-														{/* <i className="fa fa-calendar"> </i>  */}
-														<img className='fa fa-calendar' src='static/images/calendar.svg' width='25'></img>
-														<DatePicker 
-														name="departureDate"
-														className="form-control" 
-														showMonthDropdown 
-														showYearDropdown 
-														dateFormat="dd/MM/yyyy" 
-														selected={departureDate} 
-														minDate={moment().toDate()}
-														onChange={handlestartChange} />
-														{departureDate_err ? (<i className="err-msg">Departure date is required</i>): null}
+											<Col sm={8}>
+											<div className='checkbox-custom'>
+													<div className="mb-3 right">
+														<Form.Check name="isDirectFlight" inline label="Direct Flight Only" type="checkbox" id={`inline-check-1`} defaultChecked={isDirectFlight} defaultValue={isDirectFlight} onClick={changedirectFlight}/>
 													</div>
-												</Form.Group>
+												</div>
 											</Col>
-											<Col sm={6}>
-												<Form.Group controlId="exampleForm.ControlSelect1s">
-													<Form.Label>Return</Form.Label>
-													<div className="date">
-														{/* <i className="fa fa-calendar"> </i>  */}
-														<img className='fa fa-calendar' src='static/images/calendar.svg' width='25'></img>
-														<DatePicker 
-															name="returnDate" 
-															className="form-control" 
-															dateFormat="dd/MM/yyyy" 
-															showMonthDropdown 
-															showYearDropdown 
-															selected={returnDate} 
-															minDate={new Date(departureDate)}
-															onChange={handleendChange}
-															/>
-															{returnDate_err ? (<i className="err-msg">Return date is required</i>): null}
-													</div>
-												</Form.Group>
-											</Col>
-										</Row>
-									</Col>
-									<Col lg={7} md={12}>
-										<Row>
-											<Col sm={3}>
-												<Form.Group controlId="exampleForm.ControlSelect1">
-													<Form.Label>Adults (16+)</Form.Label>
-													<div className="arrow">
-														<NumericInput mobile name="adultCount" className="number-input form-control" value={adultCount} min={1} max={9} step={1} onChange={adultChanged}/>
-														{adults_err ? (<i className="err-msg">Put value between 1-9</i>): null}
-													</div>
-												</Form.Group>
-											</Col>
-											<Col sm={3}>
-												<Form.Group controlId="exampleForm.ControlSelect1">
-													<Form.Label>Children</Form.Label>
-													<div className="arrow">
-													<NumericInput mobile name="childCount" className="number-input form-control" value={childCount} min={0} max={9} step={1} onChange={childChanged}/>
-													{child_err ? (<i className="err-msg">Put value between 0-9</i>): null}
-													</div>
-												</Form.Group>
-											</Col>
-											<Col sm={6}>
-												<Button className="form-control" variant="danger" onClick={flightsforRoundTrip} disabled={fetchLoading}>
+											<Col sm={4}>
+												<Button className="form-control search-btnmargin" variant="danger" onClick={flightsforRoundTrip} disabled={fetchLoading}>
 												{fetchLoading && (
 													<i
 													className="fa fa-refresh fa-spin"
@@ -584,10 +664,10 @@ const Home = (props) => {
 								<Row hidden={!oneway}>
 									<Col md={9} sm={12}>
 										<Row>
-											<Col md={6} sm={6}>
+											<Col md={4} sm={6} className="less-padright">
 												<Form.Group controlId="exampleForm.ControlSelect1">
 													<Form.Label>From</Form.Label>
-													<div className="select_box1">
+													<div className="select_box2">
 														<MyAutosuggest
 														id="one-countries1"
 														onChange={onChangeHome}
@@ -597,92 +677,145 @@ const Home = (props) => {
 												</Form.Group>
 												{['checkbox'].map(type => (
 													<div key={`inline-${type}`} className='checkbox-custom'>
-														<div className="mb-3 top-0">
+														<div  className="mb-3">
 															<Form.Check name="add_near_airport" inline label="Add Nearby Airports" type={type} id={`inline-${type}-1`} />
 														</div>
 													</div>
 												))}
 											</Col>
-											<Col md={6} sm={6}>
+											<Col md={4} sm={6} className="less-padleft less-padright">
 												<Form.Group controlId="exampleForm.ControlSelect1">
 													<Form.Label>To</Form.Label>
-													<div className="select_box1">
+													<div className="select_box2">
 														<MyAutosuggest
 														id="one-countries2"
-														onChange={onChangeHome}
+														onChange = {onChangeHome}													
 														/>
 														{oneway_arrival_err ? (<i className="err-msg">Arrival Location required</i>): null}
 													</div>
 												</Form.Group>
 												{['checkbox'].map(type => (
 													<div key={`inline-${type}`} className='checkbox-custom'>
-														<div className="mb-3 top-0">
+														<div className="mb-3">
 															<Form.Check name="add_near_airport" inline label="Add Nearby Airports" type={type} id={`inline-${type}-1`} />
 														</div>
 													</div>
 												))}
 											</Col>
+											<Col md={4} sm={6}>
+												<Row>
+													<Col sm={6} md={6} className="less-padleft less-padright">
+														<Form.Group controlId="exampleForm.ControlSelect1">
+																<Form.Label>Departure</Form.Label>
+																<div className="date">
+																	{/* <i className="fa fa-calendar"> </i>  */}
+																	<DatePicker 
+																	name="departureDate"
+																	className="form-control" 
+																	showMonthDropdown 
+																	showYearDropdown 
+																	dateFormat="dd/MM/yyyy" 
+																	selected={oneway_departureDate} 
+																	minDate={moment().toDate()}
+																	onChange={oneway_handlestartChange} />
+																	{oneway_departureDate_err ? (<i className="err-msg">Departure date is required</i>): null}
+																</div>
+														</Form.Group>
+													</Col>
+													<Col sm={6} className="less-padleft less-padright">
+														<Form.Group controlId="exampleForm.ControlSelect1s">
+															<Form.Label>Return</Form.Label>
+															<div className="date-text">
+																(One way)
+															</div>
+														</Form.Group>
+													</Col>
+												</Row>
+											</Col>
 										</Row>
 									</Col>
-									<Col md={3} sm={12}>
+									<Col md={3} sm={4} className="less-padleft">
 										<Form.Group controlId="exampleForm.ControlSelect1">
-											<Form.Label>Cabin Class</Form.Label>
-											<div className="select_box">
-												<Form.Control as="select" name="oneway_preferedFlightClass" onChange={oneway_changeClass}>
-													<option value="1">Any</option>
-													<option value="2">Business</option>
-													<option value="3">Economy</option>
-													<option value="4">First Class</option>
-													<option value="5">PremiumOrEconomy</option>
-													<option value="6">PremiumAndEconomy</option>
-												</Form.Control>
+											<Form.Label>Cabin Class & Travellers</Form.Label>
+											<div ref={node} className="traveldet-title">
+											<div onClick={handlepopup} style={{width:'100%'}}>
+											<span className="popup">{oneway_adultCount} Adult, {preferedclassname(oneway_preferedFlightClass)}</span>
+											</div>
+											{popup && (
+												<div className="traveldet-popdown">
+													<Row>
+														<Col md={12} sm={12}>
+														<Form.Label className="label-dark">Cabin class</Form.Label>
+														<span className="" style={{float:'right',color:'#17d8cf'}} onClick={()=>setPopup(false)}><i className="fa fa-times"></i></span>
+															<div className="select_box">
+															<Form.Control as="select" name="oneway_preferedFlightClass" onChange={oneway_changeClass}>
+																<option value="1">Any</option>
+																<option value="2">Business</option>
+																<option value="3">Economy</option>
+																<option value="4">First Class</option>
+																<option value="5">PremiumOrEconomy</option>
+																<option value="6">PremiumAndEconomy</option>
+															</Form.Control>
+															</div>
+														</Col>
+													</Row>
+													<Row>
+														<Col sm={6} xs={6}>
+															<Form.Group controlId="exampleForm.ControlSelect1">
+																<Form.Label className="label-dark">Adults</Form.Label>
+																<div className="arrow">
+																<NumericInput mobile name="oneway_adultCount" className="number-input form-control" value={oneway_adultCount} min={1} max={9} step={1} onChange={oneway_adultChanged}/>
+																{oneway_adults_err ? (<i className="err-msg">Put value between 1-9</i>): null}
+																</div>
+															</Form.Group>
+														</Col>
+														<Col sm={6} xs={6}>
+															<span className="agelimit-text">16+ years</span>
+														</Col>
+													</Row>
+													<Row>
+														<Col sm={6} xs={6}>
+															<Form.Group controlId="exampleForm.ControlSelect1">
+															<Form.Label className="label-dark">Children</Form.Label>
+															<div className="arrow">
+															<NumericInput mobile name="oneway_childCount" className="number-input form-control" value={oneway_childCount} min={0} max={9} step={1} onChange={oneway_childChanged}/>
+															{oneway_child_err ? (<i className="err-msg">Put value between 0-9</i>): null}
+															</div>
+															</Form.Group>
+														</Col>
+														<Col sm={6} xs={6}>
+														<span className="agelimit-text">0-15 years</span>
+														</Col>
+													</Row>
+													<Row>
+														<Col sm={12}>
+														<span className="age-instr">Your age at time of travel must be valid for the age category booked. Airlines have restrictions on under 18s travelling alone.
+														<br/>Age limits and policies fo	r travelling with children may vary so please check with the airline before booking.</span>
+														</Col>
+													</Row>
+													<br/>
+													<Row>
+														<Col sm={12} className="text-right">
+															<span className="label-skyblue" onClick={() => setPopup(false)}>Done</span>
+														</Col>
+													</Row>
+													</div>
+												)}
 											</div>
 										</Form.Group>
 									</Col>
-									<Col lg={5} md={12}>
+
+									<Col lg={12} md={12} className="text-center">
 										<Row>
-											<Col sm={12}>
-												<Form.Group controlId="exampleForm.ControlSelect1">
-													<Form.Label>Depature</Form.Label>
-													<div className="date">														
-														<img className='fa fa-calendar' src='static/images/calendar.svg' width='25'></img>
-														<DatePicker 
-														name="departureDate"
-														className="form-control" 
-														showMonthDropdown 
-														showYearDropdown 
-														dateFormat="dd/MM/yyyy" 
-														selected={oneway_departureDate} 
-														minDate={moment().toDate()}
-														onChange={oneway_handlestartChange} />
-														{oneway_departureDate_err ? (<i className="err-msg">Departure date is required</i>): null}
-													</div>
-												</Form.Group>
+											<Col sm={8}>
+											<div className='checkbox-custom'>
+												<div className="mb-3 right">
+													<Form.Check name="isDirectFlight" inline label="Direct Flight Only" type="checkbox" id={`inline-check-1`} defaultChecked={isDirectFlight} defaultValue={isDirectFlight} onClick={changedirectFlight}/>
+												</div>
+											</div>
 											</Col>
-										</Row>
-									</Col>
-									<Col lg={7} md={12}>
-										<Row>
-											<Col sm={3}>
-												<Form.Group controlId="exampleForm.ControlSelect1">
-													<Form.Label>Adults (16+)</Form.Label>
-													<div className="arrow">
-														<NumericInput mobile name="oneway_adultCount" className="number-input form-control" value={oneway_adultCount} min={1} max={9} step={1} onChange={oneway_adultChanged}/>
-														{oneway_adults_err ? (<i className="err-msg">Put value between 1-9</i>): null}
-													</div>
-												</Form.Group>
-											</Col>
-											<Col sm={3}>
-												<Form.Group controlId="exampleForm.ControlSelect1">
-													<Form.Label>Children</Form.Label>
-													<div className="arrow">
-													<NumericInput mobile name="oneway_childCount" className="number-input form-control" value={oneway_childCount} min={0} max={9} step={1} onChange={oneway_childChanged}/>
-													{oneway_child_err ? (<i className="err-msg">Put value between 0-9</i>): null}
-													</div>
-												</Form.Group>
-											</Col>
-											<Col sm={6}>
-											<Button className="form-control" variant="danger" onClick={flightsforOneway} disabled={fetchLoading}>
+											<Col sm={4}>
+											<Button className="form-control search-btnmargin" variant="danger" onClick={flightsforOneway} disabled={fetchLoading}>
 												{fetchLoading && (
 													<i
 													className="fa fa-refresh fa-spin"
@@ -695,7 +828,7 @@ const Home = (props) => {
 											</Col>
 										</Row>
 									</Col>
-								</Row> 
+								</Row>
 								{/* --------------------  End One way  ----------------------------- */}
 								{/* --------------------  Multicountry  ----------------------------- */}
 								<Row hidden={!multi}>

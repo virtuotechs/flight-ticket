@@ -61,6 +61,15 @@ i.err-msg {
     .sidenav a {
         font-size: 18px;
     }
+    .less-padleft
+    {
+        margin-left:15px;
+    } 
+    .less-padright
+    {
+        margin-right:15px;
+    }
+    
 }
 
 @media (max-width: 991.98px) {
@@ -68,6 +77,14 @@ i.err-msg {
         padding-right: 0;
         padding-left: 0;
         margin: 0;
+    }
+    .less-padleft
+    {
+        margin-left:15px;
+    } 
+    .less-padright
+    {
+        margin-right:15px;
     }
 }
 
@@ -200,6 +217,9 @@ nav .row {
         font-size: 13px;
         white-space: nowrap;
     }
+    .search-btnmargin {
+        margin-top: 20px !important;
+    }
 }
 
 /* Header End */
@@ -230,6 +250,9 @@ section.background {
 }
 
 @media (max-width: 600px) {
+    .search-btnmargin {
+        margin-top: 20px !important;
+    }
     .navbar {
         padding: 0;
         padding-right: 8px;
@@ -252,8 +275,8 @@ section.background {
     position: absolute;
     z-index: 100;
     top: 30%;
-    width: 66%;
-    left: 17%;
+    width: 80%;
+    left: 10%;
     height: auto;
     color: #fff;
     background: #1f2748;
@@ -268,7 +291,7 @@ h5.title_flight {
     font-family: 'Lato', sans-serif;
     letter-spacing: 2px;
     top: 22%;
-    left: 17%;
+    left: 10%;
     color: #fff;
     padding: 1em 2em 2em 2em;
     font-size: 14px;
@@ -313,8 +336,7 @@ h5.title_flight {
 
 .mb-3.right .form-check {
     position: absolute;
-    top: -3.25em;
-    right: 0;
+    top: -1em;
 }
 
 .top-0 {
@@ -323,13 +345,26 @@ h5.title_flight {
 
 @media (max-width: 768px) {
     .mb-3.right .form-check {
-        top: 3em;
+        top: -1em;
     }
     .mb-3 {
         margin-bottom: 4px !important;
     }
+    .search-btnmargin {
+        margin-top: 20px !important;
+    }
 }
-
+.form-group .select_box2 {
+    font-size: 13px;
+    border-radius: 0 !important;
+    width: 100%;
+    border: none;
+    padding: 0.5rem 0.75em;
+    height: 45px;
+    font-weight: lighter;
+    background: #fff;
+    color: #888888;
+}
 .form-group .select_box1 {
     font-size: 13px;
     border-radius: 0 !important;
@@ -342,7 +377,7 @@ h5.title_flight {
     color: #888888;
 }
 
-.select_box1 .react-autosuggest__container {
+.select_box1 .react-autosuggest__container,.select_box2 .react-autosuggest__container {
     font-size: 13px;
     border-radius: 0 !important;
     width: 100%;
@@ -356,7 +391,7 @@ h5.title_flight {
     display: block !important;
 } */
 
-.select_box1 input {
+.select_box1 input,.select_box2 input {
     width: 100%;
     padding: 0.7em;
     margin-top: 6px;
@@ -576,7 +611,7 @@ button.form-control.btn.btn-danger:hover, button.form-control.btn.btn-danger:foc
 }
 
 button.form-control.btn.btn-danger {
-    margin-top: 2.4em;
+    margin-top: 0em;
     color: #fff !important;
     font-weight: 500;
     font-size: 12px;
@@ -602,7 +637,7 @@ img.flight_img {
         position: relative;
         margin: 0;
         left: 0;
-        width: 45%;
+        width: 47%;
     }
     .title {
         position: relative;
@@ -1703,11 +1738,14 @@ span.twostop {
     background: white;
     position: absolute;
     z-index: 999;
-    padding: 20px 10px;
-    margin-top: 18px;
+    padding: 20px;
+    margin-top: 25px;
     border: transparent;
-    border-radius: 14px;
+    border-radius: 14px;    
     color: #413f3f;
+    width: 120%;
+    right: 12px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important;
 }
 .traveldet-popdown:after {
     content: " ";
@@ -1719,7 +1757,60 @@ span.twostop {
     border-left: 15px solid transparent;
     border-bottom: 15px solid #f8eded;
 }
-.traveldet-popdown select
+.traveldet-popdown select,.traveldet-popdown select:focus {
+    border: 1px solid #1f27488c;
+}
+.traveldet-title {
+    background: white;
+    padding: 0.66em;
+    color: #777;
+}
+span.react-numeric-input b {
+    color: skyblue !important;
+    background: transparent !important;
+    font-size: 25px !important;
+    font-weight: bold !important;
+    border: 2px solid #84858570 !important;
+    border-radius: 100% !important;
+}
+.less-padright {
+    padding-right: 0px !important;
+}
+.less-padleft {
+    padding-left: 1px !important;
+}
+label.label-dark.form-label {
+    color: #1e1e1e !important;
+}
+span.agelimit-text {
+    text-align: center;
+    position: absolute;
+    top: 40px;
+}
+span.age-instr {
+    font-size: 12px;
+    color: #2b2929bf;
+    line-height: 4px;
+    margin-top: 15px;
+}
+span.label-skyblue {
+    color: #17d8cf;
+    font-weight: bold;
+}
+.date-text {
+    background: white;
+    color: #0000005c;
+    text-align: center;
+    padding: 0.66em;
+}
+.search-btnmargin
 {
-    border:1px solid red;
+    margin-top:-15px !important;
+}
+span.react-numeric-input b:hover {
+    background: transparent !important;
+    font-size: 25px !important;
+    font-weight: bold !important;
+    border: 2px solid #17d8cf !important;
+    border-radius: 100% !important;
 }

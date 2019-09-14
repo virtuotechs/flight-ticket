@@ -133,15 +133,15 @@ const TicketBooking = (flights) => {
             // State initialisation
             const [requestData,setRequestData] = useState(flights.request);
             const [jsondata,setJsondata] = useState(flights.flights.data.recommendation);     
-            const [flightData,setFlightData] = useState(flights.flights.data.recommendation);   
+            const [flightData,setFlightData] = useState(flights.flights.data.recommendation);  
+            const [searchType,setSearchType] = useState(requestData.searchType); 
             const [departureDate,setDepartureDate] =useState(changeMonthDate(requestData.segments[0].departureDate));
-            const [returnDate,setReturnDate] = requestData.searchType == 2 ? useState(changeMonthDate(requestData.segments[0].returnDate)) : useState(null);
+            const [returnDate,setReturnDate] = requestData.searchType == 2 || searchType == 2 ? useState(changeMonthDate(requestData.segments[0].returnDate)) : useState(null);
             const [departureLocationCode,setDeparturelocationcode] = useState(requestData.segments[0].departureLocationCode);
 	        const [arrivalLocationCode,setArrivallocationcode] = useState(requestData.segments[0].arrivalLocationCode);
             const [departureLocationName,setDepartureLocationName] = useState(requestData.departureLocationName);
             const [arrivalLocationName,setArrivalLocationName] = useState(requestData.arrivalLocationName)
             const [sortToggler,setSortToggler]=useState(false);
-            const [searchType,setSearchType] = useState(requestData.searchType);
             const [filterToggler,setFilterToggler]=useState(false);
             const [sortOption,setSortOption]=useState('Best');  
             const [fetchLoading,setFetchLoading] = useState(false);
@@ -470,6 +470,7 @@ const TicketBooking = (flights) => {
             }
             const changeSearchType = (e) => {
                 setSearchType(e.target.value);
+                setReturnDate(departureDate);
                 console.log(searchType);
             }
             async function filterAirline(airname){

@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2315,7 +2315,8 @@ function (_React$Component) {
 var Home = function Home(props) {
   //Number input ref
   var adultCountref = react__WEBPACK_IMPORTED_MODULE_8___default.a.createRef();
-  var childCountref = react__WEBPACK_IMPORTED_MODULE_8___default.a.createRef(); //states
+  var childCountref = react__WEBPACK_IMPORTED_MODULE_8___default.a.createRef();
+  var node = react__WEBPACK_IMPORTED_MODULE_8___default.a.createRef(); //states
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])([]),
       _useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState, 2),
@@ -2355,159 +2356,164 @@ var Home = function Home(props) {
   var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
       _useState16 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState15, 2),
       fetchLoading = _useState16[0],
-      setFetchLoading = _useState16[1]; //round trip states
+      setFetchLoading = _useState16[1];
 
-
-  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(''),
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
       _useState18 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState17, 2),
-      departureLocationCode = _useState18[0],
-      setDeparturelocationcode = _useState18[1];
+      popup = _useState18[0],
+      setPopup = _useState18[1]; //round trip states
+
 
   var _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(''),
       _useState20 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState19, 2),
-      arrivalLocationCode = _useState20[0],
-      setArrivallocationcode = _useState20[1];
+      departureLocationCode = _useState20[0],
+      setDeparturelocationcode = _useState20[1];
 
   var _useState21 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(''),
       _useState22 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState21, 2),
-      departureLocationName = _useState22[0],
-      setDepartureLocationName = _useState22[1];
+      arrivalLocationCode = _useState22[0],
+      setArrivallocationcode = _useState22[1];
 
   var _useState23 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(''),
       _useState24 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState23, 2),
-      arrivalLocationName = _useState24[0],
-      setArrivalLocationName = _useState24[1];
+      departureLocationName = _useState24[0],
+      setDepartureLocationName = _useState24[1];
 
-  var _useState25 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(1),
+  var _useState25 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(''),
       _useState26 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState25, 2),
-      preferedFlightClass = _useState26[0],
-      setPreferedflightclass = _useState26[1];
+      arrivalLocationName = _useState26[0],
+      setArrivalLocationName = _useState26[1];
 
-  var _useState27 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(new Date()),
+  var _useState27 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(1),
       _useState28 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState27, 2),
-      departureDate = _useState28[0],
-      setDeparturedate = _useState28[1];
+      preferedFlightClass = _useState28[0],
+      setPreferedflightclass = _useState28[1];
 
   var _useState29 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(new Date()),
       _useState30 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState29, 2),
-      returnDate = _useState30[0],
-      setReturndate = _useState30[1];
+      departureDate = _useState30[0],
+      setDeparturedate = _useState30[1];
 
-  var _useState31 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(1),
+  var _useState31 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(new Date()),
       _useState32 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState31, 2),
-      adultCount = _useState32[0],
-      setAdultcount = _useState32[1];
+      returnDate = _useState32[0],
+      setReturndate = _useState32[1];
 
-  var _useState33 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(0),
+  var _useState33 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(1),
       _useState34 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState33, 2),
-      childCount = _useState34[0],
-      setchildCount = _useState34[1];
+      adultCount = _useState34[0],
+      setAdultcount = _useState34[1];
 
-  var _useState35 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
+  var _useState35 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(0),
       _useState36 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState35, 2),
-      departure_err = _useState36[0],
-      setDeparture_err = _useState36[1];
+      childCount = _useState36[0],
+      setchildCount = _useState36[1];
 
   var _useState37 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
       _useState38 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState37, 2),
-      arrival_err = _useState38[0],
-      setArrival_err = _useState38[1];
+      departure_err = _useState38[0],
+      setDeparture_err = _useState38[1];
 
   var _useState39 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
       _useState40 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState39, 2),
-      cabin_err = _useState40[0],
-      setCabin_err = _useState40[1];
+      arrival_err = _useState40[0],
+      setArrival_err = _useState40[1];
 
   var _useState41 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
       _useState42 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState41, 2),
-      departureDate_err = _useState42[0],
-      setDeparturedate_err = _useState42[1];
+      cabin_err = _useState42[0],
+      setCabin_err = _useState42[1];
 
   var _useState43 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
       _useState44 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState43, 2),
-      returnDate_err = _useState44[0],
-      setReturndate_err = _useState44[1];
+      departureDate_err = _useState44[0],
+      setDeparturedate_err = _useState44[1];
 
   var _useState45 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
       _useState46 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState45, 2),
-      adults_err = _useState46[0],
-      setAdults_err = _useState46[1];
+      returnDate_err = _useState46[0],
+      setReturndate_err = _useState46[1];
 
   var _useState47 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
       _useState48 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState47, 2),
-      child_err = _useState48[0],
-      setChild_err = _useState48[1]; // oneway states
+      adults_err = _useState48[0],
+      setAdults_err = _useState48[1];
 
-
-  var _useState49 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(''),
+  var _useState49 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
       _useState50 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState49, 2),
-      oneway_departureLocationCode = _useState50[0],
-      setoneway_DepartureLocationCode = _useState50[1];
+      child_err = _useState50[0],
+      setChild_err = _useState50[1]; // oneway states
+
 
   var _useState51 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(''),
       _useState52 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState51, 2),
-      oneway_arrivalLocationCode = _useState52[0],
-      setoneway_ArrivalLocationCode = _useState52[1];
+      oneway_departureLocationCode = _useState52[0],
+      setoneway_DepartureLocationCode = _useState52[1];
 
   var _useState53 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(''),
       _useState54 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState53, 2),
-      oneway_departureLocationName = _useState54[0],
-      setoneway_DepartureLocationName = _useState54[1];
+      oneway_arrivalLocationCode = _useState54[0],
+      setoneway_ArrivalLocationCode = _useState54[1];
 
   var _useState55 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(''),
       _useState56 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState55, 2),
-      oneway_arrivalLocationName = _useState56[0],
-      setoneway_ArrivalLocationName = _useState56[1];
+      oneway_departureLocationName = _useState56[0],
+      setoneway_DepartureLocationName = _useState56[1];
 
-  var _useState57 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(1),
+  var _useState57 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(''),
       _useState58 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState57, 2),
-      oneway_preferedFlightClass = _useState58[0],
-      setoneway_PreferedFlightClass = _useState58[1];
+      oneway_arrivalLocationName = _useState58[0],
+      setoneway_ArrivalLocationName = _useState58[1];
 
-  var _useState59 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(new Date()),
+  var _useState59 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(1),
       _useState60 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState59, 2),
-      oneway_departureDate = _useState60[0],
-      setoneway_Departuredate = _useState60[1];
+      oneway_preferedFlightClass = _useState60[0],
+      setoneway_PreferedFlightClass = _useState60[1];
 
-  var _useState61 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(1),
+  var _useState61 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(new Date()),
       _useState62 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState61, 2),
-      oneway_adultCount = _useState62[0],
-      setoneway_AdultCount = _useState62[1];
+      oneway_departureDate = _useState62[0],
+      setoneway_Departuredate = _useState62[1];
 
-  var _useState63 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(0),
+  var _useState63 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(1),
       _useState64 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState63, 2),
-      oneway_childCount = _useState64[0],
-      setoneway_ChildCount = _useState64[1];
+      oneway_adultCount = _useState64[0],
+      setoneway_AdultCount = _useState64[1];
 
-  var _useState65 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
+  var _useState65 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(0),
       _useState66 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState65, 2),
-      oneway_departure_err = _useState66[0],
-      setoneway_Departure_err = _useState66[1];
+      oneway_childCount = _useState66[0],
+      setoneway_ChildCount = _useState66[1];
 
   var _useState67 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
       _useState68 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState67, 2),
-      oneway_arrival_err = _useState68[0],
-      setoneway_Arrival_err = _useState68[1];
+      oneway_departure_err = _useState68[0],
+      setoneway_Departure_err = _useState68[1];
 
   var _useState69 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
       _useState70 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState69, 2),
-      oneway_cabin_err = _useState70[0],
-      setoneway_Cabin_err = _useState70[1];
+      oneway_arrival_err = _useState70[0],
+      setoneway_Arrival_err = _useState70[1];
 
   var _useState71 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
       _useState72 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState71, 2),
-      oneway_departureDate_err = _useState72[0],
-      setoneway_DepartureDate_err = _useState72[1];
+      oneway_cabin_err = _useState72[0],
+      setoneway_Cabin_err = _useState72[1];
 
   var _useState73 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
       _useState74 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState73, 2),
-      oneway_adults_err = _useState74[0],
-      setoneway_Adults_err = _useState74[1];
+      oneway_departureDate_err = _useState74[0],
+      setoneway_DepartureDate_err = _useState74[1];
 
   var _useState75 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
       _useState76 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState75, 2),
-      oneway_child_err = _useState76[0],
-      setoneway_Child_err = _useState76[1];
+      oneway_adults_err = _useState76[0],
+      setoneway_Adults_err = _useState76[1];
+
+  var _useState77 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
+      _useState78 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState77, 2),
+      oneway_child_err = _useState78[0],
+      setoneway_Child_err = _useState78[1];
 
   var showAnother = function showAnother(e) {
     setShowAnn(true);
@@ -2759,37 +2765,73 @@ var Home = function Home(props) {
     }
   };
 
+  var preferedclassname = function preferedclassname(classname) {
+    if (classname == "1") {
+      return "Any";
+    } else if (classname == "2") {
+      return "Business";
+    } else if (classname == "3") {
+      return "Economy";
+    } else if (classname == "4") {
+      return "First Class";
+    } else if (classname == "5") {
+      return "PremiumOrEconomy";
+    } else if (classname == "6") {
+      return "PremiumAndEconomy";
+    }
+  }; //   Dropdown
+
+
+  Object(react__WEBPACK_IMPORTED_MODULE_8__["useEffect"])(function () {
+    document.addEventListener("click", handleOutsideClick);
+    document.removeEventListener("click", handleOutsideClick);
+  });
+
+  var handlepopup = function handlepopup() {
+    setPopup(!popup);
+  };
+
+  var handleOutsideClick = function handleOutsideClick(e) {
+    console.log(node.current);
+    console.log(e.target);
+
+    if (node.current && node.current.contains(event.target)) {
+      setPopup(false);
+    }
+  }; // end dropdown 
+
+
   return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 425
+      lineNumber: 470
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("section", {
     className: "background",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 426
+      lineNumber: 471
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Container"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 427
+      lineNumber: 472
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "title",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 428
+      lineNumber: 473
     },
     __self: this
   }, "Discover"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("h5", {
     className: "title_flight",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 429
+      lineNumber: 474
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("img", {
@@ -2798,27 +2840,27 @@ var Home = function Home(props) {
     width: "25",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 430
+      lineNumber: 475
     },
     __self: this
   }), " Flights"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "flight",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 432
+      lineNumber: 477
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 433
+      lineNumber: 478
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "mb-3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 434
+      lineNumber: 479
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Check, {
@@ -2833,7 +2875,7 @@ var Home = function Home(props) {
     id: "inline-radio-2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 435
+      lineNumber: 480
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Check, {
@@ -2848,42 +2890,14 @@ var Home = function Home(props) {
     id: "inline-radio-1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 436
+      lineNumber: 481
     },
     __self: this
-  })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-    className: "checkbox-custom",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 439
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-    className: "mb-3 right",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 440
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Check, {
-    name: "isDirectFlight",
-    inline: true,
-    label: "Direct Flight Only",
-    type: "checkbox",
-    id: "inline-check-1",
-    defaultChecked: isDirectFlight,
-    defaultValue: isDirectFlight,
-    onClick: changedirectFlight,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 441
-    },
-    __self: this
-  }))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
+  })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
     hidden: !round,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 444
+      lineNumber: 484
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
@@ -2891,160 +2905,19 @@ var Home = function Home(props) {
     sm: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 445
+      lineNumber: 485
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 446
+      lineNumber: 486
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 6,
+    md: 4,
     sm: 6,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 447
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
-    controlId: "exampleForm.ControlSelect1",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 448
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 449
-    },
-    __self: this
-  }, "From"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-    className: "select_box1",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 450
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(MyAutosuggest, {
-    id: "countries1",
-    onChange: onChangeHome,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 451
-    },
-    __self: this
-  }), departure_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
-    className: "err-msg",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 455
-    },
-    __self: this
-  }, "Departure Location required") : null)), ['checkbox'].map(function (type) {
-    return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-      key: "inline-".concat(type),
-      className: "checkbox-custom",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 459
-      },
-      __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-      className: "mb-3 top-0",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 460
-      },
-      __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Check, {
-      name: "add_near_airport",
-      inline: true,
-      label: "Add Nearby Airports",
-      type: type,
-      id: "inline-".concat(type, "-1"),
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 461
-      },
-      __self: this
-    })));
-  })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 6,
-    sm: 6,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 466
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
-    controlId: "exampleForm.ControlSelect1",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 467
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 468
-    },
-    __self: this
-  }, "To"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-    className: "select_box1",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 469
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(MyAutosuggest, {
-    id: "countries2",
-    onChange: onChangeHome,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 470
-    },
-    __self: this
-  }), arrival_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
-    className: "err-msg",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 474
-    },
-    __self: this
-  }, "Arrival Location required") : null)), ['checkbox'].map(function (type) {
-    return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-      key: "inline-".concat(type),
-      className: "checkbox-custom",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 478
-      },
-      __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-      className: "mb-3 top-0",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 479
-      },
-      __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Check, {
-      name: "add_near_airport",
-      inline: true,
-      label: "Add Nearby Airports",
-      type: type,
-      id: "inline-".concat(type, "-1"),
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 480
-      },
-      __self: this
-    })));
-  })))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 3,
-    sm: 12,
+    className: "less-padright",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 487
@@ -3063,122 +2936,172 @@ var Home = function Home(props) {
       lineNumber: 489
     },
     __self: this
-  }, "Cabin Class"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-    className: "select_box",
+  }, "From"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    className: "select_box2",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 490
     },
     __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Control, {
-    as: "select",
-    name: "preferedFlightClass",
-    onChange: changeClass,
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(MyAutosuggest, {
+    id: "countries1",
+    onChange: onChangeHome,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 491
     },
     __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
-    value: "1",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 492
-    },
-    __self: this
-  }, "Any"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
-    value: "2",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 493
-    },
-    __self: this
-  }, "Business"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
-    value: "3",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 494
-    },
-    __self: this
-  }, "Economy"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
-    value: "4",
+  }), departure_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
+    className: "err-msg",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 495
     },
     __self: this
-  }, "First Class"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
-    value: "5",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 496
-    },
-    __self: this
-  }, "PremiumOrEconomy"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
-    value: "6",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 497
-    },
-    __self: this
-  }, "PremiumAndEconomy")), cabin_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
-    className: "err-msg",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 499
-    },
-    __self: this
-  }, "Cabin class is required") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    lg: 5,
-    md: 12,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 504
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 505
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+  }, "Departure Location required") : null)), ['checkbox'].map(function (type) {
+    return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+      key: "inline-".concat(type),
+      className: "checkbox-custom",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 499
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+      className: "mb-3",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 500
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Check, {
+      name: "add_near_airport",
+      inline: true,
+      label: "Add Nearby Airports",
+      type: type,
+      id: "inline-".concat(type, "-1"),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 501
+      },
+      __self: this
+    })));
+  })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    md: 4,
     sm: 6,
+    className: "less-padleft less-padright",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 507
+      lineNumber: 506
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
     controlId: "exampleForm.ControlSelect1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 508
+      lineNumber: 507
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
+      lineNumber: 508
+    },
+    __self: this
+  }, "To"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    className: "select_box2",
+    __source: {
+      fileName: _jsxFileName,
       lineNumber: 509
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(MyAutosuggest, {
+    id: "countries2",
+    onChange: onChangeHome,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 510
+    },
+    __self: this
+  }), arrival_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
+    className: "err-msg",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 514
+    },
+    __self: this
+  }, "Arrival Location required") : null)), ['checkbox'].map(function (type) {
+    return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+      key: "inline-".concat(type),
+      className: "checkbox-custom",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 518
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+      className: "mb-3",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 519
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Check, {
+      name: "add_near_airport",
+      inline: true,
+      label: "Add Nearby Airports",
+      type: type,
+      id: "inline-".concat(type, "-1"),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 520
+      },
+      __self: this
+    })));
+  })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    md: 4,
+    sm: 6,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 525
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 526
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    sm: 6,
+    md: 6,
+    className: "less-padleft less-padright",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 527
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
+    controlId: "exampleForm.ControlSelect1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 528
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 529
     },
     __self: this
   }, "Departure"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "date",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 510
+      lineNumber: 530
     },
     __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("img", {
-    className: "fa fa-calendar",
-    src: "static/images/calendar.svg",
-    width: "25",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 512
-    },
-    __self: this
-  }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_datepicker__WEBPACK_IMPORTED_MODULE_10___default.a, {
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_datepicker__WEBPACK_IMPORTED_MODULE_10___default.a, {
     name: "departureDate",
     className: "form-control",
     showMonthDropdown: true,
@@ -3189,53 +3112,45 @@ var Home = function Home(props) {
     onChange: handlestartChange,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 513
+      lineNumber: 532
     },
     __self: this
   }), departureDate_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
     className: "err-msg",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 522
+      lineNumber: 541
     },
     __self: this
   }, "Departure date is required") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
     sm: 6,
+    className: "less-padleft less-padright",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 526
+      lineNumber: 545
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
     controlId: "exampleForm.ControlSelect1s",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 527
+      lineNumber: 546
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 528
+      lineNumber: 547
     },
     __self: this
   }, "Return"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "date",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 529
+      lineNumber: 548
     },
     __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("img", {
-    className: "fa fa-calendar",
-    src: "static/images/calendar.svg",
-    width: "25",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 531
-    },
-    __self: this
-  }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_datepicker__WEBPACK_IMPORTED_MODULE_10___default.a, {
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_datepicker__WEBPACK_IMPORTED_MODULE_10___default.a, {
     name: "returnDate",
     className: "form-control",
     dateFormat: "dd/MM/yyyy",
@@ -3246,55 +3161,203 @@ var Home = function Home(props) {
     onChange: handleendChange,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 532
+      lineNumber: 550
     },
     __self: this
   }), returnDate_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
     className: "err-msg",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 542
+      lineNumber: 560
     },
     __self: this
-  }, "Return date is required") : null))))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    lg: 7,
-    md: 12,
+  }, "Return date is required") : null))))))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    md: 3,
+    sm: 4,
+    className: "less-padleft",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 548
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 549
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    sm: 3,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 550
+      lineNumber: 568
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
     controlId: "exampleForm.ControlSelect1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 551
+      lineNumber: 569
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 552
+      lineNumber: 570
     },
     __self: this
-  }, "Adults (16+)"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+  }, "Cabin Class & Travellers"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    ref: node,
+    className: "traveldet-title",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 571
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    onClick: handlepopup,
+    style: {
+      width: '100%'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 572
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
+    className: "popup",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 573
+    },
+    __self: this
+  }, adultCount, " Adult, ", preferedclassname(preferedFlightClass))), popup && react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    className: "traveldet-popdown",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 576
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 577
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    md: 12,
+    sm: 12,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 578
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
+    className: "label-dark",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 579
+    },
+    __self: this
+  }, "Cabin class"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
+    className: "",
+    style: {
+      "float": 'right',
+      color: '#17d8cf'
+    },
+    onClick: function onClick() {
+      return setPopup(false);
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 580
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
+    className: "fa fa-times",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 580
+    },
+    __self: this
+  })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    className: "select_box",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 581
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Control, {
+    as: "select",
+    name: "oneway_preferedFlightClass",
+    onChange: changeClass,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 582
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
+    value: "1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 583
+    },
+    __self: this
+  }, "Any"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
+    value: "2",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 584
+    },
+    __self: this
+  }, "Business"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
+    value: "3",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 585
+    },
+    __self: this
+  }, "Economy"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
+    value: "4",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 586
+    },
+    __self: this
+  }, "First Class"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
+    value: "5",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 587
+    },
+    __self: this
+  }, "PremiumOrEconomy"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
+    value: "6",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 588
+    },
+    __self: this
+  }, "PremiumAndEconomy"))))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 593
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    sm: 6,
+    xs: 6,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 594
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
+    controlId: "exampleForm.ControlSelect1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 595
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
+    className: "label-dark",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 596
+    },
+    __self: this
+  }, "Adults"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "arrow",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 553
+      lineNumber: 597
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_numeric_input__WEBPACK_IMPORTED_MODULE_14___default.a, {
@@ -3308,41 +3371,64 @@ var Home = function Home(props) {
     onChange: adultChanged,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 554
+      lineNumber: 598
     },
     __self: this
   }), adults_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
     className: "err-msg",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 555
+      lineNumber: 599
     },
     __self: this
   }, "Put value between 1-9") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    sm: 3,
+    sm: 6,
+    xs: 6,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 559
+      lineNumber: 603
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
+    className: "agelimit-text",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 604
+    },
+    __self: this
+  }, "16+ years"))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 607
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    sm: 6,
+    xs: 6,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 608
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
     controlId: "exampleForm.ControlSelect1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 560
+      lineNumber: 609
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
+    className: "label-dark",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 561
+      lineNumber: 610
     },
     __self: this
   }, "Children"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "arrow",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 562
+      lineNumber: 611
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_numeric_input__WEBPACK_IMPORTED_MODULE_14___default.a, {
@@ -3356,31 +3442,151 @@ var Home = function Home(props) {
     onChange: childChanged,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 563
+      lineNumber: 612
     },
     __self: this
   }), child_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
     className: "err-msg",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 564
+      lineNumber: 613
     },
     __self: this
   }, "Put value between 0-9") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
     sm: 6,
+    xs: 6,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 568
+      lineNumber: 617
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
+    className: "agelimit-text",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 618
+    },
+    __self: this
+  }, "0-15 years"))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 621
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    sm: 12,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 622
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
+    className: "age-instr",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 623
+    },
+    __self: this
+  }, "Your age at time of travel must be valid for the age category booked. Airlines have restrictions on under 18s travelling alone.", react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 624
+    },
+    __self: this
+  }), "Age limits and policies fo r travelling with children may vary so please check with the airline before booking."))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 627
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 628
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    sm: 12,
+    className: "text-right",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 629
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
+    className: "label-skyblue",
+    onClick: function onClick() {
+      return setPopup(false);
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 630
+    },
+    __self: this
+  }, "Done"))))))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    lg: 12,
+    md: 12,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 639
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 640
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    sm: 8,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 641
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    className: "checkbox-custom",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 642
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    className: "mb-3 right",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 643
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Check, {
+    name: "isDirectFlight",
+    inline: true,
+    label: "Direct Flight Only",
+    type: "checkbox",
+    id: "inline-check-1",
+    defaultChecked: isDirectFlight,
+    defaultValue: isDirectFlight,
+    onClick: changedirectFlight,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 644
+    },
+    __self: this
+  })))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    sm: 4,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 648
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Button"], {
-    className: "form-control",
+    className: "form-control search-btnmargin",
     variant: "danger",
     onClick: flightsforRoundTrip,
     disabled: fetchLoading,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 569
+      lineNumber: 649
     },
     __self: this
   }, fetchLoading && react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
@@ -3390,26 +3596,26 @@ var Home = function Home(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 571
+      lineNumber: 651
     },
     __self: this
   }), fetchLoading && react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 576
+      lineNumber: 656
     },
     __self: this
   }, "Please wait!"), !fetchLoading && react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 577
+      lineNumber: 657
     },
     __self: this
   }, "SEARCH FLIGHTS")))))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
     hidden: !oneway,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 584
+      lineNumber: 664
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
@@ -3417,41 +3623,42 @@ var Home = function Home(props) {
     sm: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 585
+      lineNumber: 665
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 586
+      lineNumber: 666
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 6,
+    md: 4,
     sm: 6,
+    className: "less-padright",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 587
+      lineNumber: 667
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
     controlId: "exampleForm.ControlSelect1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 588
+      lineNumber: 668
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 589
+      lineNumber: 669
     },
     __self: this
   }, "From"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-    className: "select_box1",
+    className: "select_box2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 590
+      lineNumber: 670
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(MyAutosuggest, {
@@ -3459,14 +3666,14 @@ var Home = function Home(props) {
     onChange: onChangeHome,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 591
+      lineNumber: 671
     },
     __self: this
   }), oneway_departure_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
     className: "err-msg",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 595
+      lineNumber: 675
     },
     __self: this
   }, "Departure Location required") : null)), ['checkbox'].map(function (type) {
@@ -3475,14 +3682,14 @@ var Home = function Home(props) {
       className: "checkbox-custom",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 599
+        lineNumber: 679
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-      className: "mb-3 top-0",
+      className: "mb-3",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 600
+        lineNumber: 680
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Check, {
@@ -3493,36 +3700,37 @@ var Home = function Home(props) {
       id: "inline-".concat(type, "-1"),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 601
+        lineNumber: 681
       },
       __self: this
     })));
   })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 6,
+    md: 4,
     sm: 6,
+    className: "less-padleft less-padright",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 606
+      lineNumber: 686
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
     controlId: "exampleForm.ControlSelect1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 607
+      lineNumber: 687
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 608
+      lineNumber: 688
     },
     __self: this
   }, "To"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-    className: "select_box1",
+    className: "select_box2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 609
+      lineNumber: 689
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(MyAutosuggest, {
@@ -3530,14 +3738,14 @@ var Home = function Home(props) {
     onChange: onChangeHome,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 610
+      lineNumber: 690
     },
     __self: this
   }), oneway_arrival_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
     className: "err-msg",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 614
+      lineNumber: 694
     },
     __self: this
   }, "Arrival Location required") : null)), ['checkbox'].map(function (type) {
@@ -3546,14 +3754,14 @@ var Home = function Home(props) {
       className: "checkbox-custom",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 618
+        lineNumber: 698
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-      className: "mb-3 top-0",
+      className: "mb-3",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 619
+        lineNumber: 699
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Check, {
@@ -3564,140 +3772,54 @@ var Home = function Home(props) {
       id: "inline-".concat(type, "-1"),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 620
+        lineNumber: 700
       },
       __self: this
     })));
-  })))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 3,
-    sm: 12,
+  })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    md: 4,
+    sm: 6,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 627
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
-    controlId: "exampleForm.ControlSelect1",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 628
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 629
-    },
-    __self: this
-  }, "Cabin Class"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-    className: "select_box",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 630
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Control, {
-    as: "select",
-    name: "oneway_preferedFlightClass",
-    onChange: oneway_changeClass,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 631
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
-    value: "1",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 632
-    },
-    __self: this
-  }, "Any"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
-    value: "2",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 633
-    },
-    __self: this
-  }, "Business"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
-    value: "3",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 634
-    },
-    __self: this
-  }, "Economy"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
-    value: "4",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 635
-    },
-    __self: this
-  }, "First Class"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
-    value: "5",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 636
-    },
-    __self: this
-  }, "PremiumOrEconomy"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
-    value: "6",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 637
-    },
-    __self: this
-  }, "PremiumAndEconomy"))))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    lg: 5,
-    md: 12,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 642
+      lineNumber: 705
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 643
+      lineNumber: 706
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    sm: 12,
+    sm: 6,
+    md: 6,
+    className: "less-padleft less-padright",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 644
+      lineNumber: 707
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
     controlId: "exampleForm.ControlSelect1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 645
+      lineNumber: 708
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 646
+      lineNumber: 709
     },
     __self: this
-  }, "Depature"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+  }, "Departure"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "date",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 647
+      lineNumber: 710
     },
     __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("img", {
-    className: "fa fa-calendar",
-    src: "static/images/calendar.svg",
-    width: "25",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 648
-    },
-    __self: this
-  }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_datepicker__WEBPACK_IMPORTED_MODULE_10___default.a, {
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_datepicker__WEBPACK_IMPORTED_MODULE_10___default.a, {
     name: "departureDate",
     className: "form-control",
     showMonthDropdown: true,
@@ -3708,210 +3830,48 @@ var Home = function Home(props) {
     onChange: oneway_handlestartChange,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 649
+      lineNumber: 712
     },
     __self: this
   }), oneway_departureDate_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
     className: "err-msg",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 658
+      lineNumber: 721
     },
     __self: this
-  }, "Departure date is required") : null))))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    lg: 7,
-    md: 12,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 664
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 665
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    sm: 3,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 666
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
-    controlId: "exampleForm.ControlSelect1",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 667
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 668
-    },
-    __self: this
-  }, "Adults (16+)"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-    className: "arrow",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 669
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_numeric_input__WEBPACK_IMPORTED_MODULE_14___default.a, {
-    mobile: true,
-    name: "oneway_adultCount",
-    className: "number-input form-control",
-    value: oneway_adultCount,
-    min: 1,
-    max: 9,
-    step: 1,
-    onChange: oneway_adultChanged,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 670
-    },
-    __self: this
-  }), oneway_adults_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
-    className: "err-msg",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 671
-    },
-    __self: this
-  }, "Put value between 1-9") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    sm: 3,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 675
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
-    controlId: "exampleForm.ControlSelect1",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 676
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 677
-    },
-    __self: this
-  }, "Children"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-    className: "arrow",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 678
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_numeric_input__WEBPACK_IMPORTED_MODULE_14___default.a, {
-    mobile: true,
-    name: "oneway_childCount",
-    className: "number-input form-control",
-    value: oneway_childCount,
-    min: 0,
-    max: 9,
-    step: 1,
-    onChange: oneway_childChanged,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 679
-    },
-    __self: this
-  }), oneway_child_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
-    className: "err-msg",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 680
-    },
-    __self: this
-  }, "Put value between 0-9") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+  }, "Departure date is required") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
     sm: 6,
+    className: "less-padleft less-padright",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 684
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Button"], {
-    className: "form-control",
-    variant: "danger",
-    onClick: flightsforOneway,
-    disabled: fetchLoading,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 685
-    },
-    __self: this
-  }, fetchLoading && react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
-    className: "fa fa-refresh fa-spin",
-    style: {
-      marginRight: "5px"
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 687
-    },
-    __self: this
-  }), fetchLoading && react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 692
-    },
-    __self: this
-  }, "Please wait!"), !fetchLoading && react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 693
-    },
-    __self: this
-  }, "SEARCH FLIGHTS")))))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
-    hidden: !multi,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 701
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 4,
-    sm: 12,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 702
+      lineNumber: 725
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
-    controlId: "exampleForm.ControlSelect1",
+    controlId: "exampleForm.ControlSelect1s",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 703
+      lineNumber: 726
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 704
+      lineNumber: 727
     },
     __self: this
-  }, "From"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-    className: "select_box1",
+  }, "Return"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    className: "date-text",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 705
+      lineNumber: 728
     },
     __self: this
-  }, departure_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
-    className: "err-msg",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 733
-    },
-    __self: this
-  }, "Departure Location required") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 4,
-    sm: 12,
+  }, "(One way)"))))))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    md: 3,
+    sm: 4,
+    className: "less-padleft",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 737
@@ -3930,110 +3890,465 @@ var Home = function Home(props) {
       lineNumber: 739
     },
     __self: this
-  }, "To"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-    className: "select_box1",
+  }, "Cabin Class & Travellers"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    ref: node,
+    className: "traveldet-title",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 740
     },
     __self: this
-  }, arrival_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    onClick: handlepopup,
+    style: {
+      width: '100%'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 741
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
+    className: "popup",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 742
+    },
+    __self: this
+  }, oneway_adultCount, " Adult, ", preferedclassname(oneway_preferedFlightClass))), popup && react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    className: "traveldet-popdown",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 745
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 746
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    md: 12,
+    sm: 12,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 747
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
+    className: "label-dark",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 748
+    },
+    __self: this
+  }, "Cabin class"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
+    className: "",
+    style: {
+      "float": 'right',
+      color: '#17d8cf'
+    },
+    onClick: function onClick() {
+      return setPopup(false);
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 749
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
+    className: "fa fa-times",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 749
+    },
+    __self: this
+  })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    className: "select_box",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 750
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Control, {
+    as: "select",
+    name: "oneway_preferedFlightClass",
+    onChange: oneway_changeClass,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 751
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
+    value: "1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 752
+    },
+    __self: this
+  }, "Any"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
+    value: "2",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 753
+    },
+    __self: this
+  }, "Business"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
+    value: "3",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 754
+    },
+    __self: this
+  }, "Economy"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
+    value: "4",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 755
+    },
+    __self: this
+  }, "First Class"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
+    value: "5",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 756
+    },
+    __self: this
+  }, "PremiumOrEconomy"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
+    value: "6",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 757
+    },
+    __self: this
+  }, "PremiumAndEconomy"))))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 762
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    sm: 6,
+    xs: 6,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 763
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
+    controlId: "exampleForm.ControlSelect1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 764
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
+    className: "label-dark",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 765
+    },
+    __self: this
+  }, "Adults"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    className: "arrow",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 766
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_numeric_input__WEBPACK_IMPORTED_MODULE_14___default.a, {
+    mobile: true,
+    name: "oneway_adultCount",
+    className: "number-input form-control",
+    value: oneway_adultCount,
+    min: 1,
+    max: 9,
+    step: 1,
+    onChange: oneway_adultChanged,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 767
+    },
+    __self: this
+  }), oneway_adults_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
     className: "err-msg",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 768
     },
     __self: this
-  }, "Arrival Location required") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 4,
-    sm: 12,
+  }, "Put value between 1-9") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    sm: 6,
+    xs: 6,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 772
     },
     __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
-    controlId: "exampleForm.ControlSelect1",
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
+    className: "agelimit-text",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 773
     },
     __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 774
-    },
-    __self: this
-  }, "Depature"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-    className: "date",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 775
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("img", {
-    className: "fa fa-calendar",
-    src: "static/images/calendar.svg",
-    width: "25",
+  }, "16+ years"))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 776
     },
     __self: this
-  }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_datepicker__WEBPACK_IMPORTED_MODULE_10___default.a, {
-    name: "departureDate",
-    className: "form-control",
-    showMonthDropdown: true,
-    showYearDropdown: true,
-    dateFormat: "dd/MM/yyyy",
-    selected: departureDate,
-    onChange: handlestartChange,
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    sm: 6,
+    xs: 6,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 777
-    },
-    __self: this
-  }), departureDate_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
-    className: "err-msg",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 785
-    },
-    __self: this
-  }, "Departure date is required") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 4,
-    sm: 12,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 789
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
     controlId: "exampleForm.ControlSelect1",
     __source: {
       fileName: _jsxFileName,
+      lineNumber: 778
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
+    className: "label-dark",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 779
+    },
+    __self: this
+  }, "Children"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    className: "arrow",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 780
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_numeric_input__WEBPACK_IMPORTED_MODULE_14___default.a, {
+    mobile: true,
+    name: "oneway_childCount",
+    className: "number-input form-control",
+    value: oneway_childCount,
+    min: 0,
+    max: 9,
+    step: 1,
+    onChange: oneway_childChanged,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 781
+    },
+    __self: this
+  }), oneway_child_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
+    className: "err-msg",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 782
+    },
+    __self: this
+  }, "Put value between 0-9") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    sm: 6,
+    xs: 6,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 786
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
+    className: "agelimit-text",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 787
+    },
+    __self: this
+  }, "0-15 years"))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
       lineNumber: 790
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    sm: 12,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 791
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
+    className: "age-instr",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 792
+    },
+    __self: this
+  }, "Your age at time of travel must be valid for the age category booked. Airlines have restrictions on under 18s travelling alone.", react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 793
+    },
+    __self: this
+  }), "Age limits and policies fo r travelling with children may vary so please check with the airline before booking."))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 796
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 797
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    sm: 12,
+    className: "text-right",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 798
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
+    className: "label-skyblue",
+    onClick: function onClick() {
+      return setPopup(false);
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 799
+    },
+    __self: this
+  }, "Done"))))))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    lg: 12,
+    md: 12,
+    className: "text-center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 808
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 809
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    sm: 8,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 810
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    className: "checkbox-custom",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 811
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    className: "mb-3 right",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 812
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Check, {
+    name: "isDirectFlight",
+    inline: true,
+    label: "Direct Flight Only",
+    type: "checkbox",
+    id: "inline-check-1",
+    defaultChecked: isDirectFlight,
+    defaultValue: isDirectFlight,
+    onClick: changedirectFlight,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 813
+    },
+    __self: this
+  })))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    sm: 4,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 817
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Button"], {
+    className: "form-control search-btnmargin",
+    variant: "danger",
+    onClick: flightsforOneway,
+    disabled: fetchLoading,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 818
+    },
+    __self: this
+  }, fetchLoading && react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
+    className: "fa fa-refresh fa-spin",
+    style: {
+      marginRight: "5px"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 820
+    },
+    __self: this
+  }), fetchLoading && react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 825
+    },
+    __self: this
+  }, "Please wait!"), !fetchLoading && react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 826
+    },
+    __self: this
+  }, "SEARCH FLIGHTS")))))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
+    hidden: !multi,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 834
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    md: 4,
+    sm: 12,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 835
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
+    controlId: "exampleForm.ControlSelect1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 836
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 791
+      lineNumber: 837
     },
     __self: this
   }, "From"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "select_box1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 792
+      lineNumber: 838
     },
     __self: this
   }, departure_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
     className: "err-msg",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 820
+      lineNumber: 866
     },
     __self: this
   }, "Departure Location required") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
@@ -4041,34 +4356,34 @@ var Home = function Home(props) {
     sm: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 824
+      lineNumber: 870
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
     controlId: "exampleForm.ControlSelect1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 825
+      lineNumber: 871
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 826
+      lineNumber: 872
     },
     __self: this
   }, "To"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "select_box1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 827
+      lineNumber: 873
     },
     __self: this
   }, arrival_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
     className: "err-msg",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 855
+      lineNumber: 901
     },
     __self: this
   }, "Arrival Location required") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
@@ -4076,27 +4391,27 @@ var Home = function Home(props) {
     sm: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 859
+      lineNumber: 905
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
     controlId: "exampleForm.ControlSelect1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 860
+      lineNumber: 906
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 861
+      lineNumber: 907
     },
     __self: this
   }, "Depature"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "date",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 862
+      lineNumber: 908
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("img", {
@@ -4105,7 +4420,7 @@ var Home = function Home(props) {
     width: "25",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 863
+      lineNumber: 909
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_datepicker__WEBPACK_IMPORTED_MODULE_10___default.a, {
@@ -4118,14 +4433,141 @@ var Home = function Home(props) {
     onChange: handlestartChange,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 864
+      lineNumber: 910
     },
     __self: this
   }), departureDate_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
     className: "err-msg",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 872
+      lineNumber: 918
+    },
+    __self: this
+  }, "Departure date is required") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    md: 4,
+    sm: 12,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 922
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
+    controlId: "exampleForm.ControlSelect1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 923
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 924
+    },
+    __self: this
+  }, "From"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    className: "select_box1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 925
+    },
+    __self: this
+  }, departure_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
+    className: "err-msg",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 953
+    },
+    __self: this
+  }, "Departure Location required") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    md: 4,
+    sm: 12,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 957
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
+    controlId: "exampleForm.ControlSelect1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 958
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 959
+    },
+    __self: this
+  }, "To"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    className: "select_box1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 960
+    },
+    __self: this
+  }, arrival_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
+    className: "err-msg",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 988
+    },
+    __self: this
+  }, "Arrival Location required") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+    md: 4,
+    sm: 12,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 992
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
+    controlId: "exampleForm.ControlSelect1",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 993
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 994
+    },
+    __self: this
+  }, "Depature"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    className: "date",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 995
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("img", {
+    className: "fa fa-calendar",
+    src: "static/images/calendar.svg",
+    width: "25",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 996
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_datepicker__WEBPACK_IMPORTED_MODULE_10___default.a, {
+    name: "departureDate",
+    className: "form-control",
+    showMonthDropdown: true,
+    showYearDropdown: true,
+    dateFormat: "dd/MM/yyyy",
+    selected: departureDate,
+    onChange: handlestartChange,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 997
+    },
+    __self: this
+  }), departureDate_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
+    className: "err-msg",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 1005
     },
     __self: this
   }, "Departure date is required") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
@@ -4135,7 +4577,7 @@ var Home = function Home(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 876
+      lineNumber: 1009
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
@@ -4144,7 +4586,7 @@ var Home = function Home(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 877
+      lineNumber: 1010
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
@@ -4152,34 +4594,34 @@ var Home = function Home(props) {
     sm: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 878
+      lineNumber: 1011
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
     controlId: "exampleForm.ControlSelect1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 879
+      lineNumber: 1012
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 880
+      lineNumber: 1013
     },
     __self: this
   }, "From"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "select_box1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 881
+      lineNumber: 1014
     },
     __self: this
   }, departure_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
     className: "err-msg",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 909
+      lineNumber: 1042
     },
     __self: this
   }, "Departure Location required") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
@@ -4187,34 +4629,34 @@ var Home = function Home(props) {
     sm: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 913
+      lineNumber: 1046
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
     controlId: "exampleForm.ControlSelect1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 914
+      lineNumber: 1047
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 915
+      lineNumber: 1048
     },
     __self: this
   }, "To"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "select_box1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 916
+      lineNumber: 1049
     },
     __self: this
   }, arrival_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
     className: "err-msg",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 944
+      lineNumber: 1077
     },
     __self: this
   }, "Arrival Location required") : null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
@@ -4222,27 +4664,27 @@ var Home = function Home(props) {
     sm: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 948
+      lineNumber: 1081
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
     controlId: "exampleForm.ControlSelect1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 949
+      lineNumber: 1082
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 950
+      lineNumber: 1083
     },
     __self: this
   }, "Depature"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "date",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 951
+      lineNumber: 1084
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("img", {
@@ -4251,7 +4693,7 @@ var Home = function Home(props) {
     width: "25",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 952
+      lineNumber: 1085
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_datepicker__WEBPACK_IMPORTED_MODULE_10___default.a, {
@@ -4264,14 +4706,14 @@ var Home = function Home(props) {
     onChange: handlestartChange,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 953
+      lineNumber: 1086
     },
     __self: this
   }), departureDate_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
     className: "err-msg",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 961
+      lineNumber: 1094
     },
     __self: this
   }, "Departure date is required") : null))))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
@@ -4279,7 +4721,7 @@ var Home = function Home(props) {
     sm: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 967
+      lineNumber: 1100
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Button"], {
@@ -4288,7 +4730,7 @@ var Home = function Home(props) {
     onClick: showAnother,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 968
+      lineNumber: 1101
     },
     __self: this
   }, "ADD ANOTHER FLIGHT")), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
@@ -4296,7 +4738,7 @@ var Home = function Home(props) {
     sm: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 970
+      lineNumber: 1103
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
@@ -4304,27 +4746,27 @@ var Home = function Home(props) {
     sm: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 973
+      lineNumber: 1106
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
     controlId: "exampleForm.ControlSelect1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 974
+      lineNumber: 1107
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 975
+      lineNumber: 1108
     },
     __self: this
   }, "Cabin Class"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "select_box",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 976
+      lineNumber: 1109
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Control, {
@@ -4333,7 +4775,7 @@ var Home = function Home(props) {
     onChange: changeClass,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 977
+      lineNumber: 1110
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
@@ -4341,49 +4783,49 @@ var Home = function Home(props) {
     hidden: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 978
+      lineNumber: 1111
     },
     __self: this
   }, "Select"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
     value: "1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 979
+      lineNumber: 1112
     },
     __self: this
   }, "Any"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
     value: "2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 980
+      lineNumber: 1113
     },
     __self: this
   }, "Business"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
     value: "3",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 981
+      lineNumber: 1114
     },
     __self: this
   }, "Economy"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
     value: "4",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 982
+      lineNumber: 1115
     },
     __self: this
   }, "First Class"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
     value: "5",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 983
+      lineNumber: 1116
     },
     __self: this
   }, "PremiumOrEconomy"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
     value: "6",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 984
+      lineNumber: 1117
     },
     __self: this
   }, "PremiumAndEconomy"))))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
@@ -4391,47 +4833,47 @@ var Home = function Home(props) {
     sm: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 989
+      lineNumber: 1122
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 990
+      lineNumber: 1123
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
     sm: 4,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 991
+      lineNumber: 1124
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
     controlId: "exampleForm.ControlSelect1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 992
+      lineNumber: 1125
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 993
+      lineNumber: 1126
     },
     __self: this
   }, "Adults (16+)"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "arrow",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 994
+      lineNumber: 1127
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "quantity",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 995
+      lineNumber: 1128
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
@@ -4447,48 +4889,48 @@ var Home = function Home(props) {
     readOnly: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 996
+      lineNumber: 1129
     },
     __self: this
   }), adults_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
     className: "err-msg",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 997
+      lineNumber: 1130
     },
     __self: this
   }, "Adults counting atleast have 1") : null)))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
     sm: 4,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1002
+      lineNumber: 1135
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Group, {
     controlId: "exampleForm.ControlSelect1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1003
+      lineNumber: 1136
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Form"].Label, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1004
+      lineNumber: 1137
     },
     __self: this
   }, "Children"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "arrow",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1005
+      lineNumber: 1138
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "quantity",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1006
+      lineNumber: 1139
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
@@ -4503,28 +4945,28 @@ var Home = function Home(props) {
     onChange: childChanged,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1007
+      lineNumber: 1140
     },
     __self: this
   }), child_err ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
     className: "err-msg",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1008
+      lineNumber: 1141
     },
     __self: this
   }, "Invalid counting") : null)))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
     sm: 4,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1013
+      lineNumber: 1146
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("a", {
     href: "/ticketBooking",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1014
+      lineNumber: 1147
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Button"], {
@@ -4532,33 +4974,33 @@ var Home = function Home(props) {
     variant: "danger",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1014
+      lineNumber: 1147
     },
     __self: this
   }, "SEARCH FLIGHTS")))))))))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("section", {
     className: "nextBG",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1026
+      lineNumber: 1159
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Container"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1027
+      lineNumber: 1160
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1028
+      lineNumber: 1161
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1029
+      lineNumber: 1162
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
@@ -4566,7 +5008,7 @@ var Home = function Home(props) {
     sm: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1030
+      lineNumber: 1163
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
@@ -4574,13 +5016,13 @@ var Home = function Home(props) {
     sm: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1032
+      lineNumber: 1165
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Row"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1033
+      lineNumber: 1166
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
@@ -4592,21 +5034,21 @@ var Home = function Home(props) {
     className: "service",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1034
+      lineNumber: 1167
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "img_round",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1035
+      lineNumber: 1168
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "count",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1036
+      lineNumber: 1169
     },
     __self: this
   }, "01"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("img", {
@@ -4615,19 +5057,19 @@ var Home = function Home(props) {
     alt: "",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1037
+      lineNumber: 1170
     },
     __self: this
   })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("h5", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1039
+      lineNumber: 1172
     },
     __self: this
   }, "BEST PRICE GUARANTEE"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1040
+      lineNumber: 1173
     },
     __self: this
   }, "\" Offical ticket agent. No refund, ticket renewed. \"")), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
@@ -4639,21 +5081,21 @@ var Home = function Home(props) {
     className: "service",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1042
+      lineNumber: 1175
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "count",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1043
+      lineNumber: 1176
     },
     __self: this
   }, "02"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "img_round",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1044
+      lineNumber: 1177
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("img", {
@@ -4662,19 +5104,19 @@ var Home = function Home(props) {
     alt: "",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1045
+      lineNumber: 1178
     },
     __self: this
   })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("h5", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1047
+      lineNumber: 1180
     },
     __self: this
   }, "PLEASE FLIGHT TICKET"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1048
+      lineNumber: 1181
     },
     __self: this
   }, "\" Convenient payment and very safe, intelligent booking system. \" ")), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
@@ -4686,21 +5128,21 @@ var Home = function Home(props) {
     className: "service",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1050
+      lineNumber: 1183
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "img_round",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1051
+      lineNumber: 1184
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "count",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1052
+      lineNumber: 1185
     },
     __self: this
   }, "03"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("img", {
@@ -4709,19 +5151,19 @@ var Home = function Home(props) {
     alt: "",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1053
+      lineNumber: 1186
     },
     __self: this
   })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("h5", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1055
+      lineNumber: 1188
     },
     __self: this
   }, "CUSTOMER CARE 24/7"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1056
+      lineNumber: 1189
     },
     __self: this
   }, "\" Cheap Domestic Flights, International Cheap Flights. \"")), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
@@ -4733,21 +5175,21 @@ var Home = function Home(props) {
     className: "service",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1058
+      lineNumber: 1191
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "img_round",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1059
+      lineNumber: 1192
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "count",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1060
+      lineNumber: 1193
     },
     __self: this
   }, "04"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("img", {
@@ -4756,19 +5198,19 @@ var Home = function Home(props) {
     alt: "",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1061
+      lineNumber: 1194
     },
     __self: this
   })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("h5", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1063
+      lineNumber: 1196
     },
     __self: this
   }, "THOUGHTFUL SERVICE"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1064
+      lineNumber: 1197
     },
     __self: this
   }, "\" Support Free Support Related Information. \"")))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Col"], {
@@ -4776,7 +5218,7 @@ var Home = function Home(props) {
     sm: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 1068
+      lineNumber: 1201
     },
     __self: this
   }))))));
@@ -4827,7 +5269,7 @@ var Index = function Index() {
 
 /***/ }),
 
-/***/ 3:
+/***/ 5:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
