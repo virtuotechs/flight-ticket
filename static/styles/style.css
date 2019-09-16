@@ -73,6 +73,10 @@ i.err-msg {
 }
 
 @media (max-width: 991.98px) {
+    button.form-control.btn.btn-danger
+    {
+        margin-top: 1em !important;
+    }
     .navbar-expand-lg>.container, .navbar-expand-lg>.container-fluid {
         padding-right: 0;
         padding-left: 0;
@@ -168,6 +172,7 @@ nav .row {
 }
 
 .help {
+    cursor: pointer;
     padding: 0.5em 2em;
     color: #ff4057;
     text-transform: uppercase;
@@ -176,6 +181,24 @@ nav .row {
 }
 
 @media (max-width: 664px) {
+    .traveldet-popdown {
+        position: fixed !important;
+        top: 40px !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        z-index: 9999 !important;
+        background: #fff !important;
+        width: 100% !important;
+        height: webkit-fill-available !important;
+        border: none !important;
+    }
+
+    button.form-control.btn.btn-danger
+    {
+        margin-top: 1em !important;
+    }
     .d_flex .row {
         margin-left: -27px;
     }
@@ -198,6 +221,21 @@ nav .row {
 }
 
 @media (max-width: 768px) and (min-width: 601px) {
+    .traveldet-popdown {
+        cursor: auto;
+        position: fixed !important;
+        top: 40px !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        z-index: 9999 !important;
+        background: #fff !important;
+        width: 100% !important;
+        height: webkit-fill-available !important;
+        border: none !important;
+    }
+
     .d_flex .row {
         margin-left: -13px;
     }
@@ -213,6 +251,7 @@ nav .row {
         margin: 0 1em;
     }
     .help {
+        cursor: pointer;
         padding: 0.75em 4px;
         font-size: 13px;
         white-space: nowrap;
@@ -250,6 +289,21 @@ section.background {
 }
 
 @media (max-width: 600px) {
+    .traveldet-popdown {
+        cursor:auto;
+        position: fixed !important;
+        top: 40px !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        z-index: 9999 !important;
+        background: #fff !important;
+        width: 100% !important;
+        height: webkit-fill-available !important;
+        border: none !important;
+    }
+
     .search-btnmargin {
         margin-top: 20px !important;
     }
@@ -302,6 +356,7 @@ h5.title_flight {
 }
 
 .mb-3 label {
+    cursor: pointer;
     font-size: 12px;
     margin-right: 1em;
     letter-spacing: 1.25px;
@@ -461,6 +516,7 @@ h5.title_flight {
 }
 
 .date .react-datepicker__input-container>input {
+    cursor: pointer;
     width: 100% !important;
     background: transparent;
     border: none !important;
@@ -685,6 +741,7 @@ img.flight_img {
 /* CSS for Radio Button styles */
 
 .radio_btn input[type=radio] {
+    cursor: pointer;
     width: 18px;
     height: 18px;
     border: none;
@@ -788,11 +845,12 @@ input.inp_mail:focus {
 }
 
 .e_mail {
+    cursor:pointer;
     position: absolute;
     top: 2.25em;
     right: 1em;
     width: 72px;
-    height: 42px;
+    height: 45px;
     background: #fff;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
@@ -1030,7 +1088,7 @@ div#__next-prerender-indicator {
 @media (max-width: 576px) {
     .filter-mobile {
         display: block;
-        padding: 7em 3% 0 3%;
+        padding: 0 3% 0 3%;
     }
     .sort-title h3.bold-text {
         font-size: 1em;
@@ -1735,6 +1793,7 @@ span.twostop {
 }
 
 .traveldet-popdown {
+    cursor:auto;
     background: white;
     position: absolute;
     z-index: 999;
@@ -1758,14 +1817,17 @@ span.twostop {
     border-bottom: 15px solid #f8eded;
 }
 .traveldet-popdown select,.traveldet-popdown select:focus {
+    cursor: pointer;
     border: 1px solid #1f27488c;
 }
 .traveldet-title {
+    cursor: pointer;
     background: white;
     padding: 0.66em;
     color: #777;
 }
 span.react-numeric-input b {
+    cursor: pointer !important;
     color: skyblue !important;
     background: transparent !important;
     font-size: 25px !important;
@@ -1808,6 +1870,7 @@ span.label-skyblue {
     margin-top:-15px !important;
 }
 span.react-numeric-input b:hover {
+    cursor: pointer !important;
     background: transparent !important;
     font-size: 25px !important;
     font-weight: bold !important;
@@ -1821,7 +1884,7 @@ span.react-numeric-input b:hover {
 .passanger-static.row {
     color: white;
     font-size: 15px;
-    padding: 15px 0;
+    /* padding: 15px 0; */
 }
 .search-circle {
     margin-right: 15px;
@@ -1840,10 +1903,26 @@ span.react-numeric-input b:hover {
 }
 .passanger-details .traveldet-title {
     background: white;
-    padding: 0.66em;
-    color: #777;
+    padding: 0.85em !important;
+    width: 100% !important;
+    border: none !important;
+    font-size: 14px;
+    color: #777 !important;
+    margin-bottom: 1.25em;
+    text-align: left !important;
 }
 .fulldrop-panel.row {
     color: white;
     padding: 15px;
+}
+p.fromtoplace {
+    margin-bottom: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 85%;
+    overflow-x: hidden;
+    }
+span.smallText {
+    font-size: 13px;
+    white-space: nowrap;
 }

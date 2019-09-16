@@ -24,19 +24,19 @@ class Footer extends Component {
 
 								<div className='social-media'>
 									<div className='twitter'>
-										<img src='static/images/twitter.svg' alt='' width='32'></img>
+										<a href="https://www.facebook.com/" target="_blank"><img src='static/images/twitter.svg' alt='' width='32'></img></a>
 									</div>
 									<div className='twitter'>
-										<img src='static/images/fb.svg' alt='' width='32'></img>
+									<a href="https://twitter.com/" target="_blank"><img src='static/images/fb.svg' alt='' width='32'></img></a>
 									</div>
 									<div className='twitter'>
-										<img src='static/images/insta.svg' alt='' width='32'></img>
+									<a href="https://www.instagram.com/?hl=en" target="_blank"><img src='static/images/insta.svg' alt='' width='32'></img></a>
 									</div>
 									<div className='twitter'>
-										<img src='static/images/pint.svg' alt='' width='32'></img>
+									<a href="https://in.pinterest.com/" target="_blank"><img src='static/images/pint.svg' alt='' width='32'></img></a>
 									</div>
 									<div className='twitter'>
-										<img src='static/images/youtube.svg' alt='' width='32'></img>
+									<a href="https://www.youtube.com/" target="_blank"><img src='static/images/youtube.svg' alt='' width='32'></img></a>
 									</div>
 								</div>
 							</Col>

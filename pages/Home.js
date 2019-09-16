@@ -442,7 +442,7 @@ const Home = () => {
 													<Row>
 														<Col md={12} sm={12}>
 														<Form.Label className="label-dark">Cabin class</Form.Label>
-															<span className="" style={{float:'right',color:'#17d8cf'}} onClick={()=>setPopup(false)}><i className="fa fa-times"></i></span>
+															<span className="" style={{float:'right',color:'#17d8cf',cursor:'pointer'}} onClick={()=>setPopup(false)}><i className="fa fa-times"></i></span>
 															<div className="select_box">
 																<Form.Control as="select" name="oneway_preferedFlightClass" onChange={changeClass}>
 																<option value="1">Any</option>
@@ -492,7 +492,7 @@ const Home = () => {
 													<br/>
 													<Row>
 														<Col sm={12} className="text-right">
-															<span className="label-skyblue" onClick={() => setPopup(false)}>Done</span>
+															<span className="label-skyblue" style={{cursor:'pointer'}} onClick={() => setPopup(false)}>Done</span>
 														</Col>
 													</Row>
 													</div>

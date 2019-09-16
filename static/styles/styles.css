@@ -31,10 +31,10 @@ body {
 }
 
 .bg-img {
-    margin-top: 80px;
+    margin-top: 80px !important;
     background-attachment: fixed;
     padding: 100px 0 0 0;
-    background-image: url(../images/bg.jpg);
+    background-image: url(../images/bg.jpg) !important;
     background-size: contain;
     background-position: center center;
 }
@@ -1208,7 +1208,10 @@ code {
         bottom: 0;
         height: auto;
         z-index: 100;
-        padding: 1em;
+        padding: 1em 2em;
+    }
+    .passanger-details .form-group {
+        margin-bottom: 0px;
     }
     .mobile-filterscreen .datas {
         border-top: none;

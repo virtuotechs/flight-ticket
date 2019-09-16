@@ -139,7 +139,6 @@ const TicketBooking = (flights) => {
             const [fullDrop,setFullDrop] = useState(false);
             const [searchType,setSearchtype] = useState(requestData.searchType);
             const [isDirectFlight,setDirectflight] = useState(requestData.isDirectFlight);
-            console.log("Direct flight",isDirectFlight);
             const [departureLocationCode,setDeparturelocationcode] = useState(requestData.segments[0].departureLocationCode)
             const [arrivalLocationCode,setArrivallocationcode] = useState(requestData.segments[0].arrivalLocationCode);
             const [departureLocationName,setDepartureLocationName]= useState(requestData.departureLocationName);
@@ -842,23 +841,31 @@ const TicketBooking = (flights) => {
                 <div className="container-fluid">
                     <div className="bg-img">
                         <Row className="margin-0">
-                            <Col sm={12} style={{ padding: '0' }}>
+                            <Col sm={12} style={{ padding: '0'}}>
                                 <div className="passanger-details">
-                                    <Row className='passanger-static'>
-                                        <Col sm={8}>
-                                            <i className='fa fa-search search-circle' onClick={() => setFullDrop(!fullDrop)}></i> 
-                                            {departureLocationName} &nbsp;&nbsp;- &nbsp;&nbsp;{arrivalLocationName}
-                                            <br/><small style={{position: 'absolute',left: '70px',top: '32px'}}>{adultCount} traveller &nbsp;&nbsp;| &nbsp;&nbsp;{preferedclassname(preferedFlightClass)}</small>
+                                <Row className='passanger-static'>
+                                        <Col xs={12} sm={6} md={8} lg={8} style={{padding: '0'}}>
+                                            <div className='d_flex' onClick={() => setFullDrop(!fullDrop)} style={{cursor:'pointer'}}>
+                                                <i className='fa fa-search search-circle'></i> 
+                                                <p className='fromtoplace'>{departureLocationName} &nbsp;&nbsp;- &nbsp;&nbsp;<br />{arrivalLocationName}</p>
+                                            </div>
+                                            <small style={{position: 'relative', paddingLeft: '55px',top: '-1.5em'}}>{adultCount} traveller &nbsp;&nbsp;| &nbsp;&nbsp;{preferedclassname(preferedFlightClass)}</small>
                                         </Col>
-                                        <Col sm={4} className="text-right">
-                                        <img className="img_calendar" src="static/images/calendar.svg" width='25'></img>&nbsp;&nbsp;
-                                        {dateFormat(departureDate,"ddd d,yyyy")} &nbsp;&nbsp;
-                                        { searchType==2 ? <span>- &nbsp;&nbsp;
-                                        <img className="img_calendar" src="static/images/calendar.svg" width='25'></img>&nbsp;&nbsp;
-                                        {dateFormat(returnDate,"ddd d,yyyy")} </span> : null}
-                                        
+                                        <Col xs={12} sm={1} md={1} lg={1}>
+
+                                        </Col>
+                                        <Col xs={6} sm={2} md={1} lg={1} className="text-center">
+                                            <span className='smallText d_flex'>
+                                            <img className="img_calendar" src="static/images/calendar.svg" width='20'></img>&nbsp;&nbsp;
+                                            {dateFormat(departureDate,"ddd d,yyyy")}</span>
+                                        </Col>
+                                        <Col xs={6} sm={2} md={1} lg={1} className="text-center">
+                                            {searchType==2 ? <span className='smallText d_flex'> &nbsp;&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <img className="img_calendar" src="static/images/calendar.svg" width='20'></img>&nbsp;&nbsp;
+                                            {dateFormat(returnDate,"ddd d,yyyy")} </span> : null}
                                         </Col>
                                     </Row>
+
                                     <div hidden={!fullDrop}>
                                     <Form>
                                     <Row className='fulldrop-panel'>
@@ -883,13 +890,11 @@ const TicketBooking = (flights) => {
 														{departure_err ? (<i className="err-msg">Departure Location required</i>): null}
 													</div>
 												</Form.Group>
-												{['checkbox'].map(type => (
-													<div key={`inline-${type}`} className='checkbox-custom'>
+													<div className='checkbox-custom'>
 														<div  className="mb-3">
-															<Form.Check name="add_near_airport" inline label="Add Nearby Airports" type={type} id={`inline-${type}-1`} />
+															<Form.Check name="add_near_airport" inline label="Add Nearby Airports" type="checkbox" />
 														</div>
 													</div>
-												))}
 											</Col>
 											<Col md={4} sm={6} className="less-padleft less-padright">
 												<Form.Group controlId="exampleForm.ControlSelect1">
@@ -903,13 +908,11 @@ const TicketBooking = (flights) => {
 														{arrival_err ? (<i className="err-msg">Arrival Location required</i>): null}
 													</div>
 												</Form.Group>
-												{['checkbox'].map(type => (
-													<div key={`inline-${type}`} className='checkbox-custom'>
-														<div className="mb-3">
-															<Form.Check name="add_near_airport" inline label="Add Nearby Airports" type={type} id={`inline-${type}-1`} />
-														</div>
-													</div>
-												))}
+                                                <div className='checkbox-custom'>
+                                                    <div className="mb-3">
+                                                        <Form.Check name="add_near_airport" inline label="Add Nearby Airports" type="checkbox"/>
+                                                    </div>
+                                                </div>
 											</Col>
 											<Col md={4} sm={6}>
 												<Row>
@@ -1029,14 +1032,12 @@ const TicketBooking = (flights) => {
 											</div>
 										</Form.Group>
 									</Col>
-
 									<Col lg={12} md={12}>
 										<Row>
 											<Col sm={8}>
 											<div className='checkbox-custom'>
 													<div className="mb-3 right">
-                                                        
-														<Form.Check name="isDirectFlight" inline label="Direct Flight Only" type="checkbox" defaultChecked={isDirectFlight} value={isDirectFlight} onClick={changedirectFlight}/>
+                                                        <Form.Check name="isDirectFlight" label="Direct Flight Only" type="checkbox" value="false" defaultChecked={isDirectFlight} onClick={changedirectFlight}/>                                                        
 													</div>
 												</div>
 											</Col>
